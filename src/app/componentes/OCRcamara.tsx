@@ -9,12 +9,12 @@ const OCRCamera: React.FC = () => {
   const [capturedText, setCapturedText] = useState<string>("");
   const [loading, setLoading] = useState(false);
 
-  // Abrir cámara o galería
+  // Abrir selector nativo (cámara o galería)
   const openCameraOrGallery = () => {
     fileInputRef.current?.click();
   };
 
-  // Procesar imagen seleccionada
+  // Manejar imagen seleccionada o tomada
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -27,7 +27,7 @@ const OCRCamera: React.FC = () => {
     reader.readAsDataURL(file);
   };
 
-  // Leer texto con OCR
+  // Procesar imagen con OCR
   const processImage = async (imageData: string) => {
     setLoading(true);
     setCapturedText("");
@@ -55,7 +55,6 @@ const OCRCamera: React.FC = () => {
         <input
           type="file"
           accept="image/*"
-          capture="environment"
           ref={fileInputRef}
           onChange={handleImageUpload}
           className={styles.inputFile}
