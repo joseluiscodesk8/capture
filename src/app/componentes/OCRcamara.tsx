@@ -8,14 +8,15 @@ const OCRCamera: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [capturedText, setCapturedText] = useState<string>("");
   const [formattedLines, setFormattedLines] = useState<string[]>([]);
+  const [detectedAddress, setDetectedAddress] = useState<{ address: string; mapsUrl: string } | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // Abrir selector nativo (cámara o galería)
+  // 📸 Abrir cámara o galería
   const openCameraOrGallery = () => {
     fileInputRef.current?.click();
   };
 
-  // Manejar imagen seleccionada o tomada
+  // 📂 Manejar imagen seleccionada o tomada
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -28,20 +29,47 @@ const OCRCamera: React.FC = () => {
     reader.readAsDataURL(file);
   };
 
-  // Procesar imagen con OCR
+  // 🧠 Procesar imagen con OCR
   const processImage = async (imageData: string) => {
     setLoading(true);
     setCapturedText("");
     setFormattedLines([]);
-    try {
-      const result = await Tesseract.recognize(imageData, "spa");
-      const text = result.data.text.trim();
+    setDetectedAddress(null);
 
-      // Limpieza básica y formato visual
+    try {
+      const worker = await Tesseract.createWorker();
+      await worker.load();
+      await worker.load();
+      await worker.load();
+      await worker.load();
+      await worker.load();
+      await worker.load("spa");
+      await worker.reinitialize("spa");
+      await worker.setParameters({
+        tessedit_char_whitelist:
+          "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóúÁÉÍÓÚñÑ#-_.:,;()@/ ",
+      });
+      const result = await worker.recognize(imageData);
+      await worker.terminate();
+
+      let text = result.data.text.trim();
+
+      // 🧹 Limpieza básica
       const lines = text
         .split("\n")
         .map((line) => line.trim())
         .filter((line) => line.length > 0);
+
+      // 🔍 Detectar dirección
+      const addressInfo = detectAddressAndGenerateMapLink(text);
+      if (addressInfo) {
+        setDetectedAddress(addressInfo);
+        text += `\n\n📍 Dirección detectada:\n${addressInfo.address}`;
+      }
+
+      // 🧾 Agregar pregunta al final
+      text += "\n\nYA PAGO?";
+      lines.push("YA PAGO?");
 
       setCapturedText(text);
       setFormattedLines(lines);
@@ -53,13 +81,40 @@ const OCRCamera: React.FC = () => {
     }
   };
 
-  // Enviar por WhatsApp directamente
+  // 🗺️ Detectar dirección y generar link de Google Maps
+  const detectAddressAndGenerateMapLink = (text: string) => {
+    const addressRegex =
+      /\b(Calle|Carrera|Avenida|Diagonal|Transversal)\s*\d+[A-Za-z]?\s*#?\s*\d+[A-Za-z]?\s*[-–]?\s*\d*[A-Za-z]*/i;
+
+    const match = text.match(addressRegex);
+    if (match) {
+      const address = match[0]
+        .replace(/\s{2,}/g, " ") // elimina espacios dobles
+        .replace(/\s?#\s?/g, "#") // asegura que el # esté bien pegado
+        .replace(/(\d)\s?9(\d)/g, "$1#$2") // 🔧 Corrige errores donde OCR leyó 9 en lugar de #
+        .trim();
+
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+        address
+      )}`;
+
+      return { address, mapsUrl };
+    }
+    return null;
+  };
+
+  // 💬 Enviar texto a WhatsApp
   const sendToWhatsApp = () => {
-    const whatsappNumber = "573017844046"; // 🔹 número destino fijo
+    const whatsappNumber = "573017844046"; // Número fijo
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
       capturedText
     )}`;
     window.open(url, "_blank");
+  };
+
+  // 🗺️ Abrir Google Maps en la app del celular
+  const openInMaps = (mapsUrl: string) => {
+    window.open(mapsUrl, "_blank");
   };
 
   return (
@@ -95,6 +150,17 @@ const OCRCamera: React.FC = () => {
             ))}
           </div>
 
+          {detectedAddress && (
+            <div className={styles.mapSection}>
+              <button
+                onClick={() => openInMaps(detectedAddress.mapsUrl)}
+                className={`${styles.btn} ${styles.mapBtn}`}
+              >
+                🗺️ Abrir en Maps
+              </button>
+            </div>
+          )}
+
           <button
             onClick={sendToWhatsApp}
             className={`${styles.btn} ${styles.success}`}
@@ -108,6 +174,7 @@ const OCRCamera: React.FC = () => {
 };
 
 export default OCRCamera;
+
 
 
 // "use client";
@@ -147,13 +214,17 @@ export default OCRCamera;
 //     setFormattedLines([]);
 //     try {
 //       const result = await Tesseract.recognize(imageData, "spa");
-//       const text = result.data.text.trim();
+//       let text = result.data.text.trim();
 
 //       // Limpieza básica y formato visual
 //       const lines = text
 //         .split("\n")
 //         .map((line) => line.trim())
 //         .filter((line) => line.length > 0);
+
+//       // Agregar pregunta al final
+//       lines.push("YA PAGO?");
+//       text = text + "\n\nYA PAGO?";
 
 //       setCapturedText(text);
 //       setFormattedLines(lines);
@@ -163,6 +234,15 @@ export default OCRCamera;
 //     } finally {
 //       setLoading(false);
 //     }
+//   };
+
+//   // Enviar por WhatsApp directamente
+//   const sendToWhatsApp = () => {
+//     const whatsappNumber = "573153863933"; // 🔹 número destino fijo
+//     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+//       capturedText
+//     )}`;
+//     window.open(url, "_blank");
 //   };
 
 //   return (
@@ -189,6 +269,7 @@ export default OCRCamera;
 //       {!loading && formattedLines.length > 0 && (
 //         <article className={styles.result}>
 //           <h2 className={styles.title}>🧾 Texto detectado:</h2>
+
 //           <div className={styles.ticket}>
 //             {formattedLines.map((line, index) => (
 //               <div key={index} className={styles.ticketLine}>
@@ -196,6 +277,13 @@ export default OCRCamera;
 //               </div>
 //             ))}
 //           </div>
+
+//           <button
+//             onClick={sendToWhatsApp}
+//             className={`${styles.btn} ${styles.success}`}
+//           >
+//             📤 Enviar por WhatsApp
+//           </button>
 //         </article>
 //       )}
 //     </section>
