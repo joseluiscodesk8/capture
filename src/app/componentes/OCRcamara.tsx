@@ -40,9 +40,6 @@ const OCRCamera: React.FC = () => {
       const worker = await Tesseract.createWorker();
       await worker.load();
       await worker.load();
-      await worker.load();
-      await worker.load();
-      await worker.load();
       await worker.load("spa");
       await worker.reinitialize("spa");
       await worker.setParameters({
@@ -54,20 +51,18 @@ const OCRCamera: React.FC = () => {
 
       let text = result.data.text.trim();
 
-      // 🧹 Limpieza básica
       const lines = text
         .split("\n")
         .map((line) => line.trim())
         .filter((line) => line.length > 0);
 
-      // 🔍 Detectar dirección
-      const addressInfo = detectAddressAndGenerateMapLink(text);
+      // 🔍 Detectar y corregir dirección
+      const addressInfo = detectAndCorrectAddress(text);
       if (addressInfo) {
         setDetectedAddress(addressInfo);
         text += `\n\n📍 Dirección detectada:\n${addressInfo.address}`;
       }
 
-      // 🧾 Agregar pregunta al final
       text += "\n\nYA PAGO?";
       lines.push("YA PAGO?");
 
@@ -81,38 +76,60 @@ const OCRCamera: React.FC = () => {
     }
   };
 
-  // 🗺️ Detectar dirección y generar link de Google Maps
-  const detectAddressAndGenerateMapLink = (text: string) => {
-    const addressRegex =
-      /\b(Calle|Carrera|Avenida|Diagonal|Transversal)\s*\d+[A-Za-z]?\s*#?\s*\d+[A-Za-z]?\s*[-–]?\s*\d*[A-Za-z]*/i;
+  // 🧭 Detectar y corregir direcciones colombianas
+  const detectAndCorrectAddress = (text: string) => {
+    // Paso 1️⃣ - Buscar posibles frases con tipos de vía
+    const regex =
+      /\b(Calle|Carrera|Avenida|Diagonal|Transversal)\s+[A-Za-z0-9\s%&@°.,-]{1,40}/gi;
 
-    const match = text.match(addressRegex);
-    if (match) {
-      const address = match[0]
-        .replace(/\s{2,}/g, " ") // elimina espacios dobles
-        .replace(/\s?#\s?/g, "#") // asegura que el # esté bien pegado
-        .replace(/(\d)\s?9(\d)/g, "$1#$2") // 🔧 Corrige errores donde OCR leyó 9 en lugar de #
-        .trim();
+    const match = text.match(regex);
+    if (!match) return null;
 
-      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-        address
-      )}`;
+    let raw = match[0].trim();
 
+    // Paso 2️⃣ - Normalizar texto y reemplazar errores comunes
+    raw = raw
+      .replace(/\s{2,}/g, " ")
+      .replace(/[EeYy%&xX\$@°]/g, "#") // símbolos mal leídos -> numeral
+      .replace(/#+/g, "#")
+      .replace(/\s?#\s?/g, " #")
+      .trim();
+
+    // Paso 3️⃣ - Patrón estricto colombiano (4 parámetros)
+    const addressPattern =
+      /\b(Calle|Carrera|Avenida|Diagonal|Transversal)\s*(\d+[A-Za-z]?|[0-9]+\s*Sur)?\s*#\s*(\d+[A-Za-z]?|[0-9]+\s*Sur)\s*[-\s]?\s*(\d+)\b/i;
+
+    const cleanMatch = raw.match(addressPattern);
+
+    if (cleanMatch) {
+      const [, via, num1, num2, num3] = cleanMatch;
+      const address = `${via} ${num1?.replace(/\s+/g, "") || ""} #${num2
+        ?.replace(/\s+/g, "")
+        || ""}-${num3}`;
+
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
       return { address, mapsUrl };
     }
-    return null;
+
+    // Paso 4️⃣ - Intentar corrección heurística (si el OCR falló)
+    const fallback = raw
+      .replace(
+        /(Calle|Carrera|Avenida|Diagonal|Transversal)\s*(\d+)[A-Za-z]?\s*[^#\d]*\s*(\d+[A-Za-z]?)\s*[-\s]?\s*(\d+)/i,
+        (_, via, num1, num2, num3) => `${via} ${num1} #${num2}-${num3}`
+      );
+
+    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fallback)}`;
+    return { address: fallback.trim(), mapsUrl };
   };
 
   // 💬 Enviar texto a WhatsApp
   const sendToWhatsApp = () => {
-    const whatsappNumber = "573017844046"; // Número fijo
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      capturedText
-    )}`;
+    const whatsappNumber = "573017844046";
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(capturedText)}`;
     window.open(url, "_blank");
   };
 
-  // 🗺️ Abrir Google Maps en la app del celular
+  // 🗺️ Abrir en Google Maps
   const openInMaps = (mapsUrl: string) => {
     window.open(mapsUrl, "_blank");
   };
@@ -177,6 +194,9 @@ export default OCRCamera;
 
 
 
+
+
+
 // "use client";
 
 // import React, { useRef, useState } from "react";
@@ -187,14 +207,15 @@ export default OCRCamera;
 //   const fileInputRef = useRef<HTMLInputElement | null>(null);
 //   const [capturedText, setCapturedText] = useState<string>("");
 //   const [formattedLines, setFormattedLines] = useState<string[]>([]);
+//   const [detectedAddress, setDetectedAddress] = useState<{ address: string; mapsUrl: string } | null>(null);
 //   const [loading, setLoading] = useState(false);
 
-//   // Abrir selector nativo (cámara o galería)
+//   // 📸 Abrir cámara o galería
 //   const openCameraOrGallery = () => {
 //     fileInputRef.current?.click();
 //   };
 
-//   // Manejar imagen seleccionada o tomada
+//   // 📂 Manejar imagen seleccionada o tomada
 //   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
 //     const file = event.target.files?.[0];
 //     if (!file) return;
@@ -207,24 +228,47 @@ export default OCRCamera;
 //     reader.readAsDataURL(file);
 //   };
 
-//   // Procesar imagen con OCR
+//   // 🧠 Procesar imagen con OCR
 //   const processImage = async (imageData: string) => {
 //     setLoading(true);
 //     setCapturedText("");
 //     setFormattedLines([]);
+//     setDetectedAddress(null);
+
 //     try {
-//       const result = await Tesseract.recognize(imageData, "spa");
+//       const worker = await Tesseract.createWorker();
+//       await worker.load();
+//       await worker.load();
+//       await worker.load();
+//       await worker.load();
+//       await worker.load();
+//       await worker.load("spa");
+//       await worker.reinitialize("spa");
+//       await worker.setParameters({
+//         tessedit_char_whitelist:
+//           "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóúÁÉÍÓÚñÑ#-_.:,;()@/ ",
+//       });
+//       const result = await worker.recognize(imageData);
+//       await worker.terminate();
+
 //       let text = result.data.text.trim();
 
-//       // Limpieza básica y formato visual
+//       // 🧹 Limpieza básica
 //       const lines = text
 //         .split("\n")
 //         .map((line) => line.trim())
 //         .filter((line) => line.length > 0);
 
-//       // Agregar pregunta al final
+//       // 🔍 Detectar dirección
+//       const addressInfo = detectAddressAndGenerateMapLink(text);
+//       if (addressInfo) {
+//         setDetectedAddress(addressInfo);
+//         text += `\n\n📍 Dirección detectada:\n${addressInfo.address}`;
+//       }
+
+//       // 🧾 Agregar pregunta al final
+//       text += "\n\nYA PAGO?";
 //       lines.push("YA PAGO?");
-//       text = text + "\n\nYA PAGO?";
 
 //       setCapturedText(text);
 //       setFormattedLines(lines);
@@ -236,13 +280,40 @@ export default OCRCamera;
 //     }
 //   };
 
-//   // Enviar por WhatsApp directamente
+//   // 🗺️ Detectar dirección y generar link de Google Maps
+//   const detectAddressAndGenerateMapLink = (text: string) => {
+//     const addressRegex =
+//       /\b(Calle|Carrera|Avenida|Diagonal|Transversal)\s*\d+[A-Za-z]?\s*#?\s*\d+[A-Za-z]?\s*[-–]?\s*\d*[A-Za-z]*/i;
+
+//     const match = text.match(addressRegex);
+//     if (match) {
+//       const address = match[0]
+//         .replace(/\s{2,}/g, " ") // elimina espacios dobles
+//         .replace(/\s?#\s?/g, "#") // asegura que el # esté bien pegado
+//         .replace(/(\d)\s?9(\d)/g, "$1#$2") // 🔧 Corrige errores donde OCR leyó 9 en lugar de #
+//         .trim();
+
+//       const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+//         address
+//       )}`;
+
+//       return { address, mapsUrl };
+//     }
+//     return null;
+//   };
+
+//   // 💬 Enviar texto a WhatsApp
 //   const sendToWhatsApp = () => {
-//     const whatsappNumber = "573153863933"; // 🔹 número destino fijo
+//     const whatsappNumber = "573017844046"; // Número fijo
 //     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
 //       capturedText
 //     )}`;
 //     window.open(url, "_blank");
+//   };
+
+//   // 🗺️ Abrir Google Maps en la app del celular
+//   const openInMaps = (mapsUrl: string) => {
+//     window.open(mapsUrl, "_blank");
 //   };
 
 //   return (
@@ -277,6 +348,17 @@ export default OCRCamera;
 //               </div>
 //             ))}
 //           </div>
+
+//           {detectedAddress && (
+//             <div className={styles.mapSection}>
+//               <button
+//                 onClick={() => openInMaps(detectedAddress.mapsUrl)}
+//                 className={`${styles.btn} ${styles.mapBtn}`}
+//               >
+//                 🗺️ Abrir en Maps
+//               </button>
+//             </div>
+//           )}
 
 //           <button
 //             onClick={sendToWhatsApp}
