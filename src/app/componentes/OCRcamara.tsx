@@ -38,46 +38,69 @@ const OCRCamera: React.FC = () => {
     setDetectedAddress(null);
     setDetectedPhone(null);
     setDetectedPrice(null);
-
+  
     try {
       const worker = await Tesseract.createWorker("spa");
-
+  
       await worker.setParameters({
         tessedit_char_whitelist:
           "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóúÁÉÍÓÚñÑ#-_.:,;()@/+$% ",
       });
-
+  
       const result = await worker.recognize(imageData);
       await worker.terminate();
-
+  
       let text = result.data.text.trim();
-
+  
+      // 🔹 Limpiamos y analizamos el texto detectado
+      const cleaned = text.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]/g, "").trim();
+  
+      // Si el texto es muy corto o tiene pocas letras válidas → consideramos que no se entendió
+      const validChars = cleaned.replace(/\s+/g, "").length;
+      if (validChars < 15) {
+        setCapturedText("❌ No se pudo leer correctamente el texto de la imagen. Intenta de nuevo.");
+        setFormattedLines([]);
+        setLoading(false);
+        return;
+      }
+  
+      // Si el texto parece “basura” (pocos espacios, muchas mayúsculas o signos)
+      const weirdRatio = (text.match(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]/g) || []).length / text.length;
+      if (weirdRatio > 0.3) {
+        setCapturedText("❌ No se pudo leer correctamente el texto de la imagen. Intenta de nuevo.");
+        setFormattedLines([]);
+        setLoading(false);
+        return;
+      }
+  
+      // Si pasa los filtros, continuamos normalmente
       const lines = text
         .split("\n")
         .map((line) => line.trim())
         .filter((line) => line.length > 0);
-
+  
       const addressInfo = detectAndCorrectAddress(text);
       if (addressInfo) setDetectedAddress(addressInfo);
-
-      const phone = detectPhone(text); // Ensure detectPhone is defined below
+  
+      const phone = detectPhone(text);
       const price = detectPrice(text);
-
+  
       if (phone) setDetectedPhone(phone);
       if (price) setDetectedPrice(price);
-
+  
       text += "\n\nYA PAGO?";
       lines.push("YA PAGO?");
-
+  
       setCapturedText(text);
       setFormattedLines(lines);
     } catch (error) {
       console.error("Error en OCR:", error);
-      setCapturedText("Error al leer la imagen.");
+      setCapturedText("⚠️ Error al leer la imagen. Intenta nuevamente.");
     } finally {
       setLoading(false);
     }
   };
+   
 
   const detectAndCorrectAddress = (text: string): DetectedAddress => {
     // Expresión regular robusta para direcciones colombianas
