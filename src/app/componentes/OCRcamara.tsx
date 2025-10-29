@@ -173,10 +173,24 @@ const OCRCamera: React.FC = () => {
   
 
   const detectPhone = (text: string): string | null => {
-    const phoneRegex = /\b\d{7,10}\b/g;
-    const match = text.match(phoneRegex);
-    return match ? match[0] : null;
-  };
+    // Buscar posibles números con o sin prefijo +57, con o sin espacios
+    const phoneRegex = /(\+?57)?[\s\-\.]?(3\d{2}[\s\-\.]?\d{3}[\s\-\.]?\d{4})/g;
+    const matches = [...text.matchAll(phoneRegex)];
+  
+    if (matches.length === 0) return null;
+  
+    // Tomar el primer número válido y limpiarlo
+    const rawPhone = matches[0][2]; // Capturamos el grupo sin el prefijo
+    const cleanPhone = rawPhone.replace(/\D/g, ""); // Quitar cualquier caracter no numérico
+  
+    // Validar que tenga 10 dígitos y empiece con 3 (celulares colombianos)
+    if (cleanPhone.length === 10 && cleanPhone.startsWith("3")) {
+      return cleanPhone;
+    }
+  
+    // Si el número es de 9 dígitos o similar, lo descartamos
+    return null;
+  };  
 
   const sendToWhatsApp = () => {
     const whatsappNumber = "573017844046";
