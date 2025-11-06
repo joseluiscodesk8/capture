@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import Tesseract from "tesseract.js";
 import styles from "../index.module.scss";
+
+import { getWorker } from "../lib/tesseractWorker";
+import { preprocessImage } from "../utils/preprocessImage";
 
 type DetectedAddress = { address: string; mapsUrl: string } | null;
 
@@ -38,55 +40,40 @@ const OCRCamera: React.FC = () => {
     setDetectedAddress(null);
     setDetectedPhone(null);
     setDetectedPrice(null);
-
+  
     try {
-      const worker = await Tesseract.createWorker("spa");
-
-      await worker.setParameters({
-        tessedit_char_whitelist:
-          "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóúÁÉÍÓÚñÑ#-_.:,;()@/+$% ",
-      });
-
-      const result = await worker.recognize(imageData);
-      await worker.terminate();
-
+      const worker = await getWorker();
+  
+      // Preprocesar imagen antes del OCR
+      const processed = await preprocessImage(imageData);
+  
+      const result = await worker.recognize(processed);
       let text = result.data.text.trim();
-
-      const cleaned = text.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]/g, "").trim();
-
-      const validChars = cleaned.replace(/\s+/g, "").length;
-      if (validChars < 15) {
-        setCapturedText("❌ No se pudo leer correctamente el texto de la imagen. Intenta de nuevo.");
-        setFormattedLines([]);
-        setLoading(false);
+  
+      if (!text || text.length < 10) {
+        setCapturedText("⚠️ No se pudo leer el texto. Verifica la iluminación o el enfoque.");
         return;
       }
-
-      const weirdRatio = (text.match(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]/g) || []).length / text.length;
-      if (weirdRatio > 0.3) {
-        setCapturedText("❌ No se pudo leer correctamente el texto de la imagen. Intenta de nuevo.");
-        setFormattedLines([]);
-        setLoading(false);
-        return;
-      }
-
+  
       const lines = text
         .split("\n")
         .map((line) => line.trim())
         .filter((line) => line.length > 0);
-
+  
+      // Detectar campos
       const addressInfo = detectAndCorrectAddress(text);
       if (addressInfo) setDetectedAddress(addressInfo);
-
+  
       const phone = detectPhone(text);
       const price = detectPrice(text);
-
+  
       if (phone) setDetectedPhone(phone);
       if (price) setDetectedPrice(price);
-
+  
+      // Agregar "YA PAGO?" al final
       text += "\n\nYA PAGO?";
       lines.push("YA PAGO?");
-
+  
       setCapturedText(text);
       setFormattedLines(lines);
     } catch (error) {
@@ -96,6 +83,7 @@ const OCRCamera: React.FC = () => {
       setLoading(false);
     }
   };
+  
 
   const detectAndCorrectAddress = (text: string): DetectedAddress => {
     const regex =
