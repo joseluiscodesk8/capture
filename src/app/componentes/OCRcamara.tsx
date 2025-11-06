@@ -2,37 +2,159 @@
 
 import React, { useRef, useState } from "react";
 import styles from "../index.module.scss";
-
 import { getWorker } from "../lib/tesseractWorker";
 import { preprocessImage } from "../utils/preprocessImage";
 
-type DetectedAddress = { address: string; mapsUrl: string } | null;
-
-const OCRCamera: React.FC = () => {
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+export default function OCRCamera() {
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [capturedText, setCapturedText] = useState<string>("");
   const [formattedLines, setFormattedLines] = useState<string[]>([]);
-  const [detectedAddress, setDetectedAddress] = useState<DetectedAddress>(null);
+  const [loading, setLoading] = useState(false);
+  const [detectedAddress, setDetectedAddress] = useState<string | null>(null);
   const [detectedPhone, setDetectedPhone] = useState<string | null>(null);
   const [detectedPrice, setDetectedPrice] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
 
-  const openCameraOrGallery = () => {
-    fileInputRef.current?.click();
+  // --- Detectores ---
+  const detectPhone = (text: string) => {
+    const match = text.match(/(?:\+?57)?\s?(\d{3}[-\s.]?\d{3}[-\s.]?\d{4})/);
+    return match ? match[1].replace(/[\s.-]/g, "") : null;
   };
 
-  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = async () => {
-      const imageData = reader.result as string;
-      await processImage(imageData);
+  const detectPrice = (text: string) => {
+    const lines = text
+      .split("\n")
+      .map((l) => l.trim())
+      .filter(Boolean);
+  
+    // Detecta patrones de precio razonables (con o sin $ / COP)
+    const priceRegex =
+      /(?:\$|COP|col|pesos)?\s*([0-9]{1,3}(?:[.,][0-9]{3})*(?:[.,][0-9]{2,3})?|[0-9]+(?:[.,][0-9]{1,3})?)(?:\s?(?:COP|col|pesos)?)?/gi;
+  
+    let detectedPrice: number | null = null;
+  
+    // función helper: decide si un candidato parece hora (ej: 1:38, 1.38, 12:05)
+    const looksLikeTime = (raw: string) => {
+      // normaliza separadores ":" y "."
+      const normalized = raw.replace(",", ".").trim();
+      // si contiene ":" -> intentar parsear H:MM
+      if (/:/.test(normalized)) {
+        const parts = normalized.split(":");
+        if (parts.length === 2) {
+          const h = parseInt(parts[0], 10);
+          const m = parseInt(parts[1], 10);
+          if (!isNaN(h) && !isNaN(m) && h >= 0 && h <= 23 && m >= 0 && m <= 59) return true;
+        }
+      }
+      // si es decimal con punto (ej "1.38"), evaluar como posible hora si parte fracc <=59 y entero <=23
+      if (/^\d+\.\d+$/.test(normalized)) {
+        const [intPart, fracPart] = normalized.split(".");
+        const h = parseInt(intPart, 10);
+        const m = parseInt(fracPart.slice(0, 2), 10); // tomar hasta 2 dígitos
+        if (!isNaN(h) && !isNaN(m) && h >= 0 && h <= 23 && m >= 0 && m <= 59) return true;
+      }
+      return false;
     };
-    reader.readAsDataURL(file);
+  
+    // Recorremos de abajo hacia arriba (normalmente el total está al final)
+    for (let i = lines.length - 1; i >= 0; i--) {
+      const line = lines[i];
+  
+      // 1) si la línea contiene ":" a secas y parece una hora, saltarla rápido
+      if (/:/.test(line) && looksLikeTime(line)) continue;
+  
+      // 2) evitar líneas obviamente de dirección, texto, etc.
+      if (/Calle|Carrera|Cra|Cll|Av|Avenida|#|No|Tel|Teléfono|Total\s*Items/i.test(line)) continue;
+  
+      const matches = [...line.matchAll(priceRegex)];
+  
+      for (const match of matches) {
+        const raw = match[1] ?? "";
+        if (!raw) continue;
+  
+        // Si el raw parece hora, lo ignoramos
+        if (looksLikeTime(raw)) continue;
+  
+        // Normalizar: quitar espacios, cambiar comas por puntos temporalmente
+        let valStr = raw.replace(/\s/g, "");
+  
+        // Si tiene puntos como separadores de miles (ej "12.345" o "1.200.000")
+        // y el patrón coincide con miles, eliminamos los puntos para parsear correctamente
+        if (/^\d{1,3}(\.\d{3})+(,\d{1,3})?$/.test(valStr)) {
+          // ejemplo "1.200.000" -> "1200000"
+          valStr = valStr.replace(/\./g, "").replace(",", ".");
+        } else {
+          // Reemplazar comas por puntos para parseFloat (ej "23,50" -> "23.50")
+          valStr = valStr.replace(/,/g, ".");
+        }
+  
+        // Quitar cualquier carácter que no sea dígito o punto
+        valStr = valStr.replace(/[^\d.]/g, "");
+  
+        if (!valStr) continue;
+  
+        // Si hay más de un punto, tomar el primero y concatenar el resto (seguro)
+        const dots = (valStr.match(/\./g) || []).length;
+        if (dots > 1 && /^\d+\.\d+\.\d+/.test(valStr)) {
+          // en este caso probablemente eran miles con puntos que no fueron limpiados;
+          // ya intentamos limpiar antes, si sigue así, eliminar todos los puntos.
+          valStr = valStr.replace(/\./g, "");
+        }
+  
+        let numeric = parseFloat(valStr);
+        if (isNaN(numeric)) continue;
+  
+        // Si el número es pequeño (<1000) y no tiene separador de miles, muy probablemente
+        // sea una fracción o unidad (ej 1.38). Para Colombia, un precio real suele ser >=1000.
+        // Escalar valores <1000 multiplicando por 1000 **solo** si el valor tiene formato entero
+        // o si el texto original incluía separador de miles.
+        const originalHadThousandsSeparator = /[.,]\d{3}/.test(raw);
+        if (numeric < 1000 && originalHadThousandsSeparator) {
+          // si tenia separador de miles (raro llegar aquí), eliminar separadores y reparsear ya hecho antes
+        } else if (numeric < 1000) {
+          // NO escalar automáticamente si parece decimal con fracción (ej 1.38)
+          // pero si es entero pequeño (ej 26) normalmente no es precio -> ignorar
+          // Para mayor seguridad: si numeric < 1000 y es entero pequeño, multiplicamos por 1000
+          // sólo si la línea contiene palabras como "precio", "$", "COP" o si la línea anterior es nombre del producto.
+          const contextHasCurrencyHint = /[$]|COP|pesos|precio|total|valor/i.test(line);
+          if (contextHasCurrencyHint) {
+            numeric = numeric * 1000;
+          } else {
+            // si no hay pista de moneda, es mucho más seguro ignorar este candidato
+            continue;
+          }
+        }
+  
+        // Filtrar límites razonables
+        if (numeric < 1000 || numeric > 99999999) continue;
+  
+        detectedPrice = Math.round(numeric); // precio en unidades (pesos)
+        break;
+      }
+  
+      if (detectedPrice) break;
+    }
+  
+    if (!detectedPrice) return null;
+    const formatted = detectedPrice.toLocaleString("es-CO");
+    return `$${formatted}`;
+  };
+  
+
+  const detectAndCorrectAddress = (text: string) => {
+    const regex =
+      /(Calle|Carrera|Cra|Cll|Av|Avenida|Cl\.?|Cr\.?)\s?\d{1,3}[a-zA-Z]?\s?[#-]?\s?\d{1,3}-?\d{0,3}/i;
+    const match = text.match(regex);
+    if (!match) return null;
+
+    const address = match[0]
+      .replace(/\s{2,}/g, " ")
+      .replace(/[,.;:-]+$/, "")
+      .trim();
+
+    return address;
   };
 
+  // --- OCR principal ---
   const processImage = async (imageData: string) => {
     setLoading(true);
     setCapturedText("");
@@ -40,40 +162,32 @@ const OCRCamera: React.FC = () => {
     setDetectedAddress(null);
     setDetectedPhone(null);
     setDetectedPrice(null);
-  
+
     try {
       const worker = await getWorker();
-  
-      // Preprocesar imagen antes del OCR
       const processed = await preprocessImage(imageData);
-  
       const result = await worker.recognize(processed);
-      let text = result.data.text.trim();
-  
+      const text = result.data.text.trim();
+
       if (!text || text.length < 10) {
         setCapturedText("⚠️ No se pudo leer el texto. Verifica la iluminación o el enfoque.");
         return;
       }
-  
+
       const lines = text
         .split("\n")
         .map((line) => line.trim())
         .filter((line) => line.length > 0);
-  
-      // Detectar campos
+
       const addressInfo = detectAndCorrectAddress(text);
       if (addressInfo) setDetectedAddress(addressInfo);
-  
+
       const phone = detectPhone(text);
       const price = detectPrice(text);
-  
+
       if (phone) setDetectedPhone(phone);
       if (price) setDetectedPrice(price);
-  
-      // Agregar "YA PAGO?" al final
-      text += "\n\nYA PAGO?";
-      lines.push("YA PAGO?");
-  
+
       setCapturedText(text);
       setFormattedLines(lines);
     } catch (error) {
@@ -83,172 +197,112 @@ const OCRCamera: React.FC = () => {
       setLoading(false);
     }
   };
-  
 
-  const detectAndCorrectAddress = (text: string): DetectedAddress => {
-    const regex =
-      /\b(Calle|Carrera|Avenida|Diagonal|Transversal)\s*(\d+[A-Za-z]?(\s*sur)?)\s*#\s*(\d+[A-Za-z]?(\s*sur)?)\s*[-–]\s*(\d+)\b/gi;
-
-    const match = regex.exec(text);
-    if (!match) return null;
-
-    const via = match[1].trim();
-    const param1 = match[2].replace(/\s+/g, "").replace(/sur$/i, " sur").trim();
-    const param2 = match[4].replace(/\s+/g, "").replace(/sur$/i, " sur").trim();
-    const param3 = match[6].trim();
-
-    const address = `${via} ${param1} #${param2}-${param3}`;
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
-
-    return { address, mapsUrl };
-  };
-
-  const detectPrice = (text: string): string | null => {
-    const priceRegex = /\b(\$?\s?\d{1,6}(?:[.,]\d{3})*(?:[.,]\d{2})?)\b/g;
-    const matches: string[] = [];
-
-    let match;
-    while ((match = priceRegex.exec(text)) !== null) {
-      const digits = match[1].replace(/[^\d]/g, "");
-      if (digits.length > 1 && digits.length <= 6) matches.push(digits);
+  // --- Manejadores ---
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const imageData = reader.result as string;
+        processImage(imageData);
+      };
+      reader.readAsDataURL(file);
     }
+  };
 
-    if (matches.length === 0) return null;
+  const handleCaptureClick = () => {
+    fileInputRef.current?.click();
+  };
 
-    const validNumbers = matches
-      .map((num) => parseInt(num, 10))
-      .filter((n) => n > 0 && n < 1000000);
+  const handleWhatsAppSend = () => {
+    const targetNumber = "573017844046";
+    const info = [
+      detectedAddress ? `📍 Dirección: ${detectedAddress}` : "❌ No se detectó la dirección.",
+      detectedPhone ? `📞 Teléfono: ${detectedPhone}` : "❌ No se detectó el teléfono.",
+      detectedPrice ? `💲 Precio: ${detectedPrice}` : "❌ No se detectó el precio.",
+    ]
+      .filter(Boolean)
+      .join("\n");
 
-    if (validNumbers.length === 0) return null;
+    const message = encodeURIComponent(info);
+    window.open(`https://wa.me/${targetNumber}?text=${message}`, "_blank");
+  };
 
-    let priceNumber = Math.max(...validNumbers);
-
-    if (priceNumber < 1000) {
-      while (priceNumber * 10 < 10000) {
-        priceNumber *= 10;
-      }
-      priceNumber = Math.floor(priceNumber / 1000) * 1000;
-    } else if (priceNumber < 10000) {
-      priceNumber = Math.round(priceNumber / 100) * 1000;
-    } else {
-      priceNumber = Math.round(priceNumber / 1000) * 1000;
+  const handleCall = () => {
+    if (detectedPhone) {
+      const cleanedPhone = detectedPhone.replace(/\D/g, "");
+      window.open(`tel:${cleanedPhone}`);
     }
-
-    const formatted = priceNumber.toLocaleString("es-CO");
-    return `$ ${formatted}`;
   };
 
-  const detectPhone = (text: string): string | null => {
-    const phoneRegex = /(\+?57)?[\s\-\.]?(3\d{2}[\s\-\.]?\d{3}[\s\-\.]?\d{4})/g;
-    const matches = [...text.matchAll(phoneRegex)];
-
-    if (matches.length === 0) return null;
-
-    const rawPhone = matches[0][2];
-    const cleanPhone = rawPhone.replace(/\D/g, "");
-
-    if (cleanPhone.length === 10 && cleanPhone.startsWith("3")) {
-      return cleanPhone;
-    }
-
-    return null;
-  };
-
-  const sendToWhatsApp = () => {
-    const whatsappNumber = "573017844046";
-    const parts: string[] = [];
-
-    parts.push(`Teléfono: ${detectedPhone ?? "(no detectado)"}`);
-    parts.push(`Dirección: ${detectedAddress?.address ?? "(no detectada)"}`);
-    parts.push(`Precio: ${detectedPrice ?? "(no detectado)"}`);
-    parts.push("YA PAGO?");
-
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(parts.join("\n"))}`;
-    window.open(url, "_blank");
-  };
-
-  // 🔹 Nueva función para abrir la app de llamadas
-  const callPhoneNumber = () => {
-    if (!detectedPhone) {
-      alert("⚠️ No se detectó ningún número de teléfono válido.");
-      return;
-    }
-
-    window.location.href = `tel:${detectedPhone}`;
-  };
-
-  const openInMaps = (mapsUrl: string) => {
-    window.open(mapsUrl, "_blank");
-  };
-
+  // --- Render ---
   return (
     <section className={styles.ocrCamera}>
       <div className={styles.controls}>
-        <button onClick={openCameraOrGallery} className={`${styles.btn} ${styles.primary}`}>
-          Tomar o seleccionar imagen
+        <button
+          onClick={handleCaptureClick}
+          className={`${styles.btn} ${styles.primary}`}
+          disabled={loading}
+        >
+          {loading ? "Procesando..." : "Subir imagen"}
         </button>
 
         <input
           type="file"
           accept="image/*"
           ref={fileInputRef}
-          onChange={handleImageUpload}
+          onChange={handleFileChange}
           className={styles.inputFile}
         />
       </div>
 
-      {loading && <p className={styles.status}>📸 Procesando imagen...</p>}
+      {loading && <p className={styles.status}>🕐 Analizando imagen...</p>}
 
-      {!loading && formattedLines.length > 0 && (
-        <article className={styles.result}>
-          <h2 className={styles.title}>🧾 Texto detectado:</h2>
-
+      {!loading && capturedText && (
+        <div className={styles.result}>
+          <h3 className={styles.title}>📄 Resultado OCR:</h3>
           <div className={styles.ticket}>
-            {formattedLines.map((line, index) => (
-              <div key={index} className={styles.ticketLine}>
-                {line}
-              </div>
-            ))}
+            <pre>{capturedText}</pre>
           </div>
 
-          <div className={styles.extracted}>
-            <h3>🔎 Campos extraídos</h3>
-            <p>
-              <strong>Teléfono:</strong> {detectedPhone ?? <em>(no detectado)</em>}
-            </p>
-            <p>
-              <strong>Dirección:</strong>{" "}
+          {(detectedAddress || detectedPhone || detectedPrice) && (
+            <div>
               {detectedAddress ? (
-                <>
-                  {detectedAddress.address}{" "}
-                  <button
-                    onClick={() => openInMaps(detectedAddress.mapsUrl)}
-                    className={`${styles.btn} ${styles.mapBtn}`}
-                  >
-                    🗺️ Abrir en Maps
-                  </button>
-                </>
+                <p>📍 <strong>Dirección:</strong> {detectedAddress}</p>
               ) : (
-                <em>(no detectada)</em>
+                <p>❌ No se detectó la dirección.</p>
               )}
-            </p>
-            <p>
-              <strong>Precio:</strong> {detectedPrice ?? <em>(no detectado)</em>}
-            </p>
-          </div>
 
-          <div className={styles.actions}>
-            <button onClick={sendToWhatsApp} className={`${styles.btn} ${styles.success}`}>
-              📤 Enviar por WhatsApp
+              {detectedPhone ? (
+                <p>📞 <strong>Teléfono:</strong> {detectedPhone}</p>
+              ) : (
+                <p>❌ No se detectó el teléfono.</p>
+              )}
+
+              {detectedPrice ? (
+                <p>💲 <strong>Precio:</strong> {detectedPrice}</p>
+              ) : (
+                <p>❌ No se detectó el precio.</p>
+              )}
+            </div>
+          )}
+
+          <p className={styles.paymentCheck}>YA PAGO?</p>
+
+          <div className={styles.controls}>
+            <button onClick={handleWhatsAppSend} className={`${styles.btn} ${styles.success}`}>
+              Enviar por WhatsApp
             </button>
-            <button onClick={callPhoneNumber} className={`${styles.btn} ${styles.primary}`}>
-              📞 Llamar
-            </button>
+
+            {detectedPhone && (
+              <button onClick={handleCall} className={`${styles.btn} ${styles.secondary}`}>
+                Llamar al número
+              </button>
+            )}
           </div>
-        </article>
+        </div>
       )}
     </section>
   );
-};
-
-export default OCRCamera;
+}
