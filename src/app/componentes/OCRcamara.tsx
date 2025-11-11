@@ -13,6 +13,7 @@ export default function OCRCamera() {
   const [detectedAddress, setDetectedAddress] = useState<string | null>(null);
   const [detectedPhone, setDetectedPhone] = useState<string | null>(null);
   const [detectedPrice, setDetectedPrice] = useState<string | null>(null);
+  const [previewImage, setPreviewImage] = useState<string | null>(null); // 🆕 Nuevo estado
 
   // --- Detectores ---
   const detectPhone = (text: string) => {
@@ -25,18 +26,14 @@ export default function OCRCamera() {
       .split("\n")
       .map((l) => l.trim())
       .filter(Boolean);
-  
-    // Detecta patrones de precio razonables (con o sin $ / COP)
+
     const priceRegex =
       /(?:\$|COP|col|pesos)?\s*([0-9]{1,3}(?:[.,][0-9]{3})*(?:[.,][0-9]{2,3})?|[0-9]+(?:[.,][0-9]{1,3})?)(?:\s?(?:COP|col|pesos)?)?/gi;
-  
+
     let detectedPrice: number | null = null;
-  
-    // función helper: decide si un candidato parece hora (ej: 1:38, 1.38, 12:05)
+
     const looksLikeTime = (raw: string) => {
-      // normaliza separadores ":" y "."
       const normalized = raw.replace(",", ".").trim();
-      // si contiene ":" -> intentar parsear H:MM
       if (/:/.test(normalized)) {
         const parts = normalized.split(":");
         if (parts.length === 2) {
@@ -45,100 +42,71 @@ export default function OCRCamera() {
           if (!isNaN(h) && !isNaN(m) && h >= 0 && h <= 23 && m >= 0 && m <= 59) return true;
         }
       }
-      // si es decimal con punto (ej "1.38"), evaluar como posible hora si parte fracc <=59 y entero <=23
       if (/^\d+\.\d+$/.test(normalized)) {
         const [intPart, fracPart] = normalized.split(".");
         const h = parseInt(intPart, 10);
-        const m = parseInt(fracPart.slice(0, 2), 10); // tomar hasta 2 dígitos
+        const m = parseInt(fracPart.slice(0, 2), 10);
         if (!isNaN(h) && !isNaN(m) && h >= 0 && h <= 23 && m >= 0 && m <= 59) return true;
       }
       return false;
     };
-  
-    // Recorremos de abajo hacia arriba (normalmente el total está al final)
+
     for (let i = lines.length - 1; i >= 0; i--) {
       const line = lines[i];
-  
-      // 1) si la línea contiene ":" a secas y parece una hora, saltarla rápido
       if (/:/.test(line) && looksLikeTime(line)) continue;
-  
-      // 2) evitar líneas obviamente de dirección, texto, etc.
       if (/Calle|Carrera|Cra|Cll|Av|Avenida|#|No|Tel|Teléfono|Total\s*Items/i.test(line)) continue;
-  
+
       const matches = [...line.matchAll(priceRegex)];
-  
+
       for (const match of matches) {
         const raw = match[1] ?? "";
         if (!raw) continue;
-  
-        // Si el raw parece hora, lo ignoramos
         if (looksLikeTime(raw)) continue;
-  
-        // Normalizar: quitar espacios, cambiar comas por puntos temporalmente
+
         let valStr = raw.replace(/\s/g, "");
-  
-        // Si tiene puntos como separadores de miles (ej "12.345" o "1.200.000")
-        // y el patrón coincide con miles, eliminamos los puntos para parsear correctamente
+
         if (/^\d{1,3}(\.\d{3})+(,\d{1,3})?$/.test(valStr)) {
-          // ejemplo "1.200.000" -> "1200000"
           valStr = valStr.replace(/\./g, "").replace(",", ".");
         } else {
-          // Reemplazar comas por puntos para parseFloat (ej "23,50" -> "23.50")
           valStr = valStr.replace(/,/g, ".");
         }
-  
-        // Quitar cualquier carácter que no sea dígito o punto
+
         valStr = valStr.replace(/[^\d.]/g, "");
-  
+
         if (!valStr) continue;
-  
-        // Si hay más de un punto, tomar el primero y concatenar el resto (seguro)
+
         const dots = (valStr.match(/\./g) || []).length;
         if (dots > 1 && /^\d+\.\d+\.\d+/.test(valStr)) {
-          // en este caso probablemente eran miles con puntos que no fueron limpiados;
-          // ya intentamos limpiar antes, si sigue así, eliminar todos los puntos.
           valStr = valStr.replace(/\./g, "");
         }
-  
+
         let numeric = parseFloat(valStr);
         if (isNaN(numeric)) continue;
-  
-        // Si el número es pequeño (<1000) y no tiene separador de miles, muy probablemente
-        // sea una fracción o unidad (ej 1.38). Para Colombia, un precio real suele ser >=1000.
-        // Escalar valores <1000 multiplicando por 1000 **solo** si el valor tiene formato entero
-        // o si el texto original incluía separador de miles.
+
         const originalHadThousandsSeparator = /[.,]\d{3}/.test(raw);
         if (numeric < 1000 && originalHadThousandsSeparator) {
-          // si tenia separador de miles (raro llegar aquí), eliminar separadores y reparsear ya hecho antes
         } else if (numeric < 1000) {
-          // NO escalar automáticamente si parece decimal con fracción (ej 1.38)
-          // pero si es entero pequeño (ej 26) normalmente no es precio -> ignorar
-          // Para mayor seguridad: si numeric < 1000 y es entero pequeño, multiplicamos por 1000
-          // sólo si la línea contiene palabras como "precio", "$", "COP" o si la línea anterior es nombre del producto.
           const contextHasCurrencyHint = /[$]|COP|pesos|precio|total|valor/i.test(line);
           if (contextHasCurrencyHint) {
             numeric = numeric * 1000;
           } else {
-            // si no hay pista de moneda, es mucho más seguro ignorar este candidato
             continue;
           }
         }
-  
-        // Filtrar límites razonables
+
         if (numeric < 1000 || numeric > 99999999) continue;
-  
-        detectedPrice = Math.round(numeric); // precio en unidades (pesos)
+
+        detectedPrice = Math.round(numeric);
         break;
       }
-  
+
       if (detectedPrice) break;
     }
-  
+
     if (!detectedPrice) return null;
     const formatted = detectedPrice.toLocaleString("es-CO");
     return `$${formatted}`;
   };
-  
 
   const detectAndCorrectAddress = (text: string) => {
     const regex =
@@ -154,7 +122,6 @@ export default function OCRCamera() {
     return address;
   };
 
-  // --- OCR principal ---
   const processImage = async (imageData: string) => {
     setLoading(true);
     setCapturedText("");
@@ -198,13 +165,13 @@ export default function OCRCamera() {
     }
   };
 
-  // --- Manejadores ---
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         const imageData = reader.result as string;
+        setPreviewImage(imageData); // 🆕 Mostrar imagen previa
         processImage(imageData);
       };
       reader.readAsDataURL(file);
@@ -221,6 +188,7 @@ export default function OCRCamera() {
       detectedAddress ? `📍 Dirección: ${detectedAddress}` : "❌ No se detectó la dirección.",
       detectedPhone ? `📞 Teléfono: ${detectedPhone}` : "❌ No se detectó el teléfono.",
       detectedPrice ? `💲 Precio: ${detectedPrice}` : "❌ No se detectó el precio.",
+      "🟡 YA PAGO?",
     ]
       .filter(Boolean)
       .join("\n");
@@ -232,11 +200,10 @@ export default function OCRCamera() {
   const handleCall = () => {
     if (detectedPhone) {
       const cleanedPhone = detectedPhone.replace(/\D/g, "");
-      window.open(`tel:${cleanedPhone}`);
+      window.location.href = `tel:${cleanedPhone}`;
     }
   };
 
-  // --- Render ---
   return (
     <section className={styles.ocrCamera}>
       <div className={styles.controls}>
@@ -257,31 +224,47 @@ export default function OCRCamera() {
         />
       </div>
 
+      {previewImage && ( // 🆕 Mostrar imagen
+        <div className={styles.previewContainer}>
+          <img
+            src={previewImage}
+            alt="Imagen cargada"
+            className={styles.previewImage}
+          />
+        </div>
+      )}
+
       {loading && <p className={styles.status}>🕐 Analizando imagen...</p>}
 
       {!loading && capturedText && (
         <div className={styles.result}>
           <h3 className={styles.title}>📄 Resultado OCR:</h3>
-          <div className={styles.ticket}>
+          {/* <div className={styles.ticket}>
             <pre>{capturedText}</pre>
-          </div>
+          </div> */}
 
           {(detectedAddress || detectedPhone || detectedPrice) && (
             <div>
               {detectedAddress ? (
-                <p>📍 <strong>Dirección:</strong> {detectedAddress}</p>
+                <p>
+                  📍 <strong>Dirección:</strong> {detectedAddress}
+                </p>
               ) : (
                 <p>❌ No se detectó la dirección.</p>
               )}
 
               {detectedPhone ? (
-                <p>📞 <strong>Teléfono:</strong> {detectedPhone}</p>
+                <p>
+                  📞 <strong>Teléfono:</strong> {detectedPhone}
+                </p>
               ) : (
                 <p>❌ No se detectó el teléfono.</p>
               )}
 
               {detectedPrice ? (
-                <p>💲 <strong>Precio:</strong> {detectedPrice}</p>
+                <p>
+                  💲 <strong>Precio:</strong> {detectedPrice}
+                </p>
               ) : (
                 <p>❌ No se detectó el precio.</p>
               )}
@@ -291,12 +274,18 @@ export default function OCRCamera() {
           <p className={styles.paymentCheck}>YA PAGO?</p>
 
           <div className={styles.controls}>
-            <button onClick={handleWhatsAppSend} className={`${styles.btn} ${styles.success}`}>
+            <button
+              onClick={handleWhatsAppSend}
+              className={`${styles.btn} ${styles.success}`}
+            >
               Enviar por WhatsApp
             </button>
 
             {detectedPhone && (
-              <button onClick={handleCall} className={`${styles.btn} ${styles.secondary}`}>
+              <button
+                onClick={handleCall}
+                className={`${styles.btn} ${styles.secondary}`}
+              >
                 Llamar al número
               </button>
             )}
