@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import Image from "next/image";
 import styles from "../index.module.scss";
 import { getWorker } from "../lib/tesseractWorker";
 import { preprocessImage } from "../utils/preprocessImage";
@@ -6,7 +7,7 @@ import { preprocessImage } from "../utils/preprocessImage";
 export default function OCRCamera() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [capturedText, setCapturedText] = useState<string>("");
-  const [formattedLines, setFormattedLines] = useState<string[]>([]);
+  // const [formattedLines, setFormattedLines] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [detectedAddress, setDetectedAddress] = useState<string | null>(null);
   const [detectedPhone, setDetectedPhone] = useState<string | null>(null);
@@ -37,14 +38,16 @@ export default function OCRCamera() {
         if (parts.length === 2) {
           const h = parseInt(parts[0], 10);
           const m = parseInt(parts[1], 10);
-          if (!isNaN(h) && !isNaN(m) && h >= 0 && h <= 23 && m >= 0 && m <= 59) return true;
+          if (!isNaN(h) && !isNaN(m) && h >= 0 && h <= 23 && m >= 0 && m <= 59)
+            return true;
         }
       }
       if (/^\d+\.\d+$/.test(normalized)) {
         const [intPart, fracPart] = normalized.split(".");
         const h = parseInt(intPart, 10);
         const m = parseInt(fracPart.slice(0, 2), 10);
-        if (!isNaN(h) && !isNaN(m) && h >= 0 && h <= 23 && m >= 0 && m <= 59) return true;
+        if (!isNaN(h) && !isNaN(m) && h >= 0 && h <= 23 && m >= 0 && m <= 59)
+          return true;
       }
       return false;
     };
@@ -52,7 +55,12 @@ export default function OCRCamera() {
     for (let i = lines.length - 1; i >= 0; i--) {
       const line = lines[i];
       if (/:/.test(line) && looksLikeTime(line)) continue;
-      if (/Calle|Carrera|Cra|Cll|Av|Avenida|#|No|Tel|Teléfono|Total\s*Items/i.test(line)) continue;
+      if (
+        /Calle|Carrera|Cra|Cll|Av|Avenida|#|No|Tel|Teléfono|Total\s*Items/i.test(
+          line
+        )
+      )
+        continue;
 
       const matches = [...line.matchAll(priceRegex)];
 
@@ -84,7 +92,8 @@ export default function OCRCamera() {
         const originalHadThousandsSeparator = /[.,]\d{3}/.test(raw);
         if (numeric < 1000 && originalHadThousandsSeparator) {
         } else if (numeric < 1000) {
-          const contextHasCurrencyHint = /[$]|COP|pesos|precio|total|valor/i.test(line);
+          const contextHasCurrencyHint =
+            /[$]|COP|pesos|precio|total|valor/i.test(line);
           if (contextHasCurrencyHint) {
             numeric = numeric * 1000;
           } else {
@@ -123,7 +132,7 @@ export default function OCRCamera() {
   const processImage = async (imageData: string) => {
     setLoading(true);
     setCapturedText("");
-    setFormattedLines([]);
+    // setFormattedLines([]);
     setDetectedAddress(null);
     setDetectedPhone(null);
     setDetectedPrice(null);
@@ -135,14 +144,16 @@ export default function OCRCamera() {
       const text = result.data.text.trim();
 
       if (!text || text.length < 10) {
-        setCapturedText("⚠️ No se pudo leer el texto. Verifica la iluminación o el enfoque.");
+        setCapturedText(
+          "⚠️ No se pudo leer el texto. Verifica la iluminación o el enfoque."
+        );
         return;
       }
 
-      const lines = text
-        .split("\n")
-        .map((line) => line.trim())
-        .filter((line) => line.length > 0);
+      // const lines = text
+      //   .split("\n")
+      //   .map((line) => line.trim())
+      //   .filter((line) => line.length > 0);
 
       const addressInfo = detectAndCorrectAddress(text);
       if (addressInfo) setDetectedAddress(addressInfo);
@@ -154,7 +165,7 @@ export default function OCRCamera() {
       if (price) setDetectedPrice(price);
 
       setCapturedText(text);
-      setFormattedLines(lines);
+      // setFormattedLines(lines);
     } catch (error) {
       console.error("Error en OCR:", error);
       setCapturedText("⚠️ Error al leer la imagen. Intenta nuevamente.");
@@ -183,9 +194,15 @@ export default function OCRCamera() {
   const handleWhatsAppSend = () => {
     const targetNumber = "573017844046";
     const info = [
-      detectedAddress ? `📍 Dirección: ${detectedAddress}` : "❌ No se detectó la dirección.",
-      detectedPhone ? `📞 Teléfono: ${detectedPhone}` : "❌ No se detectó el teléfono.",
-      detectedPrice ? `💲 Precio: ${detectedPrice}` : "❌ No se detectó el precio.",
+      detectedAddress
+        ? `📍 Dirección: ${detectedAddress}`
+        : "❌ No se detectó la dirección.",
+      detectedPhone
+        ? `📞 Teléfono: ${detectedPhone}`
+        : "❌ No se detectó el teléfono.",
+      detectedPrice
+        ? `💲 Precio: ${detectedPrice}`
+        : "❌ No se detectó el precio.",
       "🟡 YA PAGO?",
     ]
       .filter(Boolean)
@@ -224,10 +241,14 @@ export default function OCRCamera() {
 
       {previewImage && ( // 🆕 Mostrar imagen
         <div className={styles.previewContainer}>
-          <img
+          <Image
             src={previewImage}
             alt="Imagen cargada"
+            width={400} // Ajusta el tamaño según tu diseño
+            height={400}
             className={styles.previewImage}
+            priority
+            unoptimized
           />
         </div>
       )}
@@ -236,7 +257,7 @@ export default function OCRCamera() {
 
       {!loading && capturedText && (
         <div className={styles.result}>
-          <h3 className={styles.title}>📄 Resultado OCR:</h3>
+          <h3 className={styles.title}>📄 Resultado</h3>
           {/* <div className={styles.ticket}>
             <pre>{capturedText}</pre>
           </div> */}

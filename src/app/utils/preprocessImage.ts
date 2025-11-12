@@ -7,14 +7,14 @@ export const preprocessImage = (imageData: string): Promise<string> => {
       const ctx = canvas.getContext("2d")!;
 
       // 🟢 Escalado adaptativo (para móviles)
-      const MAX_WIDTH = 1280;
+      const MAX_WIDTH = 300;
       const scale = Math.min(1, MAX_WIDTH / img.width);
       canvas.width = img.width * scale;
       canvas.height = img.height * scale;
 
       // 🟢 Recorte del área central (ignora márgenes vacíos)
-      const cropTop = img.height * 0.2;
-      const cropHeight = img.height * 0.6;
+      const cropTop = img.height * 0.25;
+      const cropHeight = img.height * 0.5;
       ctx.drawImage(
         img,
         0,

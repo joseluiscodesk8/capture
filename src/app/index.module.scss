@@ -91,3 +91,52 @@
     }
   }
   
+  .qrButton {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  
+    &:hover {
+      transform: scale(1.05);
+      background-color: #333;
+    }
+  }
+  
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .imageContainer {
+    background: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease;
+  }
+  
+  .qrImage {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+  
