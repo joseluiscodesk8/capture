@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useRef, useState } from "react";
 import styles from "../index.module.scss";
 import { getWorker } from "../lib/tesseractWorker";

@@ -5,35 +5,75 @@ export const preprocessImage = (imageData: string): Promise<string> => {
     img.onload = () => {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d")!;
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx.drawImage(img, 0, 0);
+
+      // 🟢 Escalado adaptativo (para móviles)
+      const MAX_WIDTH = 1280;
+      const scale = Math.min(1, MAX_WIDTH / img.width);
+      canvas.width = img.width * scale;
+      canvas.height = img.height * scale;
+
+      // 🟢 Recorte del área central (ignora márgenes vacíos)
+      const cropTop = img.height * 0.2;
+      const cropHeight = img.height * 0.6;
+      ctx.drawImage(
+        img,
+        0,
+        cropTop,
+        img.width,
+        cropHeight,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
 
       const imageDataObj = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const data = imageDataObj.data;
 
-      // 🔹 Parámetros calibrados para recibos en fondo blanco
-      const brightnessBoost = 1.1; // aclara un poco el fondo
-      const contrast = 45; // resalta el texto
-      const threshold = 160; // umbral óptimo para sombras leves
-
+      // 🟢 Contraste y brillo ajustados
+      const brightnessBoost = 1.2;
+      const contrast = 55;
       const factor = (259 * (contrast + 255)) / (255 * (259 - contrast));
 
       for (let i = 0; i < data.length; i += 4) {
-        // Aplica brillo y contraste
         data[i] = factor * (data[i] - 128) + 128;
         data[i + 1] = factor * (data[i + 1] - 128) + 128;
         data[i + 2] = factor * (data[i + 2] - 128) + 128;
 
-        // Aumenta brillo
         data[i] *= brightnessBoost;
         data[i + 1] *= brightnessBoost;
         data[i + 2] *= brightnessBoost;
+      }
 
-        // Binarización suave
-        const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-        const value = avg > threshold ? 255 : 0;
-        data[i] = data[i + 1] = data[i + 2] = value;
+      // 🟢 Umbral adaptativo
+      const blockSize = 8;
+      const thresholdOffset = 15;
+
+      const getGray = (x: number, y: number) => {
+        const idx = (y * canvas.width + x) * 4;
+        return (data[idx] + data[idx + 1] + data[idx + 2]) / 3;
+      };
+
+      for (let y = 0; y < canvas.height; y++) {
+        for (let x = 0; x < canvas.width; x++) {
+          let sum = 0;
+          let count = 0;
+          for (let dy = -blockSize; dy <= blockSize; dy++) {
+            for (let dx = -blockSize; dx <= blockSize; dx++) {
+              const nx = x + dx;
+              const ny = y + dy;
+              if (nx >= 0 && ny >= 0 && nx < canvas.width && ny < canvas.height) {
+                sum += getGray(nx, ny);
+                count++;
+              }
+            }
+          }
+          const avg = sum / count - thresholdOffset;
+          const idx = (y * canvas.width + x) * 4;
+          const gray = getGray(x, y);
+          const value = gray > avg ? 255 : 0;
+          data[idx] = data[idx + 1] = data[idx + 2] = value;
+        }
       }
 
       ctx.putImageData(imageDataObj, 0, 0);
