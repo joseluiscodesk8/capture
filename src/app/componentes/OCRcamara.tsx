@@ -7,7 +7,6 @@ import { preprocessImage } from "../utils/preprocessImage";
 export default function OCRCamera() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [capturedText, setCapturedText] = useState<string>("");
-  // const [formattedLines, setFormattedLines] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [detectedAddress, setDetectedAddress] = useState<string | null>(null);
   const [detectedPhone, setDetectedPhone] = useState<string | null>(null);
@@ -132,7 +131,6 @@ export default function OCRCamera() {
   const processImage = async (imageData: string) => {
     setLoading(true);
     setCapturedText("");
-    // setFormattedLines([]);
     setDetectedAddress(null);
     setDetectedPhone(null);
     setDetectedPrice(null);
@@ -150,10 +148,6 @@ export default function OCRCamera() {
         return;
       }
 
-      // const lines = text
-      //   .split("\n")
-      //   .map((line) => line.trim())
-      //   .filter((line) => line.length > 0);
 
       const addressInfo = detectAndCorrectAddress(text);
       if (addressInfo) setDetectedAddress(addressInfo);
@@ -165,7 +159,6 @@ export default function OCRCamera() {
       if (price) setDetectedPrice(price);
 
       setCapturedText(text);
-      // setFormattedLines(lines);
     } catch (error) {
       console.error("Error en OCR:", error);
       setCapturedText("⚠️ Error al leer la imagen. Intenta nuevamente.");
