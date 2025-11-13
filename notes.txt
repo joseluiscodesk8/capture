@@ -11,45 +11,14 @@ export default function OCRCamera() {
   const [detectedAddress, setDetectedAddress] = useState<string | null>(null);
   const [detectedPhone, setDetectedPhone] = useState<string | null>(null);
   const [detectedPrice, setDetectedPrice] = useState<string | null>(null);
-  const [hasHashSymbol, setHasHashSymbol] = useState<string | null>(null); // 🆕 Nuevo estado
-  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [previewImage, setPreviewImage] = useState<string | null>(null); // 🆕 Nuevo estado
+  const [hasHashSymbol, setHasHashSymbol] = useState<string | null>(null);
 
   // --- Detectores ---
-
-const detectPhone = (text: string) => {
-  // Eliminamos espacios y caracteres no deseados
-  const cleaned = text.replace(/[^\d\s+]/g, " ").replace(/\s+/g, " ");
-
-  // Buscamos patrones con 10 dígitos seguidos o separados
-  const match = cleaned.match(/(?:\+?57)?\s?(\d{10})/);
-
-  let number = match ? match[1] : null;
-
-  // 🧠 Corrección automática si el OCR leyó mal el 3 inicial
-  if (!number) {
-    // Busca secuencias de 9 dígitos que *podrían* ser un número mal leído
-    const fallback = cleaned.match(/(?:\+?57)?\s?(\d{9})/);
-    if (fallback) {
-      const possible = fallback[1];
-      // Si falta el "3" inicial, lo añadimos
-      if (!possible.startsWith("3")) {
-        number = "3" + possible;
-      }
-    }
-  }
-
-  // ✨ Validaciones finales
-  if (number) {
-    // Asegura que comience con 3 y tenga exactamente 10 dígitos
-    if (!/^3\d{9}$/.test(number)) return null;
-    // Limpia espacios o guiones
-    number = number.replace(/\D/g, "");
-    return number;
-  }
-
-  return null;
-};
-
+  const detectPhone = (text: string) => {
+    const match = text.match(/(?:\+?57)?\s?(\d{3}[-\s.]?\d{3}[-\s.]?\d{4})/);
+    return match ? match[1].replace(/[\s.-]/g, "") : null;
+  };
 
   const detectPrice = (text: string) => {
     const lines = text
@@ -160,18 +129,13 @@ const detectPhone = (text: string) => {
     return address;
   };
 
-  // 🆕 Nueva función para detectar el signo #
-  const detectHashSymbol = (text: string) => {
-    return text.includes("#") ? "#" : null;
-  };
-
   const processImage = async (imageData: string) => {
     setLoading(true);
     setCapturedText("");
     setDetectedAddress(null);
     setDetectedPhone(null);
     setDetectedPrice(null);
-    setHasHashSymbol(null); // 🆕 Reinicia estado del hash
+    setHasHashSymbol(null); // 🆕 Reinicia el estado del hash
 
     try {
       const worker = await getWorker();
@@ -191,11 +155,11 @@ const detectPhone = (text: string) => {
 
       const phone = detectPhone(text);
       const price = detectPrice(text);
-      const hashFound = detectHashSymbol(text); // 🆕 Buscar #
+      const hashFound = detectHashSymbol(text);
 
       if (phone) setDetectedPhone(phone);
       if (price) setDetectedPrice(price);
-      if (hashFound) setHasHashSymbol(hashFound); // 🆕 Guardar #
+      if (hashFound) setHasHashSymbol(hashFound);
 
       setCapturedText(text);
     } catch (error) {
@@ -212,7 +176,7 @@ const detectPhone = (text: string) => {
       const reader = new FileReader();
       reader.onloadend = () => {
         const imageData = reader.result as string;
-        setPreviewImage(imageData);
+        setPreviewImage(imageData); // 🆕 Mostrar imagen previa
         processImage(imageData);
       };
       reader.readAsDataURL(file);
@@ -251,6 +215,10 @@ const detectPhone = (text: string) => {
     }
   };
 
+  const detectHashSymbol = (text: string) => {
+    return text.includes("#") ? "#" : null;
+  };
+
   return (
     <section className={styles.ocrCamera}>
       <div className={styles.controls}>
@@ -271,12 +239,14 @@ const detectPhone = (text: string) => {
         />
       </div>
 
-      {previewImage && (
+     
+
+      {previewImage && ( // 🆕 Mostrar imagen
         <div className={styles.previewContainer}>
           <Image
             src={previewImage}
             alt="Imagen cargada"
-            width={400}
+            width={400} // Ajusta el tamaño según tu diseño
             height={400}
             className={styles.previewImage}
             priority
@@ -290,8 +260,17 @@ const detectPhone = (text: string) => {
       {!loading && capturedText && (
         <div className={styles.result}>
           <h3 className={styles.title}>📄 Resultado</h3>
+          {/* <div className={styles.ticket}>
+            <pre>{capturedText}</pre>
+          </div> */}
 
-          {(detectedAddress || detectedPhone || detectedPrice || hasHashSymbol) && (
+{hasHashSymbol && (
+        <p>
+          🔹 <strong>Signo # detectado:</strong> {hasHashSymbol}
+        </p>
+      )}
+      
+          {(detectedAddress || detectedPhone || detectedPrice) && (
             <div>
               {detectedAddress ? (
                 <p>
@@ -315,12 +294,6 @@ const detectPhone = (text: string) => {
                 </p>
               ) : (
                 <p>❌ No se detectó el precio.</p>
-              )}
-
-              {hasHashSymbol && (
-                <p>
-                  🔹 <strong>Signo # detectado:</strong> {hasHashSymbol}
-                </p>
               )}
             </div>
           )}
