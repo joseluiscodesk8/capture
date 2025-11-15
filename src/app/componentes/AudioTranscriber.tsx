@@ -45,7 +45,7 @@ function extractColombianPhone(text: string): string {
 
 export default function AudioTranscriber() {
   const [isRecording, setIsRecording] = useState(false);
-  const [text, setText] = useState("");
+  // const [text, setText] = useState("");
   const [capturedText, setCapturedText] = useState("");
   const [phoneCaptured, setPhoneCaptured] = useState("");
   const [priceCaptured, setPriceCaptured] = useState("");
@@ -101,7 +101,7 @@ export default function AudioTranscriber() {
         transcriptFull += event.results[i][0].transcript;
       }
 
-      setText(transcriptFull);
+      // setText(transcriptFull);
 
       // =======================================
       // 🔥 AUTO-APAGADO DEL MICRÓFONO
@@ -195,12 +195,48 @@ export default function AudioTranscriber() {
     recognitionRef.current = recognition;
   }, []);
 
+  const sendWhatsApp = () => {
+    const numeroDestino = "573017844046";
+
+    const mensaje = `
+   ${capturedText}
+    ${phoneCaptured}
+   ${priceCaptured}
+  
+  ya pago?
+    `.trim();
+
+    const url = `https://wa.me/${numeroDestino}?text=${encodeURIComponent(
+      mensaje
+    )}`;
+
+    window.open(url, "_blank");
+  };
+
+  const openInMaps = () => {
+    if (!capturedText.trim()) return;
+
+    const query = encodeURIComponent(capturedText);
+    const url = `https://www.google.com/maps/search/?api=1&query=${query}`;
+    window.open(url, "_blank");
+  };
+
+  const callPhone = () => {
+    if (!phoneCaptured.trim()) return;
+
+    const num = phoneCaptured.trim();
+
+    const url = `tel:${num}`;
+
+    window.location.href = url; // abre la app del teléfono
+  };
+
   // ============================================================
   // RENDER
   // ============================================================
   return (
     <div style={{ padding: "18px", fontFamily: "Arial" }}>
-      <h2>Transcriptor de Audio</h2>
+      {/* <h2>Transcriptor de Audio</h2> */}
 
       <button
         onClick={isRecording ? stopRecording : startRecording}
@@ -216,8 +252,8 @@ export default function AudioTranscriber() {
         {isRecording ? "Detener" : "Iniciar"}
       </button>
 
-      <h3>🔊 Texto completo escuchado:</h3>
-      <div
+      {/* <h3>🔊 Texto completo escuchado:</h3> */}
+      {/* <div
         style={{
           marginTop: "10px",
           padding: "10px",
@@ -226,9 +262,9 @@ export default function AudioTranscriber() {
         }}
       >
         {text}
-      </div>
+      </div> */}
 
-      <h3 style={{ marginTop: "20px" }}>📍 Dirección capturada:</h3>
+      <h3 style={{ marginTop: "20px" }}>📍Dirección</h3>
       <div
         style={{
           marginTop: "10px",
@@ -239,10 +275,10 @@ export default function AudioTranscriber() {
           fontWeight: "bold",
         }}
       >
-        {capturedText || "Di: 'dirección' para activar este modo"}
+        {capturedText}
       </div>
 
-      <h3 style={{ marginTop: "20px" }}>📞 Teléfono capturado:</h3>
+      <h3 style={{ marginTop: "20px" }}>📞Teléfono</h3>
       <div
         style={{
           marginTop: "10px",
@@ -253,10 +289,10 @@ export default function AudioTranscriber() {
           fontWeight: "bold",
         }}
       >
-        {phoneCaptured || "Di: 'teléfono' seguido del número"}
+        {phoneCaptured}
       </div>
 
-      <h3 style={{ marginTop: "20px" }}>💵 Precio capturado:</h3>
+      <h3 style={{ marginTop: "20px" }}>💵Precio</h3>
       <div
         style={{
           marginTop: "10px",
@@ -267,8 +303,59 @@ export default function AudioTranscriber() {
           fontWeight: "bold",
         }}
       >
-        {priceCaptured || "Di: 'precio' seguido del valor"}
+        {priceCaptured}
       </div>
+      <button
+        onClick={sendWhatsApp}
+        style={{
+          marginTop: "15px",
+          padding: "10px 20px",
+          background: "#25D366",
+          color: "white",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+          fontWeight: "bold",
+        }}
+      >
+        Enviar por WhatsApp
+      </button>
+
+      {capturedText.trim().length > 0 && (
+        <button
+          onClick={openInMaps}
+          style={{
+            marginTop: "10px",
+            padding: "10px 20px",
+            background: "#4285F4",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: "bold",
+          }}
+        >
+          Ver en Maps
+        </button>
+      )}
+
+      {phoneCaptured.trim().length > 0 && (
+        <button
+          onClick={callPhone}
+          style={{
+            marginTop: "10px",
+            padding: "10px 20px",
+            background: "#007AFF",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: "bold",
+          }}
+        >
+          Llamar
+        </button>
+      )}
     </div>
   );
 }
