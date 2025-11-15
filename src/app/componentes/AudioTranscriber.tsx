@@ -15,6 +15,14 @@ const NUMBER_WORDS: Record<string, string> = {
   nueve: "9",
 };
 
+// Convierte "uno, dos, tres" → "1 2 3"
+function replaceNumberWords(text: string): string {
+  return text
+    .split(" ")
+    .map((w) => NUMBER_WORDS[w] ?? w)
+    .join(" ");
+}
+
 function extractNumber(text: string): string {
   const processed = text
     .split(" ")
@@ -45,7 +53,6 @@ function extractColombianPhone(text: string): string {
 
 export default function AudioTranscriber() {
   const [isRecording, setIsRecording] = useState(false);
-  // const [text, setText] = useState("");
   const [capturedText, setCapturedText] = useState("");
   const [phoneCaptured, setPhoneCaptured] = useState("");
   const [priceCaptured, setPriceCaptured] = useState("");
@@ -59,7 +66,7 @@ export default function AudioTranscriber() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // ============================================================
-  // ⬇️⬇️ **STOP RECORDING VA ANTES DEL useEffect** (solución al error)
+  // STOP RECORDING
   // ============================================================
   const stopRecording = () => {
     recognitionRef.current?.stop();
@@ -101,17 +108,13 @@ export default function AudioTranscriber() {
         transcriptFull += event.results[i][0].transcript;
       }
 
-      // setText(transcriptFull);
-
-      // =======================================
-      // 🔥 AUTO-APAGADO DEL MICRÓFONO
-      // =======================================
+      // AUTO-APAGADO POR SILENCIO
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
       timeoutRef.current = setTimeout(() => {
         console.log("Silencio detectado → micrófono apagado");
         stopRecording();
-      }, 1000); // 1 segundo sin hablar
+      }, 1000);
 
       const normalized = transcriptFull
         .toLowerCase()
@@ -119,7 +122,7 @@ export default function AudioTranscriber() {
         .replace(/[\u0300-\u036f]/g, "");
 
       // ======================================================
-      // === COMANDO: DIRECCION ===============================
+      // COMANDO: DIRECCION
       // ======================================================
       if (normalized.includes("direccion")) {
         isCapturingDireccionRef.current = true;
@@ -129,20 +132,23 @@ export default function AudioTranscriber() {
         setCapturedText("");
 
         const after = normalized.split("direccion")[1]?.trim() ?? "";
+
         if (after.length > 0) {
-          const processed = after.replace(/\bnumeral\b/g, "#");
+          let processed = after.replace(/\bnumeral\b/g, "#");
+          processed = replaceNumberWords(processed);
           setCapturedText(processed);
         }
         return;
       }
 
       if (isCapturingDireccionRef.current) {
-        const processed = normalized.replace(/\bnumeral\b/g, "#");
+        let processed = normalized.replace(/\bnumeral\b/g, "#");
+        processed = replaceNumberWords(processed);
         setCapturedText(processed.trim());
       }
 
       // ======================================================
-      // === COMANDO: TELEFONO ================================
+      // COMANDO: TELEFONO
       // ======================================================
       if (normalized.includes("telefono")) {
         isCapturingTelefonoRef.current = true;
@@ -165,7 +171,7 @@ export default function AudioTranscriber() {
       }
 
       // ======================================================
-      // === COMANDO: PRECIO =================================
+      // COMANDO: PRECIO
       // ======================================================
       if (normalized.includes("precio")) {
         isCapturingPrecioRef.current = true;
@@ -228,7 +234,7 @@ export default function AudioTranscriber() {
 
     const url = `tel:${num}`;
 
-    window.location.href = url; // abre la app del teléfono
+    window.location.href = url;
   };
 
   // ============================================================
@@ -236,8 +242,6 @@ export default function AudioTranscriber() {
   // ============================================================
   return (
     <div style={{ padding: "18px", fontFamily: "Arial" }}>
-      {/* <h2>Transcriptor de Audio</h2> */}
-
       <button
         onClick={isRecording ? stopRecording : startRecording}
         style={{
@@ -251,18 +255,6 @@ export default function AudioTranscriber() {
       >
         {isRecording ? "Detener" : "Iniciar"}
       </button>
-
-      {/* <h3>🔊 Texto completo escuchado:</h3> */}
-      {/* <div
-        style={{
-          marginTop: "10px",
-          padding: "10px",
-          background: "#f1f1f1",
-          borderRadius: "8px",
-        }}
-      >
-        {text}
-      </div> */}
 
       <h3 style={{ marginTop: "20px" }}>📍Dirección</h3>
       <div
@@ -305,6 +297,7 @@ export default function AudioTranscriber() {
       >
         {priceCaptured}
       </div>
+
       <button
         onClick={sendWhatsApp}
         style={{
