@@ -1,0 +1,105 @@
+.container {
+    padding: 18px;
+    font-family: Arial;
+  }
+  
+  /* ----- TITULOS ----- */
+  .title {
+    margin-top: 20px;
+  }
+  
+  /* ----- CONTENEDORES ----- */
+  .box {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    min-height: 60px;
+    font-weight: bold;
+  
+    /* ANIMACIÓN SUAVE DE CAMBIOS DE TAMAÑO */
+    transition: all 0.35s ease;
+  }
+  
+  .boxDireccion {
+    background: #d0f0d0;
+  }
+  
+  .boxTelefono {
+    background: #d0e0ff;
+  }
+  
+  .boxPrecio {
+    background: #ffe7c2;
+  }
+  
+  /* ----- BOTONES ----- */
+  .recordBtn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 22px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .btnDireccion {
+    background: #5cb85c;
+  }
+  
+  .btnTelefono {
+    background: #007aff;
+  }
+  
+  .btnPrecio {
+    background: #f0ad4e;
+  }
+  
+  .activeBtn {
+    filter: brightness(75%);
+    transform: scale(0.97);
+  }
+  
+  /* ----- BOTONES SECUNDARIOS (Maps, Llamar) ----- */
+  .secondaryBtn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+  }
+  
+  .mapBtn {
+    background: #4285f4;
+  }
+  
+  .callBtn {
+    background: #007aff;
+  }
+  
+  /* ---- ANIMACIÓN SUAVE DE APARICIÓN / DESAPARICIÓN ---- */
+  .right {
+    display: flex;
+    justify-content: flex-end;
+  
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  
+  .rightVisible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* WhatsApp */
+  .whatsappBtn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #25d366;
+    color: white;
+    border: none;
+    border-radius: 8px;
+  }
+  
