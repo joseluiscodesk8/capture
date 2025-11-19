@@ -15,12 +15,6 @@ const NUMBER_WORDS: Record<string, string> = {
   nueve: "9",
 };
 
-function replaceNumberWords(text: string): string {
-  return text
-    .split(" ")
-    .map((w) => NUMBER_WORDS[w] ?? w)
-    .join(" ");
-}
 
 function extractNumber(text: string): string {
   return text
@@ -113,6 +107,16 @@ export default function AudioTranscriber() {
     startRecording();
   };
 
+  // ❌ NO permitir números en letras en dirección
+function blockNumberWords(text: string): string {
+  return text
+    .split(" ")
+    .map((w) => (NUMBER_WORDS[w] ? "" : w)) // si es número en letra → eliminarlo
+    .filter(Boolean) // quita palabras vacías
+    .join(" ");
+}
+
+
   const startCapturingTelefono = () => {
     setPhoneCaptured("");
     isCapturingTelefonoRef.current = true;
@@ -160,11 +164,14 @@ export default function AudioTranscriber() {
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "");
 
-      if (isCapturingDireccionRef.current) {
-        let processed = normalized.replace(/\bnumeral\b/g, "#");
-        processed = replaceNumberWords(processed);
-        setCapturedText(processed.trim());
-      }
+        if (isCapturingDireccionRef.current) {
+          let processed = normalized.replace(/\bnumeral\b/g, "#");
+        
+          // ✅ nueva regla → NO aceptar números escritos en letras
+          processed = blockNumberWords(processed);
+        
+          setCapturedText(processed.trim());
+        }
 
       if (isCapturingTelefonoRef.current) {
         setPhoneCaptured(extractColombianPhone(normalized));

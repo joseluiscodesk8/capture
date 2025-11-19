@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 
-
 const QRButton = dynamic(() => import("./componentes/QRButton"), {
   ssr: false,
 });
@@ -14,10 +13,16 @@ const Audioranscriber = dynamic(
   }
 );
 
+const ImagenCaptureslider = dynamic(
+  () => import("./componentes/CameraCaptureSlider"),
+  { ssr: false }
+);
+
 export default function Home() {
   return (
     <main>
       <h1>Patinando Todos Los Marditos Dias</h1>
+      <ImagenCaptureslider />
       <Audioranscriber />
       <QRButton />
     </main>
