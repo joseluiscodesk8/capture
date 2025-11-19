@@ -186,9 +186,9 @@ export default function AudioTranscriber() {
 
     const mensaje = `
        ${capturedText}
-    ${phoneCaptured}
-    ${priceCaptured}
-    Ya pagó?
+       ${phoneCaptured}
+       ${priceCaptured}
+       Ya pagó?
            `.trim();
 
     const url = `https://wa.me/${numeroDestino}?text=${encodeURIComponent(
@@ -213,12 +213,10 @@ export default function AudioTranscriber() {
   };
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <h3 className={styles.title}>Dirección</h3>
 
-      <div className={`${styles.box} ${styles.boxDireccion}`}>
-        {capturedText}
-
+      <section>
         <button
           onClick={startCapturingDireccion}
           className={`${styles.recordBtn} ${styles.btnDireccion} ${
@@ -227,24 +225,20 @@ export default function AudioTranscriber() {
         >
           📍
         </button>
-
-        {capturedText && (
-          <div className={`${styles.right} ${styles.rightVisible}`}>
-            <button
-              className={`${styles.secondaryBtn} ${styles.mapBtn}`}
-              onClick={openInMaps}
-            >
-              Maps
-            </button>
-          </div>
-        )}
-      </div>
+        <div className={`${styles.box} ${styles.boxDireccion}`}>
+          {capturedText}
+        </div>
+        <button
+          className={`${styles.secondaryBtn} ${styles.mapBtn}`}
+          onClick={openInMaps}
+        >
+          Maps
+        </button>
+      </section>
 
       <h3 className={styles.title}>Teléfono</h3>
 
-      <div className={`${styles.box} ${styles.boxTelefono}`}>
-        {phoneCaptured}
-
+      <section>
         <button
           onClick={startCapturingTelefono}
           className={`${styles.recordBtn} ${styles.btnTelefono} ${
@@ -253,24 +247,21 @@ export default function AudioTranscriber() {
         >
           📞
         </button>
+        <div className={`${styles.box} ${styles.boxTelefono}`}>
+          {phoneCaptured}
+        </div>
 
-        {phoneCaptured && (
-          <div className={`${styles.right} ${styles.rightVisible}`}>
-            <button
-              className={`${styles.secondaryBtn} ${styles.callBtn}`}
-              onClick={callPhone}
-            >
-              Llamar
-            </button>
-          </div>
-        )}
-      </div>
+        <button
+          className={`${styles.secondaryBtn} ${styles.callBtn}`}
+          onClick={callPhone}
+        >
+          Llamar
+        </button>
+      </section>
 
       <h3 className={styles.title}>Precio</h3>
 
-      <div className={`${styles.box} ${styles.boxPrecio}`}>
-        {priceCaptured}
-
+      <section>
         <button
           onClick={startCapturingPrecio}
           className={`${styles.recordBtn} ${styles.btnPrecio} ${
@@ -279,11 +270,22 @@ export default function AudioTranscriber() {
         >
           💵
         </button>
-      </div>
+        <div className={`${styles.box} ${styles.boxPrecio}`}>
+          {priceCaptured}
+        </div>
+        <button
+          onClick={startCapturingPrecio}
+          className={`${styles.recordBtn} ${styles.btnPrecio} ${
+            activeCapture === "precio" ? styles.activeBtn : ""
+          }`}
+        >
+          💵
+        </button>
+      </section>
 
       <button className={styles.whatsappBtn} onClick={sendWhatsApp}>
         Enviar por WhatsApp
       </button>
-    </div>
+    </main>
   );
 }
