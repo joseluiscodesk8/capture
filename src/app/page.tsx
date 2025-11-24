@@ -13,16 +13,16 @@ const Audioranscriber = dynamic(
   }
 );
 
-const ImagenCaptureslider = dynamic(
-  () => import("./componentes/OCRcamara"),
-  { ssr: false }
-);
+// const ImagenCaptureslider = dynamic(
+//   () => import("./componentes/OCRcamara"),
+//   { ssr: false }
+// );
 
 export default function Home() {
   return (
     <main>
       <h1>Patinando Todos Los Marditos Dias</h1>
-      <ImagenCaptureslider />
+      {/* <ImagenCaptureslider /> */}
       <Audioranscriber />
       <QRButton />
     </main>
