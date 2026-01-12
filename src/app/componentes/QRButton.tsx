@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import styles from "../index.module.scss";
+import styles from "../styles/index.module.scss";
 
 export default function QRButton() {
   const [showImage, setShowImage] = useState(false);

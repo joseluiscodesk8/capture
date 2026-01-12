@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import styles from "../AudioTranscriber.module.scss";
+import styles from "../styles/AudioTranscriber.module.scss";
 
 const NUMBER_WORDS: Record<string, string> = {
   cero: "0",
@@ -41,7 +41,7 @@ function extractColombianPhone(text: string): string {
 }
 
 export default function AudioTranscriber() {
-  const [isRecording, setIsRecording] = useState(false);
+  // Removed unused isRecording state
 
   const [capturedText, setCapturedText] = useState("");
   const [phoneCaptured, setPhoneCaptured] = useState("");
@@ -75,7 +75,7 @@ export default function AudioTranscriber() {
 
   const stopRecording = () => {
     recognitionRef.current?.stop();
-    setIsRecording(false);
+    // Removed setIsRecording call
 
     isCapturingDireccionRef.current =
       isCapturingTelefonoRef.current =
@@ -94,7 +94,7 @@ export default function AudioTranscriber() {
   const startRecording = () => {
     resetInactivityTimeout(); // ⏳ activa vigilancia de 3s sin audio
     recognitionRef.current?.start();
-    setIsRecording(true);
+    // Removed setIsRecording call
   };
 
   const startCapturingDireccion = () => {

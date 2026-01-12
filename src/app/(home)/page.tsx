@@ -2,12 +2,12 @@
 
 import dynamic from "next/dynamic";
 
-const QRButton = dynamic(() => import("./componentes/QRButton"), {
+const QRButton = dynamic(() => import("../componentes/QRButton"), {
   ssr: false,
 });
 
 const Audioranscriber = dynamic(
-  () => import("./componentes/AudioTranscriber"),
+  () => import("../componentes/AudioTranscriber"),
   {
     ssr: false,
   }
