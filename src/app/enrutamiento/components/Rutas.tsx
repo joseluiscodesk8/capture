@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Deliverman from "./Deliverman";
+import styles from "../styles/index.module.scss";
 
 interface DeliveryMan {
   name: string;
@@ -28,11 +29,18 @@ interface RouteDeliveryMan {
 }
 
 export default function Rutas() {
-  const deliveryMen: DeliveryMan[] = [
-    { name: "Angelo" },
-    { name: "Luis C" },
-    { name: "Andres" },
-  ];
+    const deliveryMen: DeliveryMan[] = [
+      { name: "Angelo" },
+      { name: "Luis C" },
+      { name: "Andres" },
+      { name: "Julio" },
+      { name: "Wilson" },
+      { name: "Luggi" },
+      { name: "Eduawr" },
+      { name: "Sachi" },
+      { name: "Manuel" },
+      { name: "Jose Luis" },
+    ];
 
   const [route, setRoute] = useState<RouteDeliveryMan[]>([]);
   const [activeDeliveryMan, setActiveDeliveryMan] = useState<string | null>(null);
@@ -44,6 +52,10 @@ export default function Rutas() {
   useEffect(() => {
     taskIdRef.current = Date.now();
   }, []);
+
+  // ===== LONG PRESS =====
+  const longPressTimer = useRef<NodeJS.Timeout | null>(null);
+  const [imageToDelete, setImageToDelete] = useState<number | null>(null);
 
   const handleSelectDeliveryMan = (man: DeliveryMan) => {
     if (!route.some((r) => r.name === man.name)) {
@@ -65,7 +77,7 @@ export default function Rutas() {
                 ...man.tasks,
                 {
                   id: newTaskId,
-                  label: `Tarea ${man.tasks.length + 1}`,
+                  label: `Ruta ${man.tasks.length + 1}`,
                   images: [],
                 },
               ],
@@ -109,8 +121,30 @@ export default function Rutas() {
     );
   };
 
-  // ===== ESTADO DE IMÁGENES =====
+  // ===== ELIMINAR IMAGEN =====
+  const removeImage = (taskId: number, imageId: number) => {
+    setRoute((prev) =>
+      prev.map((man) =>
+        man.name === activeDeliveryMan
+          ? {
+              ...man,
+              tasks: man.tasks.map((task) =>
+                task.id === taskId
+                  ? {
+                      ...task,
+                      images: task.images.filter(
+                        (img) => img.id !== imageId
+                      ),
+                    }
+                  : task
+              ),
+            }
+          : man
+      )
+    );
+  };
 
+  // ===== ESTADO DE IMÁGENES =====
   const setImageStatus = (
     taskId: number,
     imageId: number,
@@ -130,7 +164,8 @@ export default function Rutas() {
                           ? {
                               ...img,
                               status,
-                              price: status === "pagado" ? undefined : img.price,
+                              price:
+                                status === "pagado" ? undefined : img.price,
                               tempPrice: undefined,
                             }
                           : img
@@ -200,23 +235,35 @@ export default function Rutas() {
     );
   };
 
-  // ===== CALCULADORA TOTAL POR REPARTIDOR =====
-
-  const calculateTotalByDeliveryMan = (deliveryManName: string): number => {
-    const man = route.find((m) => m.name === deliveryManName);
+  // ===== TOTAL =====
+  const calculateTotalByDeliveryMan = (name: string): number => {
+    const man = route.find((m) => m.name === name);
     if (!man) return 0;
 
-    return man.tasks.reduce((tasksAcc, task) => {
-      const taskTotal = task.images.reduce(
-        (imagesAcc, img) => imagesAcc + (img.price ?? 0),
-        0
-      );
-      return tasksAcc + taskTotal;
-    }, 0);
+    return man.tasks.reduce(
+      (acc, task) =>
+        acc +
+        task.images.reduce((imgAcc, img) => imgAcc + (img.price ?? 0), 0),
+      0
+    );
   };
 
   const activeMan = route.find((m) => m.name === activeDeliveryMan);
   const activeTask = activeMan?.tasks.find((t) => t.id === activeTaskId);
+
+  // ===== LONG PRESS HANDLERS =====
+  const handleImagePressStart = (imageId: number) => {
+    longPressTimer.current = setTimeout(() => {
+      setImageToDelete(imageId);
+    }, 600);
+  };
+
+  const handleImagePressEnd = () => {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current);
+      longPressTimer.current = null;
+    }
+  };
 
   return (
     <>
@@ -228,8 +275,7 @@ export default function Rutas() {
       />
 
       <section>
-        <h2>Repartidores asignados</h2>
-        <ul>
+        <ul className={styles.deliveryManList}>
           {route.map((man) => (
             <li key={man.name}>
               <button onClick={() => setActiveDeliveryMan(man.name)}>
@@ -249,8 +295,9 @@ export default function Rutas() {
             {calculateTotalByDeliveryMan(activeMan.name)}
           </p>
 
-          <button onClick={() => handleAddTask(activeMan.name)}>
-            Asignar tarea
+          <button onClick={() => handleAddTask(activeMan.name)}
+            className={styles.addButton}>
+            Asignar ruta
           </button>
 
           <ul>
@@ -258,10 +305,7 @@ export default function Rutas() {
               <li key={task.id}>
                 <button
                   onClick={() => setActiveTaskId(task.id)}
-                  style={{
-                    fontWeight:
-                      task.id === activeTaskId ? "bold" : "normal",
-                  }}
+                  className={styles.taskButton}
                 >
                   {task.label}
                 </button>
@@ -288,14 +332,13 @@ export default function Rutas() {
 
       {activeTask && (
         <section>
-          <h3>{activeTask.label}</h3>
 
           {activeTask.images.length > 0 && (
-            <button
+            <button className={styles.addComanda}
               onClick={() => handleAddMoreImages(activeTask.id)}
               style={{ marginBottom: "1rem" }}
             >
-              Agregar más fotos
+              Agregar comanda
             </button>
           )}
 
@@ -305,10 +348,38 @@ export default function Rutas() {
                 key={img.id}
                 style={{ border: "1px solid #ccc", padding: "0.5rem" }}
               >
-                <img src={img.preview} alt="" width={100} />
+                {/* IMAGEN + LONG PRESS */}
+                <div
+                  style={{ position: "relative" }}
+                  onPointerDown={() => handleImagePressStart(img.id)}
+                  onPointerUp={handleImagePressEnd}
+                  onPointerLeave={handleImagePressEnd}
+                >
+                  <img src={img.preview} alt="" width={100} />
 
+                  {imageToDelete === img.id && (
+                    <button
+                      onClick={() => {
+                        removeImage(activeTask.id, img.id);
+                        setImageToDelete(null);
+                      }}
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: "rgba(0,0,0,0.6)",
+                        color: "#fff",
+                        border: "none",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Eliminar
+                    </button>
+                  )}
+                </div>
+
+                {/* ESTADOS */}
                 {img.status === null && (
-                  <div>
+                  <div className={styles.statusButtons}>
                     <button
                       onClick={() =>
                         setImageStatus(activeTask.id, img.id, "pagado")
@@ -321,7 +392,7 @@ export default function Rutas() {
                         setImageStatus(activeTask.id, img.id, "precio")
                       }
                     >
-                      Precio
+                      Efectivo
                     </button>
                   </div>
                 )}
@@ -359,7 +430,7 @@ export default function Rutas() {
                       />
                     ) : (
                       <p>
-                        <strong>Precio:</strong> ${img.price}
+                        ${img.price}
                       </p>
                     )}
                   </>

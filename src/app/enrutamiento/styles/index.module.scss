@@ -1,0 +1,78 @@
+.deliveryManList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  & li {
+    button {
+      min-width: 80px;
+      padding: 0.75rem 1rem;
+
+      border-radius: 8px;
+      border: 1px solid #d0d0d0;
+      background: #fff;
+
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+}
+
+.addButton {
+  min-width: 80px;
+  padding: 0.75rem 1rem;
+
+  border-radius: 8px;
+  border: 1px solid #d0d0d0;
+  background: #fff;
+
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.taskButton {
+  min-width: 80px;
+  padding: 0.5rem 0.75rem;
+
+  border-radius: 8px;
+  border: 1px solid #d0d0d0;
+  background: #fff;
+
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.addComanda {
+  min-width: 80px;
+  padding: 0.75rem 1rem;
+
+  border-radius: 8px;
+  border: 1px solid #d0d0d0;
+  background: #fff;
+
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+.statusButtons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+
+    & button {
+      min-width: 80px;
+      padding: 0.5rem 0.75rem;
+
+      border-radius: 8px;
+      border: 1px solid #d0d0d0;
+      background: #fff;
+
+      font-weight: 600;
+      cursor: pointer;
+    }
+}

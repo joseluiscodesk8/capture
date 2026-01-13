@@ -1,5 +1,7 @@
 "use client";
 
+import styles from "../styles/index.module.scss";
+
 interface DeliveryMan {
   name: string;
 }
@@ -15,9 +17,7 @@ export default function Deliverman({
 }: DelivermanProps) {
   return (
     <section>
-      <h2>Repartidores</h2>
-
-      <ul>
+      <ul className={styles.deliveryManList}>
         {deliveryMen.map((man) => (
           <li key={man.name}>
             <button onClick={() => onSelect(man)}>
