@@ -29,22 +29,25 @@ interface RouteDeliveryMan {
 }
 
 export default function Rutas() {
-    const deliveryMen: DeliveryMan[] = [
-      { name: "Angelo" },
-      { name: "Luis C" },
-      { name: "Andres" },
-      { name: "Julio" },
-      { name: "Wilson" },
-      { name: "Luggi" },
-      { name: "Eduawr" },
-      { name: "Sachi" },
-      { name: "Manuel" },
-      { name: "Jose Luis" },
-    ];
+  const deliveryMen: DeliveryMan[] = [
+    { name: "Angelo" },
+    { name: "Luis C" },
+    { name: "Andres" },
+    { name: "Julio" },
+    { name: "Wilson" },
+    { name: "Luggi" },
+    { name: "Eduawr" },
+    { name: "Sachi" },
+    { name: "Manuel" },
+    { name: "Jose Luis" },
+  ];
 
   const [route, setRoute] = useState<RouteDeliveryMan[]>([]);
-  const [activeDeliveryMan, setActiveDeliveryMan] = useState<string | null>(null);
+  const [activeDeliveryMan, setActiveDeliveryMan] = useState<string | null>(
+    null
+  );
   const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
+  const [newTaskName, setNewTaskName] = useState("");
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const taskIdRef = useRef<number>(0);
@@ -53,7 +56,6 @@ export default function Rutas() {
     taskIdRef.current = Date.now();
   }, []);
 
-  // ===== LONG PRESS =====
   const longPressTimer = useRef<NodeJS.Timeout | null>(null);
   const [imageToDelete, setImageToDelete] = useState<number | null>(null);
 
@@ -65,7 +67,9 @@ export default function Rutas() {
     setActiveTaskId(null);
   };
 
-  const handleAddTask = (name: string) => {
+  const handleAddTask = (name: string, taskLabel: string) => {
+    if (!taskLabel.trim()) return;
+
     const newTaskId = taskIdRef.current++;
 
     setRoute((prev) =>
@@ -77,7 +81,7 @@ export default function Rutas() {
                 ...man.tasks,
                 {
                   id: newTaskId,
-                  label: `Ruta ${man.tasks.length + 1}`,
+                  label: taskLabel,
                   images: [],
                 },
               ],
@@ -87,6 +91,7 @@ export default function Rutas() {
     );
 
     setActiveTaskId(newTaskId);
+    setNewTaskName("");
     setTimeout(() => fileInputRef.current?.click(), 0);
   };
 
@@ -121,7 +126,6 @@ export default function Rutas() {
     );
   };
 
-  // ===== ELIMINAR IMAGEN =====
   const removeImage = (taskId: number, imageId: number) => {
     setRoute((prev) =>
       prev.map((man) =>
@@ -132,9 +136,7 @@ export default function Rutas() {
                 task.id === taskId
                   ? {
                       ...task,
-                      images: task.images.filter(
-                        (img) => img.id !== imageId
-                      ),
+                      images: task.images.filter((img) => img.id !== imageId),
                     }
                   : task
               ),
@@ -144,7 +146,6 @@ export default function Rutas() {
     );
   };
 
-  // ===== ESTADO DE IMÁGENES =====
   const setImageStatus = (
     taskId: number,
     imageId: number,
@@ -194,9 +195,7 @@ export default function Rutas() {
                   ? {
                       ...task,
                       images: task.images.map((img) =>
-                        img.id === imageId
-                          ? { ...img, tempPrice: value }
-                          : img
+                        img.id === imageId ? { ...img, tempPrice: value } : img
                       ),
                     }
                   : task
@@ -207,11 +206,7 @@ export default function Rutas() {
     );
   };
 
-  const setImagePrice = (
-    taskId: number,
-    imageId: number,
-    price: number
-  ) => {
+  const setImagePrice = (taskId: number, imageId: number, price: number) => {
     setRoute((prev) =>
       prev.map((man) =>
         man.name === activeDeliveryMan
@@ -235,15 +230,13 @@ export default function Rutas() {
     );
   };
 
-  // ===== TOTAL =====
   const calculateTotalByDeliveryMan = (name: string): number => {
     const man = route.find((m) => m.name === name);
     if (!man) return 0;
 
     return man.tasks.reduce(
       (acc, task) =>
-        acc +
-        task.images.reduce((imgAcc, img) => imgAcc + (img.price ?? 0), 0),
+        acc + task.images.reduce((imgAcc, img) => imgAcc + (img.price ?? 0), 0),
       0
     );
   };
@@ -251,7 +244,6 @@ export default function Rutas() {
   const activeMan = route.find((m) => m.name === activeDeliveryMan);
   const activeTask = activeMan?.tasks.find((t) => t.id === activeTaskId);
 
-  // ===== LONG PRESS HANDLERS =====
   const handleImagePressStart = (imageId: number) => {
     longPressTimer.current = setTimeout(() => {
       setImageToDelete(imageId);
@@ -287,32 +279,46 @@ export default function Rutas() {
       </section>
 
       {activeMan && (
-        <section>
-          <h2>{activeMan.name}</h2>
+        <>
+          <section>
+            <input
+              type="text"
+              placeholder="Nombre de la ruta"
+              value={newTaskName}
+              onChange={(e) => setNewTaskName(e.target.value)}
+              className={styles.routeInput}
+            />
 
-          <p>
-            <strong>Total a cobrar:</strong> $
-            {calculateTotalByDeliveryMan(activeMan.name)}
-          </p>
+            <button
+              onClick={() => handleAddTask(activeMan.name, newTaskName)}
+              className={styles.addButton}
+              disabled={!newTaskName.trim()}
+            >
+              Asignar ruta
+            </button>
+          </section>
+          <section>
+            <h2>{activeMan.name}</h2>
 
-          <button onClick={() => handleAddTask(activeMan.name)}
-            className={styles.addButton}>
-            Asignar ruta
-          </button>
+            <p>
+              <strong>Total a cobrar:</strong> $
+              {calculateTotalByDeliveryMan(activeMan.name)}
+            </p>
 
-          <ul>
-            {activeMan.tasks.map((task) => (
-              <li key={task.id}>
-                <button
-                  onClick={() => setActiveTaskId(task.id)}
-                  className={styles.taskButton}
-                >
-                  {task.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
+            <ul>
+              {activeMan.tasks.map((task) => (
+                <li key={task.id}>
+                  <button
+                    onClick={() => setActiveTaskId(task.id)}
+                    className={styles.taskButton}
+                  >
+                    {task.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </>
       )}
 
       <input
@@ -332,9 +338,9 @@ export default function Rutas() {
 
       {activeTask && (
         <section>
-
           {activeTask.images.length > 0 && (
-            <button className={styles.addComanda}
+            <button
+              className={styles.addComanda}
               onClick={() => handleAddMoreImages(activeTask.id)}
               style={{ marginBottom: "1rem" }}
             >
@@ -348,7 +354,6 @@ export default function Rutas() {
                 key={img.id}
                 style={{ border: "1px solid #ccc", padding: "0.5rem" }}
               >
-                {/* IMAGEN + LONG PRESS */}
                 <div
                   style={{ position: "relative" }}
                   onPointerDown={() => handleImagePressStart(img.id)}
@@ -377,7 +382,6 @@ export default function Rutas() {
                   )}
                 </div>
 
-                {/* ESTADOS */}
                 {img.status === null && (
                   <div className={styles.statusButtons}>
                     <button
@@ -429,9 +433,7 @@ export default function Rutas() {
                         }}
                       />
                     ) : (
-                      <p>
-                        ${img.price}
-                      </p>
+                      <p>${img.price}</p>
                     )}
                   </>
                 )}
