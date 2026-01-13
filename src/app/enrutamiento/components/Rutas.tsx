@@ -33,6 +33,39 @@ interface RouteDeliveryMan {
 // Clave para localStorage
 const STORAGE_KEY = "rutas-app-data";
 
+// Lista predeterminada de rutas
+const RUTAS_PREDETERMINADAS = [
+  "poblado",
+  "centro",
+  "belen",
+  "castilla",
+  "manrique",
+  "aranjuez",
+  "pedregal",
+  "laureles",
+  "calazans",
+  "palmas",
+  "loma del indio",
+  "loma de los bernal",
+  "robledo",
+  "rodeo alto",
+  "san german",
+  "los colores",
+  "estadio",
+  "sur americana",
+  "san javier",
+  "la america",
+  "santa monica",
+  "buenos aires",
+  "barrio palmas",
+  "la milagrosa",
+  "bello",
+  "envigado",
+  "sabaneta",
+  "ditaires",
+  "la estrella"
+];
+
 export default function Rutas() {
   const deliveryMen: DeliveryMan[] = [
     { name: "Kevin" },
@@ -72,7 +105,9 @@ export default function Rutas() {
   });
 
   const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
-  const [newTaskName, setNewTaskName] = useState("");
+  const [selectedRouteName, setSelectedRouteName] = useState("");
+  const [customRouteName, setCustomRouteName] = useState("");
+  const [showCustomInput, setShowCustomInput] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const taskIdRef = useRef<number>(0);
@@ -112,8 +147,13 @@ export default function Rutas() {
     setActiveTaskId(null);
   };
 
-  const handleAddTask = (name: string, taskLabel: string) => {
-    if (!taskLabel.trim()) return;
+  const handleAddTask = (name: string) => {
+    const finalRouteName = selectedRouteName === "otro" ? customRouteName.trim() : selectedRouteName.trim();
+    
+    if (!finalRouteName) {
+      alert("Por favor, selecciona o ingresa un nombre de ruta");
+      return;
+    }
 
     const newTaskId = taskIdRef.current++;
 
@@ -126,7 +166,7 @@ export default function Rutas() {
                 ...man.tasks,
                 {
                   id: newTaskId,
-                  label: taskLabel,
+                  label: finalRouteName,
                   images: [],
                 },
               ],
@@ -136,7 +176,9 @@ export default function Rutas() {
     );
 
     setActiveTaskId(newTaskId);
-    setNewTaskName("");
+    setSelectedRouteName("");
+    setCustomRouteName("");
+    setShowCustomInput(false);
     setTimeout(() => fileInputRef.current?.click(), 0);
   };
 
@@ -434,23 +476,56 @@ export default function Rutas() {
 
       {activeMan && (
         <>
-          <section>
-            <input
-              type="text"
-              placeholder="Nombre de la ruta"
-              value={newTaskName}
-              onChange={(e) => setNewTaskName(e.target.value)}
-              className={styles.routeInput}
-            />
+          <section style={{ display: "flex", flexDirection: "column", gap: "0.5rem", margin: "1rem 0" }}>
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+              <select
+                value={selectedRouteName}
+                onChange={(e) => {
+                  setSelectedRouteName(e.target.value);
+                  if (e.target.value === "otro") {
+                    setShowCustomInput(true);
+                  } else {
+                    setShowCustomInput(false);
+                  }
+                }}
+                className={styles.routeSelect}
+                style={{ flex: "1", minWidth: "200px" }}
+              >
+                <option value="">Seleccionar ruta</option>
+                {RUTAS_PREDETERMINADAS.map((ruta) => (
+                  <option key={ruta} value={ruta}>
+                    {ruta.charAt(0).toUpperCase() + ruta.slice(1)}
+                  </option>
+                ))}
+                <option value="otro">Otra ruta...</option>
+              </select>
 
-            <button
-              onClick={() => handleAddTask(activeMan.name, newTaskName)}
-              className={styles.addButton}
-              disabled={!newTaskName.trim()}
-            >
-              Asignar ruta
-            </button>
+              <button
+                onClick={() => handleAddTask(activeMan.name)}
+                className={styles.addButton}
+                disabled={!selectedRouteName}
+                style={{ minWidth: "120px" }}
+              >
+                Asignar ruta
+              </button>
+            </div>
+
+            {showCustomInput && (
+              <input
+                type="text"
+                placeholder="Ingresa el nombre de la ruta personalizada"
+                value={customRouteName}
+                onChange={(e) => setCustomRouteName(e.target.value)}
+                className={styles.routeInput}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && customRouteName.trim()) {
+                    handleAddTask(activeMan.name);
+                  }
+                }}
+              />
+            )}
           </section>
+          
           <section>
             <h2>{activeMan.name}</h2>
 
@@ -466,7 +541,8 @@ export default function Rutas() {
               <strong>Liquidación:</strong> $
               {calcularLiquidacion(activeMan.name)}
             </p>
-
+          </section>
+          <section className={styles.taskList}>
             <ul>
               {activeMan.tasks.map((task) => (
                 <li key={task.id}>
