@@ -35,7 +35,7 @@ const STORAGE_KEY = "rutas-app-data";
 
 export default function Rutas() {
   const deliveryMen: DeliveryMan[] = [
-    { name: "Angelo" },
+    { name: "Kevin" },
     { name: "Luis C" },
     { name: "Andres" },
     { name: "Julio" },
