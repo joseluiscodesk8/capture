@@ -36,8 +36,17 @@ const STORAGE_KEY = "rutas-app-data";
 // Lista predeterminada de rutas
 const RUTAS_PREDETERMINADAS = [
   "poblado",
+  "castropol",
+  "ciudad del rio",
+  "manila",
+  "patio bonito",
+  "barrio colombia",
   "centro",
   "belen",
+  "belen san bernardo",
+  "belen malibu",
+  "belen la mota",
+  "belencito",
   "castilla",
   "manrique",
   "aranjuez",
@@ -105,9 +114,7 @@ export default function Rutas() {
   });
 
   const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
-  const [selectedRouteName, setSelectedRouteName] = useState("");
-  const [customRouteName, setCustomRouteName] = useState("");
-  const [showCustomInput, setShowCustomInput] = useState(false);
+  const [selectedRoutes, setSelectedRoutes] = useState<string[]>([]);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const taskIdRef = useRef<number>(0);
@@ -147,40 +154,47 @@ export default function Rutas() {
     setActiveTaskId(null);
   };
 
+  const toggleRouteSelection = (routeName: string) => {
+  setSelectedRoutes((prev) =>
+    prev.includes(routeName)
+      ? prev.filter((r) => r !== routeName)
+      : [...prev, routeName]
+  );
+};
+
   const handleAddTask = (name: string) => {
-    const finalRouteName = selectedRouteName === "otro" ? customRouteName.trim() : selectedRouteName.trim();
-    
-    if (!finalRouteName) {
-      alert("Por favor, selecciona o ingresa un nombre de ruta");
-      return;
-    }
+  if (selectedRoutes.length === 0) {
+    alert("Selecciona al menos una ruta");
+    return;
+  }
 
-    const newTaskId = taskIdRef.current++;
+  const finalRouteName = selectedRoutes.join("-");
 
-    setRoute((prev) =>
-      prev.map((man) =>
-        man.name === name
-          ? {
-              ...man,
-              tasks: [
-                ...man.tasks,
-                {
-                  id: newTaskId,
-                  label: finalRouteName,
-                  images: [],
-                },
-              ],
-            }
-          : man
-      )
-    );
+  const newTaskId = taskIdRef.current++;
 
-    setActiveTaskId(newTaskId);
-    setSelectedRouteName("");
-    setCustomRouteName("");
-    setShowCustomInput(false);
-    setTimeout(() => fileInputRef.current?.click(), 0);
-  };
+  setRoute((prev) =>
+    prev.map((man) =>
+      man.name === name
+        ? {
+            ...man,
+            tasks: [
+              ...man.tasks,
+              {
+                id: newTaskId,
+                label: finalRouteName,
+                images: [],
+              },
+            ],
+          }
+        : man
+    )
+  );
+
+  setActiveTaskId(newTaskId);
+  setSelectedRoutes([]);
+  setTimeout(() => fileInputRef.current?.click(), 0);
+};
+
 
   const handleAddMoreImages = (taskId: number) => {
     setActiveTaskId(taskId);
@@ -476,65 +490,41 @@ export default function Rutas() {
 
       {activeMan && (
         <>
-          <section style={{ display: "flex", flexDirection: "column", gap: "0.5rem", margin: "1rem 0" }}>
-            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-              <select
-                value={selectedRouteName}
-                onChange={(e) => {
-                  setSelectedRouteName(e.target.value);
-                  if (e.target.value === "otro") {
-                    setShowCustomInput(true);
-                  } else {
-                    setShowCustomInput(false);
-                  }
-                }}
-                className={styles.routeSelect}
-                style={{ flex: "1", minWidth: "200px" }}
-              >
-                <option value="">Seleccionar ruta</option>
-                {RUTAS_PREDETERMINADAS.map((ruta) => (
-                  <option key={ruta} value={ruta}>
-                    {ruta.charAt(0).toUpperCase() + ruta.slice(1)}
-                  </option>
-                ))}
-                <option value="otro">Otra ruta...</option>
-              </select>
+          <section className={styles.routeSection}>
+  <h4 className={styles.title}>Seleccionar rutas</h4>
 
-              <button
-                onClick={() => handleAddTask(activeMan.name)}
-                className={styles.addButton}
-                disabled={!selectedRouteName}
-                style={{ minWidth: "120px" }}
-              >
-                Asignar ruta
-              </button>
-            </div>
+  <div className={styles.routesContainer}>
+    {RUTAS_PREDETERMINADAS.map((ruta) => (
+      <label key={ruta} className={styles.routeItem}>
+        <input
+          type="checkbox"
+          checked={selectedRoutes.includes(ruta)}
+          onChange={() => toggleRouteSelection(ruta)}
+        />
+        {ruta.charAt(0).toUpperCase() + ruta.slice(1)}
+      </label>
+    ))}
+  </div>
 
-            {showCustomInput && (
-              <input
-                type="text"
-                placeholder="Ingresa el nombre de la ruta personalizada"
-                value={customRouteName}
-                onChange={(e) => setCustomRouteName(e.target.value)}
-                className={styles.routeInput}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && customRouteName.trim()) {
-                    handleAddTask(activeMan.name);
-                  }
-                }}
-              />
-            )}
-          </section>
+  <button
+    onClick={() => handleAddTask(activeMan.name)}
+    className={styles.addButton}
+  >
+    Asignar ruta
+  </button>
+</section>
+
+
           
           <section>
             <h2>{activeMan.name}</h2>
 
             <p>
-              <strong>Total a cobrar:</strong> $
+              <strong>Cash:</strong> $
               {calculateTotalByDeliveryMan(activeMan.name)}
             </p>
             <p>
-              <strong>Total domicilios:</strong> $
+              <strong>Domicilios:</strong> $
               {calculateTotalDeliveryFeeByDeliveryMan(activeMan.name)}
             </p>
             <p>

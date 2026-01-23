@@ -124,3 +124,54 @@
     background-color: #45a049;
   }
 }
+
+.routeSection {
+  margin: 1rem 0;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+}
+
+.routesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Item base */
+.routeItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+
+  /* Desktop / default */
+  flex: 0 0 150px;
+}
+
+/* 📱 Móvil */
+@media (max-width: 480px) {
+  .routeItem {
+    flex: 0 0 calc(50% - 0.5rem); // dos por fila
+  }
+}
+
+.selectedRoute {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.addButton {
+  margin-top: 0.5rem;
+}
+
+
+.selectedRoute {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.addButton {
+  margin-top: 0.5rem;
+}
