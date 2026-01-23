@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import Deliverman from "./Deliverman";
 import styles from "../styles/index.module.scss";
+import { saveImage, getImage, deleteImage } from "../lib/imageDB";
+
 
 interface DeliveryMan {
   name: string;
@@ -10,7 +12,6 @@ interface DeliveryMan {
 
 interface TaskImage {
   id: number;
-  file?: File; // Hacer opcional para localStorage
   preview: string;
   status: "pagado" | "precio" | null;
   price?: number;
@@ -120,6 +121,30 @@ export default function Rutas() {
   const taskIdRef = useRef<number>(0);
 
   useEffect(() => {
+  const restoreImages = async () => {
+    const cloned = structuredClone(route);
+
+    for (const man of cloned) {
+      for (const task of man.tasks) {
+        for (const img of task.images) {
+          const blob = await getImage(img.id);
+          if (blob) {
+            img.preview = URL.createObjectURL(blob);
+          }
+        }
+      }
+    }
+
+    setRoute(cloned);
+  };
+
+  if (route.length) {
+    restoreImages();
+  }
+}, []);
+
+
+  useEffect(() => {
     taskIdRef.current = Date.now();
   }, []);
 
@@ -201,51 +226,61 @@ export default function Rutas() {
     setTimeout(() => fileInputRef.current?.click(), 0);
   };
 
-  const handleAddImages = (files: FileList) => {
-    if (!activeDeliveryMan || activeTaskId === null) return;
+  const handleAddImages = async (files: FileList) => {
+  if (!activeDeliveryMan || activeTaskId === null) return;
 
-    const images: TaskImage[] = Array.from(files).map((file, index) => ({
-      id: Date.now() + index,
-      file, // Guardamos la referencia al archivo
+  const images: TaskImage[] = [];
+
+  for (const file of Array.from(files)) {
+    const id = Date.now() + Math.random();
+    await saveImage(id, file);
+
+    images.push({
+      id,
       preview: URL.createObjectURL(file),
       status: null,
-    }));
+    });
+  }
 
-    setRoute((prev) =>
-      prev.map((man) =>
-        man.name === activeDeliveryMan
-          ? {
-              ...man,
-              tasks: man.tasks.map((task) =>
-                task.id === activeTaskId
-                  ? { ...task, images: [...task.images, ...images] }
-                  : task
-              ),
-            }
-          : man
-      )
-    );
-  };
+  setRoute((prev) =>
+    prev.map((man) =>
+      man.name === activeDeliveryMan
+        ? {
+            ...man,
+            tasks: man.tasks.map((task) =>
+              task.id === activeTaskId
+                ? { ...task, images: [...task.images, ...images] }
+                : task
+            ),
+          }
+        : man
+    )
+  );
+};
 
-  const removeImage = (taskId: number, imageId: number) => {
-    setRoute((prev) =>
-      prev.map((man) =>
-        man.name === activeDeliveryMan
-          ? {
-              ...man,
-              tasks: man.tasks.map((task) =>
-                task.id === taskId
-                  ? {
-                      ...task,
-                      images: task.images.filter((img) => img.id !== imageId),
-                    }
-                  : task
-              ),
-            }
-          : man
-      )
-    );
-  };
+
+  const removeImage = async (taskId: number, imageId: number) => {
+  await deleteImage(imageId);
+
+  setRoute((prev) =>
+    prev.map((man) =>
+      man.name === activeDeliveryMan
+        ? {
+            ...man,
+            tasks: man.tasks.map((task) =>
+              task.id === taskId
+                ? {
+                    ...task,
+                    images: task.images.filter((img) => img.id !== imageId),
+                  }
+                : task
+            ),
+          }
+        : man
+    )
+  );
+};
+
 
   const setImageStatus = (
     taskId: number,
