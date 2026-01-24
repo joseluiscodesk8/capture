@@ -6,7 +6,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-
   & li {
     button {
       min-width: 80px;
@@ -168,19 +167,7 @@
     }
   }
 
-  /* 📱 Móvil */
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
 
-    .title,
-    .addButton {
-      grid-column: 1 / -1;
-    }
-
-    .addButton {
-      justify-self: start;
-    }
-  }
 }
 
 .taskSection {
