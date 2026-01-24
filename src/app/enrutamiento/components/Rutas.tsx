@@ -3,7 +3,13 @@
 import { useState, useRef, useEffect } from "react";
 import Deliverman from "./Deliverman";
 import styles from "../styles/index.module.scss";
-import { saveImage, getImage, deleteImage } from "../lib/imageDB";
+import {
+  saveImage,
+  getImage,
+  deleteImage,
+  compressImage,
+} from "../lib/imageStorage";
+
 
 
 interface DeliveryMan {
@@ -12,6 +18,7 @@ interface DeliveryMan {
 
 interface TaskImage {
   id: number;
+  imageId: string; // ID en IndexedDB
   preview: string;
   status: "pagado" | "precio" | null;
   price?: number;
@@ -39,8 +46,6 @@ const RUTAS_PREDETERMINADAS = [
   "poblado",
   "castropol",
   "ciudad del rio",
-  "manila",
-  "patio bonito",
   "barrio colombia",
   "centro",
   "belen",
@@ -105,6 +110,40 @@ export default function Rutas() {
     return [];
   });
 
+  useEffect(() => {
+  const restoreImages = async () => {
+    const updatedRoutes = await Promise.all(
+      route.map(async (man) => ({
+        ...man,
+        tasks: await Promise.all(
+          man.tasks.map(async (task) => ({
+            ...task,
+            images: await Promise.all(
+              task.images.map(async (img) => {
+                const blob = await getImage(img.imageId);
+                if (!blob) return img;
+
+                return {
+                  ...img,
+                  preview: URL.createObjectURL(blob),
+                };
+              })
+            ),
+          }))
+        ),
+      }))
+    );
+
+    setRoute(updatedRoutes);
+  };
+
+  if (route.length > 0) {
+    restoreImages();
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
+
+
   const [activeDeliveryMan, setActiveDeliveryMan] = useState<string | null>(() => {
     // Restaurar el repartidor activo si existe
     if (typeof window !== "undefined") {
@@ -119,30 +158,6 @@ export default function Rutas() {
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const taskIdRef = useRef<number>(0);
-
-  useEffect(() => {
-  const restoreImages = async () => {
-    const cloned = structuredClone(route);
-
-    for (const man of cloned) {
-      for (const task of man.tasks) {
-        for (const img of task.images) {
-          const blob = await getImage(img.id);
-          if (blob) {
-            img.preview = URL.createObjectURL(blob);
-          }
-        }
-      }
-    }
-
-    setRoute(cloned);
-  };
-
-  if (route.length) {
-    restoreImages();
-  }
-}, []);
-
 
   useEffect(() => {
     taskIdRef.current = Date.now();
@@ -170,6 +185,7 @@ export default function Rutas() {
 
   const longPressTimer = useRef<NodeJS.Timeout | null>(null);
   const [imageToDelete, setImageToDelete] = useState<number | null>(null);
+  
 
   const handleSelectDeliveryMan = (man: DeliveryMan) => {
     if (!route.some((r) => r.name === man.name)) {
@@ -229,15 +245,18 @@ export default function Rutas() {
   const handleAddImages = async (files: FileList) => {
   if (!activeDeliveryMan || activeTaskId === null) return;
 
-  const images: TaskImage[] = [];
+  const newImages: TaskImage[] = [];
 
   for (const file of Array.from(files)) {
-    const id = Date.now() + Math.random();
-    await saveImage(id, file);
+    const compressedBlob = await compressImage(file);
+    const imageId = crypto.randomUUID();
 
-    images.push({
-      id,
-      preview: URL.createObjectURL(file),
+    await saveImage(imageId, compressedBlob);
+
+    newImages.push({
+      id: Date.now() + Math.random(),
+      imageId,
+      preview: URL.createObjectURL(compressedBlob),
       status: null,
     });
   }
@@ -249,7 +268,7 @@ export default function Rutas() {
             ...man,
             tasks: man.tasks.map((task) =>
               task.id === activeTaskId
-                ? { ...task, images: [...task.images, ...images] }
+                ? { ...task, images: [...task.images, ...newImages] }
                 : task
             ),
           }
@@ -259,8 +278,12 @@ export default function Rutas() {
 };
 
 
-  const removeImage = async (taskId: number, imageId: number) => {
-  await deleteImage(imageId);
+  const removeImage = async (
+  taskId: number,
+  imageId: number,
+  imageKey: string
+) => {
+  await deleteImage(imageKey);
 
   setRoute((prev) =>
     prev.map((man) =>
@@ -634,7 +657,7 @@ export default function Rutas() {
                   {imageToDelete === img.id && (
                     <button
                       onClick={() => {
-                        removeImage(activeTask.id, img.id);
+                        removeImage(activeTask.id, img.id, img.imageId);
                         setImageToDelete(null);
                       }}
                       style={{
