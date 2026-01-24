@@ -203,9 +203,9 @@
     grid-auto-rows: min-content;
     gap: 1.5rem;
 
-    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
     overscroll-behavior: contain;
-    padding: 1rem;
+    -webkit-overflow-scrolling: touch;
 
     .imageCard {
       display: flex;
@@ -216,8 +216,6 @@
       padding: 1rem;
       background-color: #fff;
 
-      scroll-snap-align: start;
-
       .imageWrapper {
         display: flex;
         justify-content: center;
@@ -225,12 +223,47 @@
         position: relative;
 
         img {
-          width: 260px;
+          width: 280px;       // 👈 imagen más grande
           max-width: 100%;
           height: auto;
+          object-fit: contain;
+        }
+
+        button {
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.6);
+          color: #fff;
+          border: none;
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+
+      .section {
+        h4 {
+          margin: 0 0 0.25rem 0;
+        }
+
+        p {
+          margin: 0;
+        }
+
+        input {
+          width: 100%;
+        }
+      }
+
+      .statusButtons {
+        display: flex;
+        gap: 0.5rem;
+
+        button {
+          flex: 1;
         }
       }
     }
   }
 }
+
 
