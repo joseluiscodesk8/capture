@@ -484,12 +484,17 @@ export default function Rutas() {
   };
 
   // NUEVA FUNCIÓN DE LIQUIDACIÓN
-  const calcularLiquidacion = (name: string): number => {
-    const totalEfectivo = calculateTotalByDeliveryMan(name);
-    const totalDomicilios = calculateTotalDeliveryFeeByDeliveryMan(name);
-    
-    return totalEfectivo - totalDomicilios;
-  };
+  const calcularLiquidacion = (name: string): number | null => {
+  const totalEfectivo = calculateTotalByDeliveryMan(name);
+
+  if (totalEfectivo === 0) {
+    return null;
+  }
+
+  const totalDomicilios = calculateTotalDeliveryFeeByDeliveryMan(name);
+  return totalEfectivo - totalDomicilios;
+};
+
 
   const activeMan = route.find((m) => m.name === activeDeliveryMan);
   const activeTask = activeMan?.tasks.find((t) => t.id === activeTaskId);
@@ -534,22 +539,19 @@ export default function Rutas() {
         </button>
       )}
 
-      <section>
-        <ul className={styles.deliveryManList}>
-          {route.map((man) => (
-            <li key={man.name}>
-              <button onClick={() => setActiveDeliveryMan(man.name)}>
-                {man.name}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </section>
+      
 
       {activeMan && (
         <>
           <section className={styles.routeSection}>
   <h4 className={styles.title}>Seleccionar rutas</h4>
+
+   <button
+    onClick={() => handleAddTask(activeMan.name)}
+    className={styles.addButton}
+  >
+    Asignar ruta
+  </button>
 
   <div className={styles.routesContainer}>
     {RUTAS_PREDETERMINADAS.map((ruta) => (
@@ -564,12 +566,18 @@ export default function Rutas() {
     ))}
   </div>
 
-  <button
-    onClick={() => handleAddTask(activeMan.name)}
-    className={styles.addButton}
-  >
-    Asignar ruta
-  </button>
+<section>
+        <ul className={styles.deliveryManList}>
+          {route.map((man) => (
+            <li key={man.name}>
+              <button onClick={() => setActiveDeliveryMan(man.name)}>
+                {man.name}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </section>
+ 
 </section>
 
 
@@ -585,10 +593,13 @@ export default function Rutas() {
               <strong>Domicilios:</strong> $
               {calculateTotalDeliveryFeeByDeliveryMan(activeMan.name)}
             </p>
-            <p>
-              <strong>Liquidación:</strong> $
-              {calcularLiquidacion(activeMan.name)}
-            </p>
+            {calculateTotalByDeliveryMan(activeMan.name) > 0 && (
+  <p>
+    <strong>Liquidación:</strong> $
+    {calcularLiquidacion(activeMan.name)}
+  </p>
+)}
+
           </section>
           <section className={styles.taskList}>
             <ul>
@@ -623,151 +634,134 @@ export default function Rutas() {
       />
 
       {activeTask && (
-        <section>
-          {activeTask.images.length > 0 && (
-            <button
-              className={styles.addComanda}
-              onClick={() => handleAddMoreImages(activeTask.id)}
-              style={{ marginBottom: "1rem" }}
-            >
-              Agregar comanda
-            </button>
-          )}
+  <section className={styles.taskSection}>
+    {activeTask.images.length > 0 && (
+      <button
+        className={styles.addComanda}
+        onClick={() => handleAddMoreImages(activeTask.id)}
+      >
+        Agregar comanda
+      </button>
+    )}
 
-          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-            {activeTask.images.map((img) => (
-              <div
-                key={img.id}
-                style={{ 
-                  border: "1px solid #ccc", 
-                  padding: "0.5rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem"
+    <div className={styles.imagesContainer}>
+      {activeTask.images.map((img) => (
+        <div key={img.id} className={styles.imageCard}>
+          <div
+            className={styles.imageWrapper}
+            onPointerDown={() => handleImagePressStart(img.id)}
+            onPointerUp={handleImagePressEnd}
+            onPointerLeave={handleImagePressEnd}
+          >
+            <img src={img.preview} alt="" />
+
+            {imageToDelete === img.id && (
+              <button
+                onClick={() => {
+                  removeImage(activeTask.id, img.id, img.imageId);
+                  setImageToDelete(null);
                 }}
               >
-                <div
-                  style={{ position: "relative" }}
-                  onPointerDown={() => handleImagePressStart(img.id)}
-                  onPointerUp={handleImagePressEnd}
-                  onPointerLeave={handleImagePressEnd}
+                Eliminar
+              </button>
+            )}
+          </div>
+
+          <div className={styles.section}>
+            <h4>Efectivo:</h4>
+
+            {img.status === null && (
+              <div className={styles.statusButtons}>
+                <button
+                  onClick={() =>
+                    setImageStatus(activeTask.id, img.id, "pagado")
+                  }
                 >
-                  <img src={img.preview} alt="" width={100} />
+                  Ya pagado
+                </button>
+                <button
+                  onClick={() =>
+                    setImageStatus(activeTask.id, img.id, "precio")
+                  }
+                >
+                  Efectivo
+                </button>
+              </div>
+            )}
 
-                  {imageToDelete === img.id && (
-                    <button
-                      onClick={() => {
-                        removeImage(activeTask.id, img.id, img.imageId);
-                        setImageToDelete(null);
-                      }}
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        background: "rgba(0,0,0,0.6)",
-                        color: "#fff",
-                        border: "none",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Eliminar
-                    </button>
-                  )}
-                </div>
+            {img.status === "pagado" && (
+              <p style={{ color: "green", fontWeight: "bold" }}>
+                Ya pagado
+              </p>
+            )}
 
-                <div>
-                  <h4 style={{ margin: "0 0 0.25rem 0" }}>Efectivo:</h4>
-                  {img.status === null && (
-                    <div className={styles.statusButtons}>
-                      <button
-                        onClick={() =>
-                          setImageStatus(activeTask.id, img.id, "pagado")
-                        }
-                      >
-                        Ya pagado
-                      </button>
-                      <button
-                        onClick={() =>
-                          setImageStatus(activeTask.id, img.id, "precio")
-                        }
-                      >
-                        Efectivo
-                      </button>
-                    </div>
-                  )}
-
-                  {img.status === "pagado" && (
-                    <p style={{ color: "green", fontWeight: "bold", margin: 0 }}>
-                      Ya pagado
-                    </p>
-                  )}
-
-                  {img.status === "precio" && (
-                    <>
-                      {img.price === undefined ? (
-                        <input
-                          type="number"
-                          placeholder="Precio"
-                          autoFocus
-                          value={img.tempPrice ?? ""}
-                          onChange={(e) =>
-                            setTempImagePrice(
-                              activeTask.id,
-                              img.id,
-                              e.target.value
-                            )
-                          }
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" && img.tempPrice) {
-                              setImagePrice(
-                                activeTask.id,
-                                img.id,
-                                Number(img.tempPrice)
-                              );
-                            }
-                          }}
-                          style={{ width: "100%" }}
-                        />
-                      ) : (
-                        <p style={{ margin: 0 }}>${img.price}</p>
-                      )}
-                    </>
-                  )}
-                </div>
-
-                <div>
-                  <h4 style={{ margin: "0 0 0.25rem 0" }}>Domicilio:</h4>
-                  {img.deliveryFee === undefined ? (
-                    <input
-                      type="number"
-                      placeholder="Valor domicilio"
-                      value={img.tempDeliveryFee ?? ""}
-                      onChange={(e) =>
-                        setTempImageDeliveryFee(
+            {img.status === "precio" && (
+              <>
+                {img.price === undefined ? (
+                  <input
+                    type="number"
+                    placeholder="Precio"
+                    autoFocus
+                    value={img.tempPrice ?? ""}
+                    onChange={(e) =>
+                      setTempImagePrice(
+                        activeTask.id,
+                        img.id,
+                        e.target.value
+                      )
+                    }
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && img.tempPrice) {
+                        setImagePrice(
                           activeTask.id,
                           img.id,
-                          e.target.value
-                        )
+                          Number(img.tempPrice)
+                        );
                       }
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" && img.tempDeliveryFee) {
-                          setImageDeliveryFee(
-                            activeTask.id,
-                            img.id,
-                            Number(img.tempDeliveryFee)
-                          );
-                        }
-                      }}
-                      style={{ width: "100%" }}
-                    />
-                  ) : (
-                    <p style={{ margin: 0 }}>${img.deliveryFee}</p>
-                  )}
-                </div>
-              </div>
-            ))}
+                    }}
+                  />
+                ) : (
+                  <p>${img.price}</p>
+                )}
+              </>
+            )}
           </div>
-        </section>
-      )}
+
+          <div className={styles.section}>
+            <h4>Domicilio:</h4>
+
+            {img.deliveryFee === undefined ? (
+              <input
+                type="number"
+                placeholder="Valor domicilio"
+                value={img.tempDeliveryFee ?? ""}
+                onChange={(e) =>
+                  setTempImageDeliveryFee(
+                    activeTask.id,
+                    img.id,
+                    e.target.value
+                  )
+                }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && img.tempDeliveryFee) {
+                    setImageDeliveryFee(
+                      activeTask.id,
+                      img.id,
+                      Number(img.tempDeliveryFee)
+                    );
+                  }
+                }}
+              />
+            ) : (
+              <p>${img.deliveryFee}</p>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+)}
+
     </>
   );
 }
