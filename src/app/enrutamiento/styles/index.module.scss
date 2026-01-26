@@ -126,12 +126,15 @@
 
 .routeSection {
   display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto;
+  /* fila superior: h4 | toggle icon | Asignar ruta
+     fila 2: routes container (ocupa las 3 columnas)
+     fila 3: delivery list (ocupa las 3 columnas, debajo)
+  */
+  grid-template-columns: 1fr 40px auto;
+  grid-template-rows: auto auto auto;
   gap: 0.75rem 1rem;
   margin: 1rem 0;
 
-  /* Fila 1 */
   .title {
     grid-column: 1 / 2;
     grid-row: 1;
@@ -139,18 +142,52 @@
     align-self: center;
   }
 
-  .addButton {
+  /* pequeño icono entre title y Asignar ruta (misma fila 1, columna 2) */
+  .toggleIcon {
     grid-column: 2 / 3;
+    grid-row: 1;
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #333;
+    cursor: pointer;
+    transition: color 150ms ease, transform 150ms ease;
+  }
+
+  .toggleIcon.open svg {
+    transform: rotate(180deg);
+    transition: transform 200ms ease;
+  }
+
+  .toggleIcon:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(21,156,228,0.18);
+    border-color: rgba(21,156,228,0.4);
+  }
+
+  /* Asignar ruta en la fila 1, columna 3 */
+  .addButton {
+    grid-column: 3 / 4;
     grid-row: 1;
     align-self: center;
     margin: 0;
   }
 
-  /* Fila 2 */
+  /* fila 2: el contenedor de rutas ocupa las 3 columnas */
   .routesContainer {
-    grid-column: 1 / -1;
+    grid-column: 1 / -1; /* ocupa todas las columnas */
     grid-row: 2;
-
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 300ms cubic-bezier(.2,.9,.2,1), opacity 200ms ease;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 0.5rem;
@@ -167,7 +204,26 @@
     }
   }
 
+  .routesContainer.expanded {
+    max-height: 720px; /* ajusta según contenido */
+    opacity: 1;
+    transition: max-height 350ms cubic-bezier(.2,.9,.2,1), opacity 250ms ease;
+  }
 
+  /* fila 3: sección con la lista de repartidores, debajo del div */
+  .deliveryListSection {
+    grid-column: 1 / -1; /* ocupa todas las columnas, debajo del routesContainer */
+    grid-row: 3;
+    align-self: start;
+
+    .deliveryManList {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  }
+
+  /* resto de estilos existentes (opcionalmente desplázalos aquí) */
 }
 
 .taskSection {
