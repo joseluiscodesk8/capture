@@ -23,8 +23,10 @@ interface TaskImage {
   tempPrice?: string;
   deliveryFee?: number;
   tempDeliveryFee?: string;
-  location?: string;        // ✅ valor definitivo
-  tempLocation?: string;    // ✍️ mientras escribe
+  location?: string; // ✅ valor definitivo
+  tempLocation?: string; // ✍️ mientras escribe
+  locationRef?: number; // valor final
+  tempLocationRef?: string; // mientras escribe
 }
 
 interface Task {
@@ -92,11 +94,9 @@ const RUTAS_PREDETERMINADAS = [
   "santa monica",
   "sevilla",
   "Suramaricana",
-  "suramericana",
   "tricentenario",
   "villa hermosa",
 ];
-
 
 export default function Rutas() {
   const deliveryMen: DeliveryMan[] = [
@@ -144,11 +144,11 @@ export default function Rutas() {
                     ...img,
                     preview: URL.createObjectURL(blob),
                   };
-                })
+                }),
               ),
-            }))
+            })),
           ),
-        }))
+        })),
       );
 
       setRoute(updatedRoutes);
@@ -160,14 +160,16 @@ export default function Rutas() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [activeDeliveryMan, setActiveDeliveryMan] = useState<string | null>(() => {
-    // Restaurar el repartidor activo si existe
-    if (typeof window !== "undefined") {
-      const savedActive = localStorage.getItem(`${STORAGE_KEY}-active`);
-      return savedActive || null;
-    }
-    return null;
-  });
+  const [activeDeliveryMan, setActiveDeliveryMan] = useState<string | null>(
+    () => {
+      // Restaurar el repartidor activo si existe
+      if (typeof window !== "undefined") {
+        const savedActive = localStorage.getItem(`${STORAGE_KEY}-active`);
+        return savedActive || null;
+      }
+      return null;
+    },
+  );
 
   const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
   const [selectedRoutes, setSelectedRoutes] = useState<string[]>([]);
@@ -185,11 +187,14 @@ export default function Rutas() {
   }, []);
 
   // Función para guardar datos en localStorage
-  const saveToLocalStorage = (routes: RouteDeliveryMan[], activeMan: string | null) => {
+  const saveToLocalStorage = (
+    routes: RouteDeliveryMan[],
+    activeMan: string | null,
+  ) => {
     if (typeof window !== "undefined") {
       // Guardar las rutas
       localStorage.setItem(STORAGE_KEY, JSON.stringify(routes));
-      
+
       // Guardar el repartidor activo
       if (activeMan) {
         localStorage.setItem(`${STORAGE_KEY}-active`, activeMan);
@@ -219,7 +224,7 @@ export default function Rutas() {
     setSelectedRoutes((prev) =>
       prev.includes(routeName)
         ? prev.filter((r) => r !== routeName)
-        : [...prev, routeName]
+        : [...prev, routeName],
     );
   };
 
@@ -247,8 +252,8 @@ export default function Rutas() {
                 },
               ],
             }
-          : man
-      )
+          : man,
+      ),
     );
 
     setActiveTaskId(newTaskId);
@@ -279,6 +284,8 @@ export default function Rutas() {
         status: null,
         location: undefined,
         tempLocation: "",
+        locationRef: undefined,
+        tempLocationRef: "",
       });
     }
 
@@ -290,18 +297,18 @@ export default function Rutas() {
               tasks: man.tasks.map((task) =>
                 task.id === activeTaskId
                   ? { ...task, images: [...task.images, ...newImages] }
-                  : task
+                  : task,
               ),
             }
-          : man
-      )
+          : man,
+      ),
     );
   };
 
   const removeImage = async (
     taskId: number,
     imageId: number,
-    imageKey: string
+    imageKey: string,
   ) => {
     await deleteImage(imageKey);
 
@@ -316,18 +323,18 @@ export default function Rutas() {
                       ...task,
                       images: task.images.filter((img) => img.id !== imageId),
                     }
-                  : task
+                  : task,
               ),
             }
-          : man
-      )
+          : man,
+      ),
     );
   };
 
   const setImageStatus = (
     taskId: number,
     imageId: number,
-    status: "pagado" | "precio"
+    status: "pagado" | "precio",
   ) => {
     setRoute((prev) =>
       prev.map((man) =>
@@ -347,21 +354,21 @@ export default function Rutas() {
                                 status === "pagado" ? undefined : img.price,
                               tempPrice: undefined,
                             }
-                          : img
+                          : img,
                       ),
                     }
-                  : task
+                  : task,
               ),
             }
-          : man
-      )
+          : man,
+      ),
     );
   };
 
   const setTempImagePrice = (
     taskId: number,
     imageId: number,
-    value: string
+    value: string,
   ) => {
     setRoute((prev) =>
       prev.map((man) =>
@@ -373,14 +380,14 @@ export default function Rutas() {
                   ? {
                       ...task,
                       images: task.images.map((img) =>
-                        img.id === imageId ? { ...img, tempPrice: value } : img
+                        img.id === imageId ? { ...img, tempPrice: value } : img,
                       ),
                     }
-                  : task
+                  : task,
               ),
             }
-          : man
-      )
+          : man,
+      ),
     );
   };
 
@@ -397,21 +404,21 @@ export default function Rutas() {
                       images: task.images.map((img) =>
                         img.id === imageId
                           ? { ...img, price, tempPrice: undefined }
-                          : img
+                          : img,
                       ),
                     }
-                  : task
+                  : task,
               ),
             }
-          : man
-      )
+          : man,
+      ),
     );
   };
 
   const setTempImageDeliveryFee = (
     taskId: number,
     imageId: number,
-    value: string
+    value: string,
   ) => {
     setRoute((prev) =>
       prev.map((man) =>
@@ -425,21 +432,21 @@ export default function Rutas() {
                       images: task.images.map((img) =>
                         img.id === imageId
                           ? { ...img, tempDeliveryFee: value }
-                          : img
+                          : img,
                       ),
                     }
-                  : task
+                  : task,
               ),
             }
-          : man
-      )
+          : man,
+      ),
     );
   };
 
   const setImageDeliveryFee = (
     taskId: number,
     imageId: number,
-    fee: number
+    fee: number,
   ) => {
     setRoute((prev) =>
       prev.map((man) =>
@@ -452,88 +459,153 @@ export default function Rutas() {
                       ...task,
                       images: task.images.map((img) =>
                         img.id === imageId
-                          ? { ...img, deliveryFee: fee, tempDeliveryFee: undefined }
-                          : img
+                          ? {
+                              ...img,
+                              deliveryFee: fee,
+                              tempDeliveryFee: undefined,
+                            }
+                          : img,
                       ),
                     }
-                  : task
+                  : task,
               ),
             }
-          : man
-      )
+          : man,
+      ),
     );
   };
 
-const setTempImageLocation = (
-  taskId: number,
-  imageId: number,
-  value: string
-) => {
-  setRoute((prev) =>
-    prev.map((man) =>
-      man.name === activeDeliveryMan
-        ? {
-            ...man,
-            tasks: man.tasks.map((task) =>
-              task.id === taskId
-                ? {
-                    ...task,
-                    images: task.images.map((img) =>
-                      img.id === imageId
-                        ? { ...img, tempLocation: value }
-                        : img
-                    ),
-                  }
-                : task
-            ),
-          }
-        : man
-    )
-  );
-};
+  const setTempImageLocation = (
+    taskId: number,
+    imageId: number,
+    value: string,
+  ) => {
+    setRoute((prev) =>
+      prev.map((man) =>
+        man.name === activeDeliveryMan
+          ? {
+              ...man,
+              tasks: man.tasks.map((task) =>
+                task.id === taskId
+                  ? {
+                      ...task,
+                      images: task.images.map((img) =>
+                        img.id === imageId
+                          ? { ...img, tempLocation: value }
+                          : img,
+                      ),
+                    }
+                  : task,
+              ),
+            }
+          : man,
+      ),
+    );
+  };
 
-const setImageLocationFinal = (
-  taskId: number,
-  imageId: number,
-  value: string
-) => {
-  setRoute((prev) =>
-    prev.map((man) =>
-      man.name === activeDeliveryMan
-        ? {
-            ...man,
-            tasks: man.tasks.map((task) =>
-              task.id === taskId
-                ? {
-                    ...task,
-                    images: task.images.map((img) =>
-                      img.id === imageId
-                        ? {
-                            ...img,
-                            location: value,
-                            tempLocation: undefined, // 🔒 bloquea edición
-                          }
-                        : img
-                    ),
-                  }
-                : task
-            ),
-          }
-        : man
-    )
-  );
-};
+  const setImageLocationFinal = (
+    taskId: number,
+    imageId: number,
+    value: string,
+  ) => {
+    setRoute((prev) =>
+      prev.map((man) =>
+        man.name === activeDeliveryMan
+          ? {
+              ...man,
+              tasks: man.tasks.map((task) =>
+                task.id === taskId
+                  ? {
+                      ...task,
+                      images: task.images.map((img) =>
+                        img.id === imageId
+                          ? {
+                              ...img,
+                              location: value,
+                              tempLocation: undefined, // 🔒 bloquea edición
+                            }
+                          : img,
+                      ),
+                    }
+                  : task,
+              ),
+            }
+          : man,
+      ),
+    );
+  };
 
+  const setTempLocationRef = (
+    taskId: number,
+    imageId: number,
+    value: string,
+  ) => {
+    setRoute((prev) =>
+      prev.map((man) =>
+        man.name === activeDeliveryMan
+          ? {
+              ...man,
+              tasks: man.tasks.map((task) =>
+                task.id === taskId
+                  ? {
+                      ...task,
+                      images: task.images.map((img) =>
+                        img.id === imageId
+                          ? { ...img, tempLocationRef: value }
+                          : img,
+                      ),
+                    }
+                  : task,
+              ),
+            }
+          : man,
+      ),
+    );
+  };
 
-
+  const setLocationRefFinal = (
+    taskId: number,
+    imageId: number,
+    value: number,
+  ) => {
+    setRoute((prev) =>
+      prev.map((man) =>
+        man.name === activeDeliveryMan
+          ? {
+              ...man,
+              tasks: man.tasks.map((task) =>
+                task.id === taskId
+                  ? {
+                      ...task,
+                      images: task.images.map((img) =>
+                        img.id === imageId
+                          ? {
+                              ...img,
+                              locationRef: value,
+                              tempLocationRef: undefined,
+                            }
+                          : img,
+                      ),
+                    }
+                  : task,
+              ),
+            }
+          : man,
+      ),
+    );
+  };
 
   // Función para limpiar todos los datos
   const clearAllData = () => {
-    if (confirm("¿Estás seguro de que quieres eliminar todos los datos? Esta acción no se puede deshacer.")) {
+    if (
+      confirm(
+        "¿Estás seguro de que quieres eliminar todos los datos? Esta acción no se puede deshacer.",
+      )
+    ) {
       setRoute([]);
       setActiveDeliveryMan(null);
       setActiveTaskId(null);
-      
+
       if (typeof window !== "undefined") {
         localStorage.removeItem(STORAGE_KEY);
         localStorage.removeItem(`${STORAGE_KEY}-active`);
@@ -549,7 +621,7 @@ const setImageLocationFinal = (
     return man.tasks.reduce(
       (acc, task) =>
         acc + task.images.reduce((imgAcc, img) => imgAcc + (img.price ?? 0), 0),
-      0
+      0,
     );
   };
 
@@ -560,8 +632,9 @@ const setImageLocationFinal = (
 
     return man.tasks.reduce(
       (acc, task) =>
-        acc + task.images.reduce((imgAcc, img) => imgAcc + (img.deliveryFee ?? 0), 0),
-      0
+        acc +
+        task.images.reduce((imgAcc, img) => imgAcc + (img.deliveryFee ?? 0), 0),
+      0,
     );
   };
 
@@ -578,30 +651,26 @@ const setImageLocationFinal = (
   };
 
   // 🔍 Buscar imágenes por ubicación en todos los repartidores
-const searchByLocation = () => {
-  if (!searchLocation.trim()) return [];
+  const searchByLocation = () => {
+    if (!searchLocation.trim()) return [];
 
-  return route
-    .map((man) => {
-      const images = man.tasks.flatMap((task) =>
-        task.images.filter(
-          (img) =>
-            img.location &&
-            img.location.toLowerCase() ===
-              searchLocation.toLowerCase()
-        )
-      );
+    return route
+      .map((man) => {
+        const images = man.tasks.flatMap((task) =>
+          task.images.filter(
+            (img) =>
+              img.location &&
+              img.location.toLowerCase() === searchLocation.toLowerCase(),
+          ),
+        );
 
-      return images.length > 0
-        ? { name: man.name, images }
-        : null;
-    })
-    .filter(Boolean) as {
-    name: string;
-    images: TaskImage[];
-  }[];
-};
-
+        return images.length > 0 ? { name: man.name, images } : null;
+      })
+      .filter(Boolean) as {
+      name: string;
+      images: TaskImage[];
+    }[];
+  };
 
   const activeMan = route.find((m) => m.name === activeDeliveryMan);
   const activeTask = activeMan?.tasks.find((t) => t.id === activeTaskId);
@@ -623,14 +692,14 @@ const searchByLocation = () => {
     <>
       <Deliverman
         deliveryMen={deliveryMen.filter(
-          (man) => !route.some((r) => r.name === man.name)
+          (man) => !route.some((r) => r.name === man.name),
         )}
         onSelect={handleSelectDeliveryMan}
       />
 
       {/* Botón para limpiar todos los datos */}
       {route.length > 0 && (
-        <button 
+        <button
           onClick={clearAllData}
           style={{
             margin: "1rem",
@@ -639,7 +708,7 @@ const searchByLocation = () => {
             color: "white",
             border: "none",
             borderRadius: "4px",
-            cursor: "pointer"
+            cursor: "pointer",
           }}
         >
           Limpiar todos los datos
@@ -660,8 +729,20 @@ const searchByLocation = () => {
               aria-label={showRoutes ? "Ocultar rutas" : "Mostrar rutas"}
               onClick={() => setShowRoutes((s) => !s)}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <path d="M6 15l6-6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden
+              >
+                <path
+                  d="M6 15l6-6 6 6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
 
@@ -758,27 +839,26 @@ const searchByLocation = () => {
       {activeTask && (
         <section className={styles.taskSection}>
           {activeTask.images.length > 0 && (
-  <div className={styles.commandActions}>
-    <button
-      className={styles.addComanda}
-      onClick={() => handleAddMoreImages(activeTask.id)}
-    >
-      Agregar comanda
-    </button>
+            <div className={styles.commandActions}>
+              <button
+                className={styles.addComanda}
+                onClick={() => handleAddMoreImages(activeTask.id)}
+              >
+                Agregar comanda
+              </button>
 
-    <button
-      className={styles.searchButton}
-      onClick={() => {
-        setSearchMode(true);
-        setSearchLocation("");
-      }}
-      title="Buscar por ubicación"
-    >
-      🔍
-    </button>
-  </div>
-)}
-
+              <button
+                className={styles.searchButton}
+                onClick={() => {
+                  setSearchMode(true);
+                  setSearchLocation("");
+                }}
+                title="Buscar por ubicación"
+              >
+                🔍
+              </button>
+            </div>
+          )}
 
           <div className={styles.imagesContainer}>
             {activeTask.images.map((img) => (
@@ -804,7 +884,7 @@ const searchByLocation = () => {
                 </div>
 
                 <div className={styles.section}>
-                  <h4>Efectivo:</h4>
+                  {img.status === "precio" ? <h4>Efectivo:</h4> : null}
 
                   {img.status === null && (
                     <div className={styles.statusButtons}>
@@ -843,7 +923,7 @@ const searchByLocation = () => {
                             setTempImagePrice(
                               activeTask.id,
                               img.id,
-                              e.target.value
+                              e.target.value,
                             )
                           }
                           onKeyDown={(e) => {
@@ -851,7 +931,7 @@ const searchByLocation = () => {
                               setImagePrice(
                                 activeTask.id,
                                 img.id,
-                                Number(img.tempPrice)
+                                Number(img.tempPrice),
                               );
                             }
                           }}
@@ -875,7 +955,7 @@ const searchByLocation = () => {
                         setTempImageDeliveryFee(
                           activeTask.id,
                           img.id,
-                          e.target.value
+                          e.target.value,
                         )
                       }
                       onKeyDown={(e) => {
@@ -883,7 +963,7 @@ const searchByLocation = () => {
                           setImageDeliveryFee(
                             activeTask.id,
                             img.id,
-                            Number(img.tempDeliveryFee)
+                            Number(img.tempDeliveryFee),
                           );
                         }
                       }}
@@ -893,113 +973,132 @@ const searchByLocation = () => {
                   )}
                 </div>
 
-               <div className={styles.section}>
-  <h4>Ubicación:</h4>
+                <div className={styles.section}>
+                  <h4>Ubicación:</h4>
 
-  <div className={styles.locationBox}>
-    {/* SI YA TIENE UBICACIÓN DEFINITIVA */}
-    {img.location ? (
-      <p className={styles.locationFinal}>
-        📍 {img.location}
-      </p>
-    ) : (
-      <>
-        <input
-          type="text"
-          value={img.tempLocation ?? ""}
-          placeholder="Buscar ubicación"
-          onChange={(e) =>
-            setTempImageLocation(
-              activeTask.id,
-              img.id,
-              e.target.value
-            )
-          }
-        />
+                  <div className={styles.locationBox}>
+                    {img.location ? (
+                      <>
+                        <p className={styles.locationFinal}>
+                          📍 {img.location}
+                        </p>
 
-        {img.tempLocation && (
-          <ul className={styles.locationResults}>
-            {RUTAS_PREDETERMINADAS
-              .filter((ruta) =>
-                ruta
-                  .toLowerCase()
-                  .includes(img.tempLocation!.toLowerCase())
-              )
-              .map((ruta) => (
-                <li
-                  key={ruta}
-                  onMouseDown={() =>
-                    setImageLocationFinal(
-                      activeTask.id,
-                      img.id,
-                      ruta
-                    )
-                  }
-                >
-                  {ruta}
-                </li>
-              ))}
-          </ul>
-        )}
-      </>
-    )}
-  </div>
-</div>
+                        {/* 👇 INPUT NUMÉRICO DE REFERENCIA */}
+                        {img.locationRef === undefined ? (
+                          <input
+                            type="number"
+                            placeholder="Referencia"
+                            value={img.tempLocationRef ?? ""}
+                            onChange={(e) =>
+                              setTempLocationRef(
+                                activeTask.id,
+                                img.id,
+                                e.target.value,
+                              )
+                            }
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter" && img.tempLocationRef) {
+                                setLocationRefFinal(
+                                  activeTask.id,
+                                  img.id,
+                                  Number(img.tempLocationRef),
+                                );
+                              }
+                            }}
+                          />
+                        ) : (
+                          <p className={styles.locationRef}>
+                            Almuersos: {img.locationRef}
+                          </p>
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        <input
+                          type="text"
+                          value={img.tempLocation ?? ""}
+                          placeholder="Buscar ubicación"
+                          onChange={(e) =>
+                            setTempImageLocation(
+                              activeTask.id,
+                              img.id,
+                              e.target.value,
+                            )
+                          }
+                        />
 
-
-
-
+                        {img.tempLocation && (
+                          <ul className={styles.locationResults}>
+                            {RUTAS_PREDETERMINADAS.filter((ruta) =>
+                              ruta
+                                .toLowerCase()
+                                .includes(img.tempLocation!.toLowerCase()),
+                            ).map((ruta) => (
+                              <li
+                                key={ruta}
+                                onMouseDown={() =>
+                                  setImageLocationFinal(
+                                    activeTask.id,
+                                    img.id,
+                                    ruta,
+                                  )
+                                }
+                              >
+                                {ruta}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </>
+                    )}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </section>
       )}
       {searchMode && (
-  <div className={styles.searchOverlay}>
-    <div className={styles.searchBox}>
-      <h3>Buscar por ubicación</h3>
+        <div className={styles.searchOverlay}>
+          <div className={styles.searchBox}>
+            <h3>Buscar por ubicación</h3>
 
-      <input
-        type="text"
-        value={searchLocation}
-        onChange={(e) => setSearchLocation(e.target.value)}
-        autoFocus
-      />
+            <input
+              type="text"
+              value={searchLocation}
+              onChange={(e) => setSearchLocation(e.target.value)}
+              autoFocus
+            />
 
-      <button
-        onClick={() => {
-          setSearchMode(false);
-          setSearchLocation("");
-        }}
-      >
-        Cerrar
-      </button>
+            <button
+              onClick={() => {
+                setSearchMode(false);
+                setSearchLocation("");
+              }}
+            >
+              Cerrar
+            </button>
 
-      <div className={styles.searchResults}>
-        {searchByLocation().map((result) => (
-          <div key={result.name} className={styles.resultBlock}>
-            <h4>{result.name}</h4>
+            <div className={styles.searchResults}>
+              {searchByLocation().map((result) => (
+                <div key={result.name} className={styles.resultBlock}>
+                  <h4>{result.name}</h4>
 
-            <div className={styles.resultImages}>
-              {result.images.map((img) => (
-                <img
-                  key={img.id}
-                  src={img.preview}
-                  alt=""
-                />
+                  <div className={styles.resultImages}>
+                    {result.images.map((img) => (
+                      <img key={img.id} src={img.preview} alt="" />
+                    ))}
+                  </div>
+                </div>
               ))}
+
+              {searchLocation && searchByLocation().length === 0 && (
+                <p>No hay resultados</p>
+              )}
             </div>
           </div>
-        ))}
-
-        {searchLocation && searchByLocation().length === 0 && (
-          <p>No hay resultados</p>
-        )}
-      </div>
-    </div>
-  </div>
-)}
-
+        </div>
+      )}
     </>
   );
 }
