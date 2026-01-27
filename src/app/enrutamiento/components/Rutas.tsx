@@ -23,6 +23,8 @@ interface TaskImage {
   tempPrice?: string;
   deliveryFee?: number;
   tempDeliveryFee?: string;
+  location?: string;        // ✅ valor definitivo
+  tempLocation?: string;    // ✍️ mientras escribe
 }
 
 interface Task {
@@ -41,45 +43,60 @@ const STORAGE_KEY = "rutas-app-data";
 
 // Lista predeterminada de rutas
 const RUTAS_PREDETERMINADAS = [
-  "poblado",
-  "castropol",
-  "ciudad del rio",
-  "barrio colombia",
-  "centro",
-  "belen",
-  "belen san bernardo",
-  "belen malibu",
-  "belen la mota",
-  "belencito",
-  "castilla",
-  "manrique",
   "aranjuez",
-  "pedregal",
-  "laureles",
-  "calazans",
-  "palmas",
-  "loma del indio",
-  "loma de los bernal",
-  "robledo",
-  "rodeo alto",
-  "san german",
-  "los colores",
-  "estadio",
-  "sur americana",
-  "san javier",
-  "la america",
-  "santa monica",
-  "buenos aires",
+  "barrio colombia",
   "barrio palmas",
-  "la milagrosa",
+  "belen",
+  "belen la mota",
+  "belen malibu",
+  "belen san bernardo",
+  "belencito",
   "bello",
-  "envigado",
-  "sabaneta",
+  "buenos aires",
+  "calazans",
+  "castilla",
+  "castropol",
+  "centro",
+  "ciudad del rio",
   "ditaires",
+  "envigado",
+  "estadio",
+  "florida",
   "guayaval",
   "itagui",
-  "la estrella"
+  "la america",
+  "la candelaria",
+  "la estrella",
+  "la milagrosa",
+  "laureles",
+  "loma de los bernal",
+  "loma del indio",
+  "los alpes",
+  "los colores",
+  "manila",
+  "manrique",
+  "moravia",
+  "palmas",
+  "patio bonito",
+  "pedregal",
+  "pilarica",
+  "poblado",
+  "prado centro",
+  "robledo",
+  "rodeo alto",
+  "sabaneta",
+  "san antonio de prado",
+  "san german",
+  "san javier",
+  "santa cruz",
+  "santa monica",
+  "sevilla",
+  "Suramaricana",
+  "suramericana",
+  "tricentenario",
+  "villa hermosa",
 ];
+
 
 export default function Rutas() {
   const deliveryMen: DeliveryMan[] = [
@@ -157,6 +174,8 @@ export default function Rutas() {
 
   // Estado para mostrar/ocultar las rutas
   const [showRoutes, setShowRoutes] = useState<boolean>(false);
+  const [searchMode, setSearchMode] = useState(false);
+  const [searchLocation, setSearchLocation] = useState("");
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const taskIdRef = useRef<number>(0);
@@ -258,6 +277,8 @@ export default function Rutas() {
         imageId,
         preview: URL.createObjectURL(compressedBlob),
         status: null,
+        location: undefined,
+        tempLocation: "",
       });
     }
 
@@ -443,6 +464,69 @@ export default function Rutas() {
     );
   };
 
+const setTempImageLocation = (
+  taskId: number,
+  imageId: number,
+  value: string
+) => {
+  setRoute((prev) =>
+    prev.map((man) =>
+      man.name === activeDeliveryMan
+        ? {
+            ...man,
+            tasks: man.tasks.map((task) =>
+              task.id === taskId
+                ? {
+                    ...task,
+                    images: task.images.map((img) =>
+                      img.id === imageId
+                        ? { ...img, tempLocation: value }
+                        : img
+                    ),
+                  }
+                : task
+            ),
+          }
+        : man
+    )
+  );
+};
+
+const setImageLocationFinal = (
+  taskId: number,
+  imageId: number,
+  value: string
+) => {
+  setRoute((prev) =>
+    prev.map((man) =>
+      man.name === activeDeliveryMan
+        ? {
+            ...man,
+            tasks: man.tasks.map((task) =>
+              task.id === taskId
+                ? {
+                    ...task,
+                    images: task.images.map((img) =>
+                      img.id === imageId
+                        ? {
+                            ...img,
+                            location: value,
+                            tempLocation: undefined, // 🔒 bloquea edición
+                          }
+                        : img
+                    ),
+                  }
+                : task
+            ),
+          }
+        : man
+    )
+  );
+};
+
+
+
+
   // Función para limpiar todos los datos
   const clearAllData = () => {
     if (confirm("¿Estás seguro de que quieres eliminar todos los datos? Esta acción no se puede deshacer.")) {
@@ -492,6 +576,32 @@ export default function Rutas() {
     const totalDomicilios = calculateTotalDeliveryFeeByDeliveryMan(name);
     return totalEfectivo - totalDomicilios;
   };
+
+  // 🔍 Buscar imágenes por ubicación en todos los repartidores
+const searchByLocation = () => {
+  if (!searchLocation.trim()) return [];
+
+  return route
+    .map((man) => {
+      const images = man.tasks.flatMap((task) =>
+        task.images.filter(
+          (img) =>
+            img.location &&
+            img.location.toLowerCase() ===
+              searchLocation.toLowerCase()
+        )
+      );
+
+      return images.length > 0
+        ? { name: man.name, images }
+        : null;
+    })
+    .filter(Boolean) as {
+    name: string;
+    images: TaskImage[];
+  }[];
+};
+
 
   const activeMan = route.find((m) => m.name === activeDeliveryMan);
   const activeTask = activeMan?.tasks.find((t) => t.id === activeTaskId);
@@ -648,13 +758,27 @@ export default function Rutas() {
       {activeTask && (
         <section className={styles.taskSection}>
           {activeTask.images.length > 0 && (
-            <button
-              className={styles.addComanda}
-              onClick={() => handleAddMoreImages(activeTask.id)}
-            >
-              Agregar comanda
-            </button>
-          )}
+  <div className={styles.commandActions}>
+    <button
+      className={styles.addComanda}
+      onClick={() => handleAddMoreImages(activeTask.id)}
+    >
+      Agregar comanda
+    </button>
+
+    <button
+      className={styles.searchButton}
+      onClick={() => {
+        setSearchMode(true);
+        setSearchLocation("");
+      }}
+      title="Buscar por ubicación"
+    >
+      🔍
+    </button>
+  </div>
+)}
+
 
           <div className={styles.imagesContainer}>
             {activeTask.images.map((img) => (
@@ -768,11 +892,114 @@ export default function Rutas() {
                     <p>${img.deliveryFee}</p>
                   )}
                 </div>
+
+               <div className={styles.section}>
+  <h4>Ubicación:</h4>
+
+  <div className={styles.locationBox}>
+    {/* SI YA TIENE UBICACIÓN DEFINITIVA */}
+    {img.location ? (
+      <p className={styles.locationFinal}>
+        📍 {img.location}
+      </p>
+    ) : (
+      <>
+        <input
+          type="text"
+          value={img.tempLocation ?? ""}
+          placeholder="Buscar ubicación"
+          onChange={(e) =>
+            setTempImageLocation(
+              activeTask.id,
+              img.id,
+              e.target.value
+            )
+          }
+        />
+
+        {img.tempLocation && (
+          <ul className={styles.locationResults}>
+            {RUTAS_PREDETERMINADAS
+              .filter((ruta) =>
+                ruta
+                  .toLowerCase()
+                  .includes(img.tempLocation!.toLowerCase())
+              )
+              .map((ruta) => (
+                <li
+                  key={ruta}
+                  onMouseDown={() =>
+                    setImageLocationFinal(
+                      activeTask.id,
+                      img.id,
+                      ruta
+                    )
+                  }
+                >
+                  {ruta}
+                </li>
+              ))}
+          </ul>
+        )}
+      </>
+    )}
+  </div>
+</div>
+
+
+
+
               </div>
             ))}
           </div>
         </section>
       )}
+      {searchMode && (
+  <div className={styles.searchOverlay}>
+    <div className={styles.searchBox}>
+      <h3>Buscar por ubicación</h3>
+
+      <input
+        type="text"
+        value={searchLocation}
+        onChange={(e) => setSearchLocation(e.target.value)}
+        autoFocus
+      />
+
+      <button
+        onClick={() => {
+          setSearchMode(false);
+          setSearchLocation("");
+        }}
+      >
+        Cerrar
+      </button>
+
+      <div className={styles.searchResults}>
+        {searchByLocation().map((result) => (
+          <div key={result.name} className={styles.resultBlock}>
+            <h4>{result.name}</h4>
+
+            <div className={styles.resultImages}>
+              {result.images.map((img) => (
+                <img
+                  key={img.id}
+                  src={img.preview}
+                  alt=""
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+
+        {searchLocation && searchByLocation().length === 0 && (
+          <p>No hay resultados</p>
+        )}
+      </div>
+    </div>
+  </div>
+)}
+
     </>
   );
 }

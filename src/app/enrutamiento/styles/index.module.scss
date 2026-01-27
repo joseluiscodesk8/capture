@@ -1,239 +1,262 @@
+/* ===============================
+   Base Apple / macOS
+================================ */
+
+:root {
+  --bg-app: #f5f5f7;
+  --surface: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+
+  --text-main: #1d1d1f;
+  --text-muted: #6e6e73;
+
+  --blue: #0071e3;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 6px 20px rgba(0,0,0,.08);
+
+  --transition: 180ms cubic-bezier(.4,0,.2,1);
+}
+
+/* ===============================
+   Botones generales
+================================ */
+
+.addButton,
+.taskButton,
+.addComanda {
+  min-width: 88px;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-main);
+  font-weight: 500;
+  cursor: pointer;
+
+  box-shadow: var(--shadow-sm);
+  transition:
+    background var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+
+  &:hover {
+    background: #f5f5f7;
+    box-shadow: var(--shadow-md);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+/* ===============================
+   Botones de estado (Ya pagó / Efectivo)
+================================ */
+
+.statusButtons {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--radius);
+  background: #ededf0;
+
+  button {
+    flex: 1;
+    border: none;
+    background: transparent;
+    border-radius: calc(var(--radius) - 4px);
+    padding: 0.5rem 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+
+    transition:
+      background var(--transition),
+      color var(--transition),
+      box-shadow var(--transition);
+
+    &:hover {
+      color: var(--text-main);
+    }
+
+    &.active {
+      background: var(--surface);
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+}
+
+/* ===============================
+   Lista de domiciliarios
+================================ */
+
 .deliveryManList {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  & li {
+
+  li {
     button {
-      min-width: 80px;
-      padding: 0.75rem 1rem;
+      min-width: 120px;
+      padding: 0.55rem 1rem;
 
-      border-radius: 8px;
-      border: 1px solid #d0d0d0;
-      background: #fff;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #f3f3f6 100%
+      );
 
-      font-weight: 600;
+      font-weight: 500;
+      color: var(--text-main);
       cursor: pointer;
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.7),
+        0 2px 6px rgba(0,0,0,.06);
+
+      transition:
+        background var(--transition),
+        box-shadow var(--transition),
+        transform var(--transition),
+        border-color var(--transition);
+
+      /* Hover elegante */
+      &:hover {
+        background: linear-gradient(
+          180deg,
+          #ffffff 0%,
+          #eaeaee 100%
+        );
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.8),
+          0 4px 12px rgba(0,0,0,.1);
+      }
+
+      /* Click */
+      &:active {
+        transform: scale(0.96);
+      }
+
+      /* Seleccionado (sin JSX) */
+      &:focus,
+      &:focus-visible {
+        outline: none;
+        background: linear-gradient(
+          180deg,
+          rgba(0,113,227,.14),
+          rgba(0,113,227,.22)
+        );
+        border-color: rgba(0,113,227,.45);
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.6),
+          0 6px 18px rgba(0,113,227,.28);
+      }
     }
   }
 }
 
-.addButton {
-  min-width: 80px;
-  padding: 0.75rem 1rem;
 
-  border-radius: 8px;
-  border: 1px solid #d0d0d0;
-  background: #fff;
-
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.taskButton {
-  min-width: 80px;
-  padding: 0.5rem 0.75rem;
-
-  border-radius: 8px;
-  border: 1px solid #d0d0d0;
-  background: #fff;
-
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.addComanda {
-  min-width: 80px;
-  padding: 0.75rem 1rem;
-
-  border-radius: 8px;
-  border: 1px solid #d0d0d0;
-  background: #fff;
-
-  font-weight: 600;
-  cursor: pointer;
-}
-
-
-.statusButtons {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: space-between;
-
-    & button {
-      min-width: 80px;
-      padding: 0.5rem 0.75rem;
-
-      border-radius: 8px;
-      border: 1px solid #d0d0d0;
-      background: #fff;
-
-      font-weight: 600;
-      cursor: pointer;
-    }
-}
-
-.taskList {
-  margin-top: 1rem;
-
-  & ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    display: flex;
-    gap: 0.5rem;
-  }
-}
-
-.routeSelect {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  background-color: white;
-}
-
-.routeInput {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  width: 100%;
-}
-
-.addButton {
-  padding: 0.5rem 1rem;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  
-  &:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
-  &:hover:not(:disabled) {
-    background-color: #45a049;
-  }
-}
+/* ===============================
+   Sección de rutas
+================================ */
 
 .routeSection {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow-md);
+
   display: grid;
-  /* fila superior: h4 | toggle icon | Asignar ruta
-     fila 2: routes container (ocupa las 3 columnas)
-     fila 3: delivery list (ocupa las 3 columnas, debajo)
-  */
-  grid-template-columns: 1fr 40px auto;
-  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr 32px auto;
   gap: 0.75rem 1rem;
   margin: 1rem 0;
 
   .title {
-    grid-column: 1 / 2;
-    grid-row: 1;
     margin: 0;
     align-self: center;
+    font-weight: 600;
   }
 
-  /* pequeño icono entre title y Asignar ruta (misma fila 1, columna 2) */
   .toggleIcon {
-    grid-column: 2 / 3;
-    grid-row: 1;
-    align-self: center;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 28px;
     height: 28px;
-    padding: 0;
     border-radius: 6px;
-    border: 1px solid transparent;
-    background: transparent;
-    color: #333;
     cursor: pointer;
-    transition: color 150ms ease, transform 150ms ease;
+
+    &:hover {
+      background: #f0f0f3;
+    }
+
+    svg {
+      transition: transform var(--transition);
+    }
+
+    &.open svg {
+      transform: rotate(180deg);
+    }
   }
 
-  .toggleIcon.open svg {
-    transform: rotate(180deg);
-    transition: transform 200ms ease;
-  }
-
-  .toggleIcon:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(21,156,228,0.18);
-    border-color: rgba(21,156,228,0.4);
-  }
-
-  /* Asignar ruta en la fila 1, columna 3 */
-  .addButton {
-    grid-column: 3 / 4;
-    grid-row: 1;
-    align-self: center;
-    margin: 0;
-  }
-
-  /* fila 2: el contenedor de rutas ocupa las 3 columnas */
   .routesContainer {
-    grid-column: 1 / -1; /* ocupa todas las columnas */
-    grid-row: 2;
-    overflow: hidden;
+    grid-column: 1 / -1;
     max-height: 0;
     opacity: 0;
-    transition: max-height 300ms cubic-bezier(.2,.9,.2,1), opacity 200ms ease;
+    overflow: hidden;
+
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 0.5rem;
+
+    transition:
+      max-height 300ms ease,
+      opacity 200ms ease;
+
+    &.expanded {
+      max-height: 720px;
+      opacity: 1;
+    }
 
     .routeItem {
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      cursor: pointer;
-
-      input {
-        cursor: pointer;
-      }
+      font-size: 0.9rem;
     }
   }
-
-  .routesContainer.expanded {
-    max-height: 720px; /* ajusta según contenido */
-    opacity: 1;
-    transition: max-height 350ms cubic-bezier(.2,.9,.2,1), opacity 250ms ease;
-  }
-
-  /* fila 3: sección con la lista de repartidores, debajo del div */
-  .deliveryListSection {
-    grid-column: 1 / -1; /* ocupa todas las columnas, debajo del routesContainer */
-    grid-row: 3;
-    align-self: start;
-
-    .deliveryManList {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-  }
-
-  /* resto de estilos existentes (opcionalmente desplázalos aquí) */
 }
+
+/* ===============================
+   Sección de tareas
+================================ */
 
 .taskSection {
   display: grid;
-  grid-template-rows: auto 1fr;
   gap: 1rem;
-  height: 100%;
+  padding: 5%;
 
-  .addComanda {
-    justify-self: start;
+  .commandActions {
+    display: flex;
+    gap: 0.5rem;
   }
 
   .imagesContainer {
@@ -243,70 +266,103 @@
     overflow-y: auto;
 
     display: grid;
-    grid-auto-rows: min-content;
     gap: 1.5rem;
 
-    scroll-behavior: smooth;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-
     .imageCard {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      padding: 1rem;
+
       display: flex;
       flex-direction: column;
       gap: 1rem;
 
-      border: 1px solid #ccc;
-      padding: 1rem;
-      background-color: #fff;
-
       .imageWrapper {
+        position: relative;
         display: flex;
         justify-content: center;
-        align-items: center;
-        position: relative;
 
         img {
-          width: 280px;       // 👈 imagen más grande
+          width: 280px;
           max-width: 100%;
-          height: auto;
           object-fit: contain;
+          border-radius: var(--radius-sm);
         }
 
         button {
           position: absolute;
           inset: 0;
-          background: rgba(0, 0, 0, 0.6);
-          color: #fff;
-          border: none;
-          font-weight: bold;
-          cursor: pointer;
-        }
-      }
-
-      .section {
-        h4 {
-          margin: 0 0 0.25rem 0;
-        }
-
-        p {
-          margin: 0;
-        }
-
-        input {
-          width: 100%;
-        }
-      }
-
-      .statusButtons {
-        display: flex;
-        gap: 0.5rem;
-
-        button {
-          flex: 1;
+          border-radius: var(--radius-sm);
+          background: rgba(0,0,0,.55);
+          color: white;
+          font-weight: 600;
         }
       }
     }
   }
 }
 
+/* ===============================
+   Buscador de ubicación
+================================ */
 
+.locationBox {
+  position: relative;
+
+  .locationResults {
+    position: absolute;
+    z-index: 10;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    box-shadow: var(--shadow-md);
+
+    li {
+      padding: 0.5rem;
+      cursor: pointer;
+
+      &:hover {
+        background: #f5f5f7;
+      }
+    }
+  }
+}
+
+/* ===============================
+   Overlay de búsqueda
+================================ */
+
+.searchOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+
+  .searchBox {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 1rem;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: var(--shadow-md);
+
+    .resultImages {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+
+      img {
+        width: 100px;
+        border-radius: var(--radius-sm);
+      }
+    }
+  }
+}
