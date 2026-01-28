@@ -34,6 +34,7 @@ interface Task {
   label: string;
   images: TaskImage[];
 }
+222333333444;
 
 interface RouteDeliveryMan {
   name: string;
@@ -211,6 +212,20 @@ export default function Rutas() {
 
   const longPressTimer = useRef<NodeJS.Timeout | null>(null);
   const [imageToDelete, setImageToDelete] = useState<number | null>(null);
+  const statusLongPressTimer = useRef<NodeJS.Timeout | null>(null);
+
+  const handleStatusPressStart = (taskId: number, imageId: number) => {
+    statusLongPressTimer.current = setTimeout(() => {
+      resetImageStatus(taskId, imageId);
+    }, 600);
+  };
+
+  const handleStatusPressEnd = () => {
+    if (statusLongPressTimer.current) {
+      clearTimeout(statusLongPressTimer.current);
+      statusLongPressTimer.current = null;
+    }
+  };
 
   const handleSelectDeliveryMan = (man: DeliveryMan) => {
     if (!route.some((r) => r.name === man.name)) {
@@ -352,6 +367,35 @@ export default function Rutas() {
                               status,
                               price:
                                 status === "pagado" ? undefined : img.price,
+                              tempPrice: undefined,
+                            }
+                          : img,
+                      ),
+                    }
+                  : task,
+              ),
+            }
+          : man,
+      ),
+    );
+  };
+
+  const resetImageStatus = (taskId: number, imageId: number) => {
+    setRoute((prev) =>
+      prev.map((man) =>
+        man.name === activeDeliveryMan
+          ? {
+              ...man,
+              tasks: man.tasks.map((task) =>
+                task.id === taskId
+                  ? {
+                      ...task,
+                      images: task.images.map((img) =>
+                        img.id === imageId
+                          ? {
+                              ...img,
+                              status: null,
+                              price: undefined,
                               tempPrice: undefined,
                             }
                           : img,
@@ -906,7 +950,19 @@ export default function Rutas() {
                   )}
 
                   {img.status === "pagado" && (
-                    <p style={{ color: "green", fontWeight: "bold" }}>
+                    <p
+                      style={{
+                        color: "green",
+                        fontWeight: "bold",
+                        cursor: "pointer",
+                      }}
+                      onPointerDown={() =>
+                        handleStatusPressStart(activeTask.id, img.id)
+                      }
+                      onPointerUp={handleStatusPressEnd}
+                      onPointerLeave={handleStatusPressEnd}
+                      title="Mantén presionado para deshacer"
+                    >
                       Ya pagado
                     </p>
                   )}
@@ -937,7 +993,17 @@ export default function Rutas() {
                           }}
                         />
                       ) : (
-                        <p>${img.price}</p>
+                        <p
+                          style={{ cursor: "pointer" }}
+                          onPointerDown={() =>
+                            handleStatusPressStart(activeTask.id, img.id)
+                          }
+                          onPointerUp={handleStatusPressEnd}
+                          onPointerLeave={handleStatusPressEnd}
+                          title="Mantén presionado para deshacer"
+                        >
+                          ${img.price}
+                        </p>
                       )}
                     </>
                   )}
