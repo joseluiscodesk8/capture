@@ -732,6 +732,18 @@ export default function Rutas() {
     }
   };
 
+  const commitIfValue = (
+    value: string | undefined,
+    commit: (n: number) => void,
+  ) => {
+    if (value === undefined) return;
+
+    const num = Number(value);
+    if (!Number.isNaN(num)) {
+      commit(num);
+    }
+  };
+
   return (
     <>
       <Deliverman
@@ -983,14 +995,17 @@ export default function Rutas() {
                             )
                           }
                           onKeyDown={(e) => {
-                            if (e.key === "Enter" && img.tempPrice) {
-                              setImagePrice(
-                                activeTask.id,
-                                img.id,
-                                Number(img.tempPrice),
+                            if (e.key === "Enter") {
+                              commitIfValue(img.tempPrice, (n) =>
+                                setImagePrice(activeTask.id, img.id, n),
                               );
                             }
                           }}
+                          onBlur={() =>
+                            commitIfValue(img.tempPrice, (n) =>
+                              setImagePrice(activeTask.id, img.id, n),
+                            )
+                          }
                         />
                       ) : (
                         <p
@@ -1025,14 +1040,17 @@ export default function Rutas() {
                         )
                       }
                       onKeyDown={(e) => {
-                        if (e.key === "Enter" && img.tempDeliveryFee) {
-                          setImageDeliveryFee(
-                            activeTask.id,
-                            img.id,
-                            Number(img.tempDeliveryFee),
+                        if (e.key === "Enter") {
+                          commitIfValue(img.tempDeliveryFee, (n) =>
+                            setImageDeliveryFee(activeTask.id, img.id, n),
                           );
                         }
                       }}
+                      onBlur={() =>
+                        commitIfValue(img.tempDeliveryFee, (n) =>
+                          setImageDeliveryFee(activeTask.id, img.id, n),
+                        )
+                      }
                     />
                   ) : (
                     <p>${img.deliveryFee}</p>
@@ -1063,14 +1081,17 @@ export default function Rutas() {
                               )
                             }
                             onKeyDown={(e) => {
-                              if (e.key === "Enter" && img.tempLocationRef) {
-                                setLocationRefFinal(
-                                  activeTask.id,
-                                  img.id,
-                                  Number(img.tempLocationRef),
+                              if (e.key === "Enter") {
+                                commitIfValue(img.tempLocationRef, (n) =>
+                                  setLocationRefFinal(activeTask.id, img.id, n),
                                 );
                               }
                             }}
+                            onBlur={() =>
+                              commitIfValue(img.tempLocationRef, (n) =>
+                                setLocationRefFinal(activeTask.id, img.id, n),
+                              )
+                            }
                           />
                         ) : (
                           <p className={styles.locationRef}>
