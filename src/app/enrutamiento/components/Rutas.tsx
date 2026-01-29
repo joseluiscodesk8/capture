@@ -213,6 +213,10 @@ export default function Rutas() {
   const longPressTimer = useRef<NodeJS.Timeout | null>(null);
   const [imageToDelete, setImageToDelete] = useState<number | null>(null);
   const statusLongPressTimer = useRef<NodeJS.Timeout | null>(null);
+  const deliveryManLongPressTimer = useRef<NodeJS.Timeout | null>(null);
+  const [deliveryManToDeactivate, setDeliveryManToDeactivate] = useState<
+    string | null
+  >(null);
 
   const handleStatusPressStart = (taskId: number, imageId: number) => {
     statusLongPressTimer.current = setTimeout(() => {
@@ -227,12 +231,36 @@ export default function Rutas() {
     }
   };
 
+  const handleDeliveryManPressStart = (name: string) => {
+    deliveryManLongPressTimer.current = setTimeout(() => {
+      setDeliveryManToDeactivate(name);
+    }, 600);
+  };
+
+  const handleDeliveryManPressEnd = () => {
+    if (deliveryManLongPressTimer.current) {
+      clearTimeout(deliveryManLongPressTimer.current);
+      deliveryManLongPressTimer.current = null;
+    }
+  };
+
   const handleSelectDeliveryMan = (man: DeliveryMan) => {
     if (!route.some((r) => r.name === man.name)) {
       setRoute((prev) => [...prev, { name: man.name, tasks: [] }]);
     }
     setActiveDeliveryMan(man.name);
     setActiveTaskId(null);
+  };
+
+  const deactivateDeliveryMan = (name: string) => {
+    setRoute((prev) => prev.filter((man) => man.name !== name));
+
+    if (activeDeliveryMan === name) {
+      setActiveDeliveryMan(null);
+      setActiveTaskId(null);
+    }
+
+    setDeliveryManToDeactivate(null);
   };
 
   const toggleRouteSelection = (routeName: string) => {
@@ -732,6 +760,11 @@ export default function Rutas() {
     }
   };
 
+  const clearImageDeleteState = () => {
+  setImageToDelete(null);
+};
+
+
   const commitIfValue = (
     value: string | undefined,
     commit: (n: number) => void,
@@ -832,9 +865,30 @@ export default function Rutas() {
               <ul className={styles.deliveryManList}>
                 {route.map((man) => (
                   <li key={man.name}>
-                    <button onClick={() => setActiveDeliveryMan(man.name)}>
+                    <button
+                      onClick={() => setActiveDeliveryMan(man.name)}
+                      onPointerDown={() =>
+                        handleDeliveryManPressStart(man.name)
+                      }
+                      onPointerUp={handleDeliveryManPressEnd}
+                      onPointerLeave={handleDeliveryManPressEnd}
+                      title="Mantén presionado para desactivar"
+                    >
                       {man.name}
                     </button>
+
+                    {deliveryManToDeactivate === man.name && (
+                      <button
+                        onClick={() => deactivateDeliveryMan(man.name)}
+                        style={{
+                          marginLeft: "0.5rem",
+                          color: "red",
+                          fontSize: "0.8rem",
+                        }}
+                      >
+                        Desactivar
+                      </button>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -916,26 +970,32 @@ export default function Rutas() {
             </div>
           )}
 
-          <div className={styles.imagesContainer}>
+          <div className={styles.imagesContainer}
+          onPointerDown={clearImageDeleteState}>
             {activeTask.images.map((img) => (
               <div key={img.id} className={styles.imageCard}>
                 <div
-                  className={styles.imageWrapper}
-                  onPointerDown={() => handleImagePressStart(img.id)}
-                  onPointerUp={handleImagePressEnd}
-                  onPointerLeave={handleImagePressEnd}
+                   className={styles.imageWrapper}
+  onPointerDown={(e) => {
+    e.stopPropagation(); // ⛔ evita que el contenedor lo cierre
+    handleImagePressStart(img.id);
+  }}
+  onPointerUp={handleImagePressEnd}
+  onPointerLeave={handleImagePressEnd}
                 >
                   <img src={img.preview} alt="" />
 
                   {imageToDelete === img.id && (
                     <button
-                      onClick={() => {
-                        removeImage(activeTask.id, img.id, img.imageId);
-                        setImageToDelete(null);
-                      }}
-                    >
-                      Eliminar
-                    </button>
+  onPointerDown={(e) => e.stopPropagation()}
+  onClick={() => {
+    removeImage(activeTask.id, img.id, img.imageId);
+    setImageToDelete(null);
+  }}
+>
+  Eliminar
+</button>
+
                   )}
                 </div>
 
