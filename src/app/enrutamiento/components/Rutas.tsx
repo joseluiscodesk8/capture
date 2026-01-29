@@ -55,12 +55,16 @@ const RUTAS_PREDETERMINADAS = [
   "belen san bernardo",
   "belencito",
   "bello",
+  "boston",
   "buenos aires",
   "calazans",
   "castilla",
+  "campo amor",
+  "campo valdes",
   "castropol",
   "centro",
   "ciudad del rio",
+  "conquistadores",
   "ditaires",
   "envigado",
   "estadio",
@@ -93,6 +97,7 @@ const RUTAS_PREDETERMINADAS = [
   "san javier",
   "santa cruz",
   "santa monica",
+  "san lucas",
   "sevilla",
   "Suramaricana",
   "tricentenario",
@@ -761,9 +766,8 @@ export default function Rutas() {
   };
 
   const clearImageDeleteState = () => {
-  setImageToDelete(null);
-};
-
+    setImageToDelete(null);
+  };
 
   const commitIfValue = (
     value: string | undefined,
@@ -970,32 +974,33 @@ export default function Rutas() {
             </div>
           )}
 
-          <div className={styles.imagesContainer}
-          onPointerDown={clearImageDeleteState}>
+          <div
+            className={styles.imagesContainer}
+            onPointerDown={clearImageDeleteState}
+          >
             {activeTask.images.map((img) => (
               <div key={img.id} className={styles.imageCard}>
                 <div
-                   className={styles.imageWrapper}
-  onPointerDown={(e) => {
-    e.stopPropagation(); // ⛔ evita que el contenedor lo cierre
-    handleImagePressStart(img.id);
-  }}
-  onPointerUp={handleImagePressEnd}
-  onPointerLeave={handleImagePressEnd}
+                  className={styles.imageWrapper}
+                  onPointerDown={(e) => {
+                    e.stopPropagation(); // ⛔ evita que el contenedor lo cierre
+                    handleImagePressStart(img.id);
+                  }}
+                  onPointerUp={handleImagePressEnd}
+                  onPointerLeave={handleImagePressEnd}
                 >
                   <img src={img.preview} alt="" />
 
                   {imageToDelete === img.id && (
                     <button
-  onPointerDown={(e) => e.stopPropagation()}
-  onClick={() => {
-    removeImage(activeTask.id, img.id, img.imageId);
-    setImageToDelete(null);
-  }}
->
-  Eliminar
-</button>
-
+                      onPointerDown={(e) => e.stopPropagation()}
+                      onClick={() => {
+                        removeImage(activeTask.id, img.id, img.imageId);
+                        setImageToDelete(null);
+                      }}
+                    >
+                      Eliminar
+                    </button>
                   )}
                 </div>
 
@@ -1249,3 +1254,6 @@ export default function Rutas() {
     </>
   );
 }
+
+
+
