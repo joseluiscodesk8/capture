@@ -217,24 +217,10 @@ export default function Rutas() {
 
   const longPressTimer = useRef<NodeJS.Timeout | null>(null);
   const [imageToDelete, setImageToDelete] = useState<number | null>(null);
-  const statusLongPressTimer = useRef<NodeJS.Timeout | null>(null);
   const deliveryManLongPressTimer = useRef<NodeJS.Timeout | null>(null);
   const [deliveryManToDeactivate, setDeliveryManToDeactivate] = useState<
     string | null
   >(null);
-
-  const handleStatusPressStart = (taskId: number, imageId: number) => {
-    statusLongPressTimer.current = setTimeout(() => {
-      resetImageStatus(taskId, imageId);
-    }, 600);
-  };
-
-  const handleStatusPressEnd = () => {
-    if (statusLongPressTimer.current) {
-      clearTimeout(statusLongPressTimer.current);
-      statusLongPressTimer.current = null;
-    }
-  };
 
   const handleDeliveryManPressStart = (name: string) => {
     deliveryManLongPressTimer.current = setTimeout(() => {
@@ -672,6 +658,35 @@ export default function Rutas() {
     );
   };
 
+  const resetImageDeliveryFee = (taskId: number, imageId: number) => {
+  setRoute((prev) =>
+    prev.map((man) =>
+      man.name === activeDeliveryMan
+        ? {
+            ...man,
+            tasks: man.tasks.map((task) =>
+              task.id === taskId
+                ? {
+                    ...task,
+                    images: task.images.map((img) =>
+                      img.id === imageId
+                        ? {
+                            ...img,
+                            deliveryFee: undefined,
+                            tempDeliveryFee: undefined,
+                          }
+                        : img,
+                    ),
+                  }
+                : task,
+            ),
+          }
+        : man,
+    ),
+  );
+};
+
+
   // Función para limpiar todos los datos
   const clearAllData = () => {
     if (
@@ -1027,21 +1042,18 @@ export default function Rutas() {
                   )}
 
                   {img.status === "pagado" && (
-                    <p
-                      style={{
-                        color: "green",
-                        fontWeight: "bold",
-                        cursor: "pointer",
-                      }}
-                      onPointerDown={() =>
-                        handleStatusPressStart(activeTask.id, img.id)
-                      }
-                      onPointerUp={handleStatusPressEnd}
-                      onPointerLeave={handleStatusPressEnd}
-                      title="Mantén presionado para deshacer"
-                    >
-                      Ya pagado
-                    </p>
+                    <div className={styles.statusRow}>
+                      <p style={{ color: "green", fontWeight: "bold" }}>
+                        Ya pagado
+                      </p>
+
+                      <button
+                        className={styles.modifyButton}
+                        onClick={() => resetImageStatus(activeTask.id, img.id)}
+                      >
+                        Modificar
+                      </button>
+                    </div>
                   )}
 
                   {img.status === "precio" && (
@@ -1073,17 +1085,18 @@ export default function Rutas() {
                           }
                         />
                       ) : (
-                        <p
-                          style={{ cursor: "pointer" }}
-                          onPointerDown={() =>
-                            handleStatusPressStart(activeTask.id, img.id)
-                          }
-                          onPointerUp={handleStatusPressEnd}
-                          onPointerLeave={handleStatusPressEnd}
-                          title="Mantén presionado para deshacer"
-                        >
-                          ${img.price}
-                        </p>
+                        <div className={styles.statusRow}>
+                          <p>${img.price}</p>
+
+                          <button
+                            className={styles.modifyButton}
+                            onClick={() =>
+                              resetImageStatus(activeTask.id, img.id)
+                            }
+                          >
+                            Modificar
+                          </button>
+                        </div>
                       )}
                     </>
                   )}
@@ -1093,33 +1106,45 @@ export default function Rutas() {
                   <h4>Domicilio:</h4>
 
                   {img.deliveryFee === undefined ? (
-                    <input
-                      type="number"
-                      placeholder="Valor domicilio"
-                      value={img.tempDeliveryFee ?? ""}
-                      onChange={(e) =>
-                        setTempImageDeliveryFee(
-                          activeTask.id,
-                          img.id,
-                          e.target.value,
-                        )
-                      }
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          commitIfValue(img.tempDeliveryFee, (n) =>
-                            setImageDeliveryFee(activeTask.id, img.id, n),
-                          );
-                        }
-                      }}
-                      onBlur={() =>
-                        commitIfValue(img.tempDeliveryFee, (n) =>
-                          setImageDeliveryFee(activeTask.id, img.id, n),
-                        )
-                      }
-                    />
-                  ) : (
-                    <p>${img.deliveryFee}</p>
-                  )}
+  <input
+    type="number"
+    placeholder="Valor domicilio"
+    value={img.tempDeliveryFee ?? ""}
+    onChange={(e) =>
+      setTempImageDeliveryFee(
+        activeTask.id,
+        img.id,
+        e.target.value,
+      )
+    }
+    onKeyDown={(e) => {
+      if (e.key === "Enter") {
+        commitIfValue(img.tempDeliveryFee, (n) =>
+          setImageDeliveryFee(activeTask.id, img.id, n),
+        );
+      }
+    }}
+    onBlur={() =>
+      commitIfValue(img.tempDeliveryFee, (n) =>
+        setImageDeliveryFee(activeTask.id, img.id, n),
+      )
+    }
+  />
+) : (
+  <div className={styles.statusRow}>
+    <p>${img.deliveryFee}</p>
+
+    <button
+      className={styles.modifyButton}
+      onClick={() =>
+        resetImageDeliveryFee(activeTask.id, img.id)
+      }
+    >
+      Modificar
+    </button>
+  </div>
+)}
+
                 </div>
 
                 <div className={styles.section}>
@@ -1254,6 +1279,3 @@ export default function Rutas() {
     </>
   );
 }
-
-
-
