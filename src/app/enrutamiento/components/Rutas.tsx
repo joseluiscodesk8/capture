@@ -659,33 +659,32 @@ export default function Rutas() {
   };
 
   const resetImageDeliveryFee = (taskId: number, imageId: number) => {
-  setRoute((prev) =>
-    prev.map((man) =>
-      man.name === activeDeliveryMan
-        ? {
-            ...man,
-            tasks: man.tasks.map((task) =>
-              task.id === taskId
-                ? {
-                    ...task,
-                    images: task.images.map((img) =>
-                      img.id === imageId
-                        ? {
-                            ...img,
-                            deliveryFee: undefined,
-                            tempDeliveryFee: undefined,
-                          }
-                        : img,
-                    ),
-                  }
-                : task,
-            ),
-          }
-        : man,
-    ),
-  );
-};
-
+    setRoute((prev) =>
+      prev.map((man) =>
+        man.name === activeDeliveryMan
+          ? {
+              ...man,
+              tasks: man.tasks.map((task) =>
+                task.id === taskId
+                  ? {
+                      ...task,
+                      images: task.images.map((img) =>
+                        img.id === imageId
+                          ? {
+                              ...img,
+                              deliveryFee: undefined,
+                              tempDeliveryFee: undefined,
+                            }
+                          : img,
+                      ),
+                    }
+                  : task,
+              ),
+            }
+          : man,
+      ),
+    );
+  };
 
   // Función para limpiar todos los datos
   const clearAllData = () => {
@@ -1059,31 +1058,40 @@ export default function Rutas() {
                   {img.status === "precio" && (
                     <>
                       {img.price === undefined ? (
-                        <input
-                          type="number"
-                          placeholder="Precio"
-                          autoFocus
-                          value={img.tempPrice ?? ""}
-                          onChange={(e) =>
-                            setTempImagePrice(
-                              activeTask.id,
-                              img.id,
-                              e.target.value,
-                            )
-                          }
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter") {
+                        <div className={styles.inputWithButton}>
+                          <input
+                            type="number"
+                            placeholder="Precio"
+                            autoFocus
+                            value={img.tempPrice ?? ""}
+                            onChange={(e) =>
+                              setTempImagePrice(
+                                activeTask.id,
+                                img.id,
+                                e.target.value,
+                              )
+                            }
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter") {
+                                commitIfValue(img.tempPrice, (n) =>
+                                  setImagePrice(activeTask.id, img.id, n),
+                                );
+                              }
+                            }}
+                          />
+
+                          <button
+                            type="button"
+                            className={styles.confirmButton}
+                            onClick={() =>
                               commitIfValue(img.tempPrice, (n) =>
                                 setImagePrice(activeTask.id, img.id, n),
-                              );
+                              )
                             }
-                          }}
-                          onBlur={() =>
-                            commitIfValue(img.tempPrice, (n) =>
-                              setImagePrice(activeTask.id, img.id, n),
-                            )
-                          }
-                        />
+                          >
+                            Enter
+                          </button>
+                        </div>
                       ) : (
                         <div className={styles.statusRow}>
                           <p>${img.price}</p>
@@ -1106,45 +1114,53 @@ export default function Rutas() {
                   <h4>Domicilio:</h4>
 
                   {img.deliveryFee === undefined ? (
-  <input
-    type="number"
-    placeholder="Valor domicilio"
-    value={img.tempDeliveryFee ?? ""}
-    onChange={(e) =>
-      setTempImageDeliveryFee(
-        activeTask.id,
-        img.id,
-        e.target.value,
-      )
-    }
-    onKeyDown={(e) => {
-      if (e.key === "Enter") {
-        commitIfValue(img.tempDeliveryFee, (n) =>
-          setImageDeliveryFee(activeTask.id, img.id, n),
-        );
-      }
-    }}
-    onBlur={() =>
-      commitIfValue(img.tempDeliveryFee, (n) =>
-        setImageDeliveryFee(activeTask.id, img.id, n),
-      )
-    }
-  />
-) : (
-  <div className={styles.statusRow}>
-    <p>${img.deliveryFee}</p>
+                    <div className={styles.inputWithButton}>
+                      <input
+                        type="number"
+                        placeholder="Valor domicilio"
+                        value={img.tempDeliveryFee ?? ""}
+                        onChange={(e) =>
+                          setTempImageDeliveryFee(
+                            activeTask.id,
+                            img.id,
+                            e.target.value,
+                          )
+                        }
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            commitIfValue(img.tempDeliveryFee, (n) =>
+                              setImageDeliveryFee(activeTask.id, img.id, n),
+                            );
+                          }
+                        }}
+                      />
 
-    <button
-      className={styles.modifyButton}
-      onClick={() =>
-        resetImageDeliveryFee(activeTask.id, img.id)
-      }
-    >
-      Modificar
-    </button>
-  </div>
-)}
+                      <button
+                        type="button"
+                        className={styles.confirmButton}
+                        onClick={() =>
+                          commitIfValue(img.tempDeliveryFee, (n) =>
+                            setImageDeliveryFee(activeTask.id, img.id, n),
+                          )
+                        }
+                      >
+                        Enter
+                      </button>
+                    </div>
+                  ) : (
+                    <div className={styles.statusRow}>
+                      <p>${img.deliveryFee}</p>
 
+                      <button
+                        className={styles.modifyButton}
+                        onClick={() =>
+                          resetImageDeliveryFee(activeTask.id, img.id)
+                        }
+                      >
+                        Modificar
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 <div className={styles.section}>
@@ -1159,30 +1175,43 @@ export default function Rutas() {
 
                         {/* 👇 INPUT NUMÉRICO DE REFERENCIA */}
                         {img.locationRef === undefined ? (
-                          <input
-                            type="number"
-                            placeholder="Referencia"
-                            value={img.tempLocationRef ?? ""}
-                            onChange={(e) =>
-                              setTempLocationRef(
-                                activeTask.id,
-                                img.id,
-                                e.target.value,
-                              )
-                            }
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
+                          <div className={styles.inputWithButton}>
+                            <input
+                              type="number"
+                              placeholder="Almuerzos"
+                              value={img.tempLocationRef ?? ""}
+                              onChange={(e) =>
+                                setTempLocationRef(
+                                  activeTask.id,
+                                  img.id,
+                                  e.target.value,
+                                )
+                              }
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  commitIfValue(img.tempLocationRef, (n) =>
+                                    setLocationRefFinal(
+                                      activeTask.id,
+                                      img.id,
+                                      n,
+                                    ),
+                                  );
+                                }
+                              }}
+                            />
+
+                            <button
+                              type="button"
+                              className={styles.confirmButton}
+                              onClick={() =>
                                 commitIfValue(img.tempLocationRef, (n) =>
                                   setLocationRefFinal(activeTask.id, img.id, n),
-                                );
+                                )
                               }
-                            }}
-                            onBlur={() =>
-                              commitIfValue(img.tempLocationRef, (n) =>
-                                setLocationRefFinal(activeTask.id, img.id, n),
-                              )
-                            }
-                          />
+                            >
+                              Enter
+                            </button>
+                          </div>
                         ) : (
                           <p className={styles.locationRef}>
                             Almuersos: {img.locationRef}
