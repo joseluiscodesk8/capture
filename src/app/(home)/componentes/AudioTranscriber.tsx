@@ -15,7 +15,6 @@ const NUMBER_WORDS: Record<string, string> = {
   nueve: "9",
 };
 
-
 function extractNumber(text: string): string {
   return text
     .split(" ")
@@ -40,9 +39,15 @@ function extractColombianPhone(text: string): string {
   return processed;
 }
 
-export default function AudioTranscriber() {
-  // Removed unused isRecording state
+function blockNumberWords(text: string): string {
+  return text
+    .split(" ")
+    .map((w) => (NUMBER_WORDS[w] ? "" : w))
+    .filter(Boolean)
+    .join(" ");
+}
 
+export default function AudioTranscriber() {
   const [capturedText, setCapturedText] = useState("");
   const [phoneCaptured, setPhoneCaptured] = useState("");
   const [priceCaptured, setPriceCaptured] = useState("");
@@ -57,25 +62,14 @@ export default function AudioTranscriber() {
   const isCapturingTelefonoRef = useRef(false);
   const isCapturingPrecioRef = useRef(false);
 
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  /* ================= MIC CONTROL ================= */
 
-  // ⏳ NUEVO → Timeout para 3s sin audio
-  const inactivityTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  // ⏳ Función para reiniciar el timeout de inactividad
-  const resetInactivityTimeout = () => {
-    if (inactivityTimeoutRef.current)
-      clearTimeout(inactivityTimeoutRef.current);
-
-    inactivityTimeoutRef.current = setTimeout(() => {
-      console.log("Sin audio 3s → apagando micrófono");
-      stopRecording();
-    }, 3000); // 3 segundos
+  const startRecording = () => {
+    recognitionRef.current?.start();
   };
 
   const stopRecording = () => {
     recognitionRef.current?.stop();
-    // Removed setIsRecording call
 
     isCapturingDireccionRef.current =
       isCapturingTelefonoRef.current =
@@ -83,59 +77,35 @@ export default function AudioTranscriber() {
         false;
 
     setActiveCapture(null);
-
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-
-    // 🔥 limpiar timeout de inactividad
-    if (inactivityTimeoutRef.current)
-      clearTimeout(inactivityTimeoutRef.current);
   };
 
-  const startRecording = () => {
-    resetInactivityTimeout(); // ⏳ activa vigilancia de 3s sin audio
-    recognitionRef.current?.start();
-    // Removed setIsRecording call
-  };
+  /* ================= ARM CAPTURE ================= */
 
-  const startCapturingDireccion = () => {
+  const armDireccionCapture = () => {
     setCapturedText("");
     isCapturingDireccionRef.current = true;
     isCapturingTelefonoRef.current = false;
     isCapturingPrecioRef.current = false;
-
     setActiveCapture("direccion");
-    startRecording();
   };
 
-  // ❌ NO permitir números en letras en dirección
-function blockNumberWords(text: string): string {
-  return text
-    .split(" ")
-    .map((w) => (NUMBER_WORDS[w] ? "" : w)) // si es número en letra → eliminarlo
-    .filter(Boolean) // quita palabras vacías
-    .join(" ");
-}
-
-
-  const startCapturingTelefono = () => {
+  const armTelefonoCapture = () => {
     setPhoneCaptured("");
     isCapturingTelefonoRef.current = true;
     isCapturingDireccionRef.current = false;
     isCapturingPrecioRef.current = false;
-
     setActiveCapture("telefono");
-    startRecording();
   };
 
-  const startCapturingPrecio = () => {
+  const armPrecioCapture = () => {
     setPriceCaptured("");
     isCapturingPrecioRef.current = true;
     isCapturingDireccionRef.current = false;
     isCapturingTelefonoRef.current = false;
-
     setActiveCapture("precio");
-    startRecording();
   };
+
+  /* ================= SPEECH ================= */
 
   useEffect(() => {
     const SpeechRecognitionClass =
@@ -149,29 +119,22 @@ function blockNumberWords(text: string): string {
     recognition.lang = "es-ES";
 
     recognition.onresult = (event: SpeechRecognitionEvent) => {
-      resetInactivityTimeout(); // 🔥 reinicia timeout de 3s cada vez que escucha algo
-
       let transcriptFull = "";
+
       for (let i = 0; i < event.results.length; i++) {
         transcriptFull += event.results[i][0].transcript;
       }
-
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(() => stopRecording(), 1000);
 
       const normalized = transcriptFull
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "");
 
-        if (isCapturingDireccionRef.current) {
-          let processed = normalized.replace(/\bnumeral\b/g, "#");
-        
-          // ✅ nueva regla → NO aceptar números escritos en letras
-          processed = blockNumberWords(processed);
-        
-          setCapturedText(processed.trim());
-        }
+      if (isCapturingDireccionRef.current) {
+        let processed = normalized.replace(/\bnumeral\b/g, "#");
+        processed = blockNumberWords(processed);
+        setCapturedText(processed.trim());
+      }
 
       if (isCapturingTelefonoRef.current) {
         setPhoneCaptured(extractColombianPhone(normalized));
@@ -182,26 +145,24 @@ function blockNumberWords(text: string): string {
       }
     };
 
-    recognition.onerror = (e) =>
-      console.error("SpeechRecognition error:", e.error);
-
     recognitionRef.current = recognition;
   }, []);
 
+  /* ================= ACTIONS ================= */
+
   const sendWhatsApp = () => {
     const numeroDestino = "573017844046";
-
     const mensaje = `
-       ${capturedText}
-       ${phoneCaptured}
-       ${priceCaptured}
-       Ya pagó?
-           `.trim();
+${capturedText}
+${phoneCaptured}
+${priceCaptured}
+Ya pagó?
+`.trim();
 
-    const url = `https://wa.me/${numeroDestino}?text=${encodeURIComponent(
-      mensaje
-    )}`;
-    window.open(url, "_blank");
+    window.open(
+      `https://wa.me/${numeroDestino}?text=${encodeURIComponent(mensaje)}`,
+      "_blank"
+    );
   };
 
   const openInMaps = () => {
@@ -219,72 +180,113 @@ function blockNumberWords(text: string): string {
     window.location.href = `tel:${phoneCaptured}`;
   };
 
+  /* ================= UI ================= */
+
   return (
     <main className={styles.container}>
       <h3 className={styles.title}>Dirección</h3>
-
       <section>
         <button
-          onClick={startCapturingDireccion}
           className={`${styles.recordBtn} ${styles.btnDireccion} ${
             activeCapture === "direccion" ? styles.activeBtn : ""
           }`}
+          onMouseDown={() => {
+            armDireccionCapture();
+            startRecording();
+          }}
+          onMouseUp={stopRecording}
+          onMouseLeave={stopRecording}
+          onTouchStart={() => {
+            armDireccionCapture();
+            startRecording();
+          }}
+          onTouchEnd={stopRecording}
+          onTouchCancel={stopRecording}
         >
           📍
         </button>
+
         <div className={`${styles.box} ${styles.boxDireccion}`}>
           {capturedText}
         </div>
-        <button
-          className={`${styles.secondaryBtn} ${styles.mapBtn}`}
-          onClick={openInMaps}
-        >
+
+        <button className={styles.secondaryBtn} onClick={openInMaps}>
           Maps
         </button>
       </section>
 
       <h3 className={styles.title}>Teléfono</h3>
-
       <section>
         <button
-          onClick={startCapturingTelefono}
           className={`${styles.recordBtn} ${styles.btnTelefono} ${
             activeCapture === "telefono" ? styles.activeBtn : ""
           }`}
+          onMouseDown={() => {
+            armTelefonoCapture();
+            startRecording();
+          }}
+          onMouseUp={stopRecording}
+          onMouseLeave={stopRecording}
+          onTouchStart={() => {
+            armTelefonoCapture();
+            startRecording();
+          }}
+          onTouchEnd={stopRecording}
+          onTouchCancel={stopRecording}
         >
           📞
         </button>
+
         <div className={`${styles.box} ${styles.boxTelefono}`}>
           {phoneCaptured}
         </div>
 
-        <button
-          className={`${styles.secondaryBtn} ${styles.callBtn}`}
-          onClick={callPhone}
-        >
+        <button className={styles.secondaryBtn} onClick={callPhone}>
           Llamar
         </button>
       </section>
 
       <h3 className={styles.title}>Precio</h3>
-
       <section>
         <button
-          onClick={startCapturingPrecio}
           className={`${styles.recordBtn} ${styles.btnPrecio} ${
             activeCapture === "precio" ? styles.activeBtn : ""
           }`}
+          onMouseDown={() => {
+            armPrecioCapture();
+            startRecording();
+          }}
+          onMouseUp={stopRecording}
+          onMouseLeave={stopRecording}
+          onTouchStart={() => {
+            armPrecioCapture();
+            startRecording();
+          }}
+          onTouchEnd={stopRecording}
+          onTouchCancel={stopRecording}
         >
           💵
         </button>
+
         <div className={`${styles.box} ${styles.boxPrecio}`}>
           {priceCaptured}
         </div>
-        <button
-          onClick={startCapturingPrecio}
+         <button
           className={`${styles.recordBtn} ${styles.btnPrecio} ${
             activeCapture === "precio" ? styles.activeBtn : ""
           }`}
+          onMouseDown={() => {
+            armPrecioCapture();
+            startRecording();
+          }}
+          onMouseUp={stopRecording}
+          onMouseLeave={stopRecording}
+          onTouchStart={() => {
+            armPrecioCapture();
+            startRecording();
+          }}
+          onTouchEnd={stopRecording}
+          onTouchCancel={stopRecording}
         >
           💵
         </button>

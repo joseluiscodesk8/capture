@@ -1,95 +1,69 @@
-.ocrCamera {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem;
-    background-color: #fafafa;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  
-    .controls {
-      display: flex;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  
-    .btn {
-      padding: 0.7rem 1.2rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s ease;
-  
-      &.primary {
-        background-color: #0070f3;
-        color: white;
-      }
-      &.secondary {
-        background-color: #ddd;
-        color: #333;
-      }
-      &.danger {
-        background-color: #e63946;
-        color: white;
-      }
-      &.success {
-        background-color: #2a9d8f;
-        color: white;
-      }
-  
-      &:hover {
-        opacity: 0.9;
-      }
-    }
-  
-    .inputFile {
-      display: none;
-    }
-  
-    .status {
-      font-style: italic;
-      color: #555;
-    }
-  
-    .result {
-      text-align: center;
-      width: 90%;
-      max-width: 400px;
-  
-      .title {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-bottom: 0.8rem;
-      }
-  
-      .ticket {
-        background: #fff;
-        padding: 1.2rem;
-        border-radius: 10px;
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 1rem;
-        white-space: pre;
-        text-align: left;
-        line-height: 1.6;
-        border: 1px solid #ddd;
-        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-  
-      .ticketLine {
-        display: flex;
-        justify-content: space-between;
-        padding: 2px 0;
-        border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
-  
-        &:last-child {
-          border-bottom: none;
-        }
-      }
-    }
-  }
+/* Contenedor general */
+.container {
+  width: 100%;
+  padding: 12px;
+}
+
+/* Video cámara */
+.video {
+  width: 100%;
+  max-height: 70vh;
+  border-radius: 14px;
+  object-fit: cover;
+  background: black;
+}
+
+/* Botones */
+.captureBtn {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  border-radius: 12px;
+  border: none;
+  background: #111;
+  color: white;
+  margin-top: 10px;
+}
+
+.closeBtn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  background: #c62828;
+  color: white;
+  margin-top: 8px;
+}
+
+.cameraActions {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Canvas oculto */
+.hiddenCanvas {
+  display: none;
+}
+
+/* 📸 GALERÍA GRANDE */
+.gallery {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 🖼️ IMAGENES GRANDES */
+.image {
+  width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 14px;
+  background: #000;
+}
+
+
   
   .qrButton {
     position: fixed;

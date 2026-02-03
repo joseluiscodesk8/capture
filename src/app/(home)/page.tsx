@@ -13,11 +13,19 @@ const Audioranscriber = dynamic(
   }
 );
 
+const CameraCapture = dynamic(
+  () => import("./componentes/CameraCapture"),
+  {
+    ssr: false,
+  }
+);
+
 
 export default function Home() {
   return (
     <main>
       <h1>Patinando Todos Los Marditos Dias</h1>
+      <CameraCapture />
       <Audioranscriber />
       <QRButton />
     </main>
