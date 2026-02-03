@@ -2,103 +2,53 @@ import { useRef, useState } from "react";
 import styles from "../styles/index.module.scss";
 
 export default function CameraCapture() {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const streamRef = useRef<MediaStream | null>(null);
-
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const [images, setImages] = useState<string[]>([]);
-  const [cameraOpen, setCameraOpen] = useState(false);
 
-  /* ================= OPEN CAMERA ================= */
+  // 🔧 CONFIGURACIÓN DE TAMAÑO
+  const imageHeight = 320; // px → cambia aquí el tamaño
 
-  const openCamera = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "environment" },
-        audio: false,
-      });
-
-      streamRef.current = stream;
-
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-      }
-
-      setCameraOpen(true);
-    } catch (err) {
-      console.error("Error al abrir la cámara", err);
-    }
+  const openCamera = () => {
+    inputRef.current?.click();
   };
 
-  /* ================= CLOSE CAMERA ================= */
+  const onCapture = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-  const closeCamera = () => {
-    streamRef.current?.getTracks().forEach((track) => track.stop());
-    streamRef.current = null;
-
-    if (videoRef.current) {
-      videoRef.current.srcObject = null;
-    }
-
-    setCameraOpen(false);
+    const url = URL.createObjectURL(file);
+    setImages((prev) => [...prev, url]);
+    e.target.value = "";
   };
-
-  /* ================= CAPTURE ================= */
-
-  const capturePhoto = () => {
-    if (!videoRef.current || !canvasRef.current) return;
-
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
-
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    ctx.drawImage(video, 0, 0);
-    const imageData = canvas.toDataURL("image/jpeg", 0.9);
-
-    setImages((prev) => [imageData, ...prev]);
-  };
-
-  /* ================= UI ================= */
 
   return (
     <section className={styles.container}>
-      {!cameraOpen && (
-        <button className={styles.captureBtn} onClick={openCamera}>
-          📷 Abrir cámara
+      {/* 🔝 HEADER STICKY */}
+      <header className={styles.header}>
+        <button className={styles.cameraButton} onClick={openCamera}>
+          📷 <span>Abrir cámara</span>
         </button>
-      )}
 
-      {cameraOpen && (
-        <> <video
-            ref={videoRef}
-            autoPlay
-            playsInline
-            className={styles.video}
-          />
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          className={styles.hiddenInput}
+          onChange={onCapture}
+        />
+      </header>
 
-          <div className={styles.cameraActions}>
-            <button className={styles.captureBtn} onClick={capturePhoto}>
-              📸 Tomar foto
-            </button>
-
-            <button className={styles.closeBtn} onClick={closeCamera}>
-              ❌ Cerrar cámara
-            </button>
-          </div>
-        </>
-      )}
-
-      <canvas ref={canvasRef} className={styles.hiddenCanvas} />
-
+      {/* 🖼️ SLIDER */}
       {images.length > 0 && (
-        <div className={styles.gallery}>
+        <div
+          className={styles.slider}
+          style={{ "--img-height": `${imageHeight}px` } as React.CSSProperties}
+        >
           {images.map((img, i) => (
-            <img key={i} src={img} className={styles.image} />
+            <div key={i} className={styles.slide}>
+              <img src={img} />
+            </div>
           ))}
         </div>
       )}

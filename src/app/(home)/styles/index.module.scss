@@ -1,116 +1,128 @@
-/* Contenedor general */
 .container {
-  width: 100%;
-  padding: 12px;
-}
-
-/* Video cámara */
-.video {
-  width: 100%;
-  max-height: 70vh;
-  border-radius: 14px;
-  object-fit: cover;
-  background: black;
-}
-
-/* Botones */
-.captureBtn {
-  width: 100%;
-  padding: 14px;
-  font-size: 18px;
-  border-radius: 12px;
-  border: none;
-  background: #111;
-  color: white;
-  margin-top: 10px;
-}
-
-.closeBtn {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 12px;
-  border: none;
-  background: #c62828;
-  color: white;
-  margin-top: 8px;
-}
-
-.cameraActions {
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Canvas oculto */
-.hiddenCanvas {
-  display: none;
-}
+/* 🔝 HEADER */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
 
-/* 📸 GALERÍA GRANDE */
-.gallery {
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
 
-/* 🖼️ IMAGENES GRANDES */
-.image {
-  width: 100%;
-  max-height: 75vh;
-  object-fit: contain;
-  border-radius: 14px;
-  background: #000;
-}
+  .cameraButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 
+    padding: 10px 14px;
+    border-radius: 999px;
 
-  
-  .qrButton {
-    position: fixed;
-    bottom: 1rem;
-    left: 1rem;
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 50%;
-    background-color: #000;
+    background: rgba(0, 0, 0, 0.9);
     color: #fff;
-    font-weight: bold;
-    font-size: 1.1rem;
     border: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease, background-color 0.2s ease;
-  
-    &:hover {
-      transform: scale(1.05);
-      background-color: #333;
+
+    &:active {
+      transform: scale(0.96);
     }
   }
-  
-  .overlay {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 1000;
-    opacity: 1;
-    transition: opacity 0.3s ease;
+
+  .hiddenInput {
+    display: none;
   }
-  
-  .imageContainer {
-    background: white;
-    padding: 1rem;
-    border-radius: 1rem;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    transition: transform 0.3s ease;
+}
+
+/* 🖼️ SLIDER */
+.slider {
+  margin-top: 16px;
+  padding-left: 16px;
+
+  display: flex;
+  gap: 16px;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
-  
-  .qrImage {
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
+
+  .slide {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+
+    img {
+      height: var(--img-height); // 🔥 CONTROLADO DESDE REACT
+      width: auto;
+      max-width: 85vw;
+
+      border-radius: 18px;
+      object-fit: cover;
+      background: #000;
+
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    }
   }
-  
+}
+
+.qrButton {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    background-color: #333;
+  }
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.imageContainer {
+  background: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.qrImage {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
