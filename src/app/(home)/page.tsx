@@ -20,14 +20,22 @@ const CameraCapture = dynamic(
   }
 );
 
+const LyricsPlayer = dynamic(
+  () => import("./componentes/LyricsPlayer"),
+  {
+    ssr: false,
+  }
+);
+
 
 export default function Home() {
   return (
     <main>
       <h1>Patinando Todos Los Marditos Dias</h1>
-      <CameraCapture />
-      <Audioranscriber />
-      <QRButton />
+      <LyricsPlayer />
+      {/* <CameraCapture /> */}
+{/*       <Audioranscriber />
+      <QRButton /> */}
     </main>
   );
 }
