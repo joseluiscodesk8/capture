@@ -1,0 +1,52 @@
+[
+  {
+    "title": "papercut",
+    "audio": "/papercut.mp3",
+    "lrc": "/data/papercut.lrc"
+  },
+  {
+    "title": "ultimaterush",
+    "audio": "/ultimaterush.mp3",
+    "lrc": "/data/ultimaterush.lrc"
+  },
+  {
+    "title": "heartzofman",
+    "audio": "/heartzofman.mp3",
+    "lrc": "/data/heartzofman.lrc"
+  },
+  {
+    "title": "valle de las sombras",
+    "audio": "/valle.mp3",
+    "lrc": "/data/valle.lrc"
+  },
+  {
+    "title": "8 mile",
+    "audio": "/8 Mile.mp3",
+    "lrc": "/data/8mile.lrc"
+  },
+  {
+    "title": "promiscuous",
+    "audio": "/Promiscuous.mp3",
+    "lrc": "/data/promiscuous.lrc"
+  },
+    {
+    "title": "makeitclap",
+    "audio": "/makeItClap.mp3",
+    "lrc": "/data/makeitclap.lrc"
+  },
+      {
+    "title": "madeniggaz",
+    "audio": "/madeniggaz.mp3",
+    "lrc": "/data/madeniggaz.lrc"
+  },
+     {
+    "title": "allmylife",
+    "audio": "/allmylife.mp3",
+    "lrc": "/data/allmylife.lrc"
+  },
+  {
+    "title": "bluesoul",
+    "audio": "/bluesoul.mp3",
+    "lrc": "/data/bluesoul.lrc"
+  } 
+]

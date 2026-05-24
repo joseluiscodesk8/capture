@@ -1,146 +1,3 @@
-.container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 🔝 HEADER */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(14px);
-
-  .cameraButton {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
-    padding: 10px 14px;
-    border-radius: 999px;
-
-    background: rgba(0, 0, 0, 0.9);
-    color: #fff;
-    border: none;
-
-    font-size: 14px;
-    font-weight: 500;
-
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
-    cursor: pointer;
-
-    &:active {
-      transform: scale(0.96);
-    }
-  }
-
-  .hiddenInput {
-    display: none;
-  }
-}
-
-/* 🖼️ SLIDER */
-.slider {
-  margin-top: 16px;
-  padding-left: 16px;
-
-  display: flex;
-  gap: 16px;
-
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  .slide {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-
-    img {
-      height: var(--img-height); // 🔥 CONTROLADO DESDE REACT
-      width: auto;
-      max-width: 85vw;
-
-      border-radius: 18px;
-      object-fit: cover;
-      background: #000;
-
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
-    }
-  }
-}
-
-.qrButton {
-  position: fixed;
-  bottom: 1rem;
-  left: 1rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  background-color: #000;
-  color: #fff;
-  font-weight: bold;
-  font-size: 1.1rem;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease;
-
-  &:hover {
-    transform: scale(1.05);
-    background-color: #333;
-  }
-}
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  z-index: 1000;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.imageContainer {
-  background: white;
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.qrImage {
-  object-fit: contain;
-  width: 100%;
-  height: 100%;
-}
-
-//////////
-/// LYRICS PLAYER
-/// 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.player {
-  width: 100%;
-  max-width: 420px;
-}
-
 .lyrics {
   height: 520px;
   overflow-y: auto;
@@ -150,46 +7,90 @@
   scroll-behavior: smooth;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
+  padding: 20px 10px;
+
+
 }
 
+/* BASE */
 .line {
-  padding: 6px 0;
-  font-size: 16px;
-  color: #777;
-  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  transform: scale(0.95) translateY(0px);
-  opacity: 0.5;
-  filter: blur(0.5px);
+  padding: 10px 0;
+  font-size: 1.5rem;
+  color: #e3e2e2;
+
+  white-space: normal;
+  line-height: 1.5;
+  letter-spacing: 2px;
+  font-weight: 900;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: all 0.35s ease;
+  opacity: 0.1;
+  transform: translateY(6px); // 🔥 leve “hundido”
 }
 
+/* ACTIVA */
 .active {
   color: #000;
-  font-size: 24px;
-  font-weight: 700;
+
   opacity: 1;
-  transform: scale(1.1) translateY(-2px);
-  filter: blur(0);
-  animation: pulse 0.6s ease-in-out;
+  transform: translateY(0); // 🔥 se “eleva” al centro
 }
 
+/* CERCA */
 .near {
-  opacity: 0.75;
-  transform: scale(1.02);
+  opacity: .2;
+  transform: translateY(3px);
 }
 
+/* LEJOS */
 .far {
-  opacity: 0.3;
-  transform: scale(0.9);
+  opacity: 0.1;
+  transform: translateY(8px);
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1) translateY(0px);
+
+/////////////////
+/// 
+/// 
+.playlist {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
-  50% {
-    transform: scale(1.15) translateY(-4px);
+
+  button {
+    border: none;
+    cursor: pointer;
+
+    padding: 8px 16px;
+    border-radius: 999px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    background: rgba(0, 0, 0, 0.08);
+    color: #222;
+
+    white-space: nowrap;
+    transition: all 0.25s ease;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.15);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
   }
-  100% {
-    transform: scale(1.1) translateY(-2px);
-  }
+}
+
+.activeSong {
+  background: #000;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }

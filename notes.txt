@@ -1,13 +1,426 @@
-export default function Rutas() {
-  const deliveryMen: DeliveryMan[] = [
-    { name: "Angelo" },
-    { name: "Luis C" },
-    { name: "Andres" },
-    { name: "Julio" },
-    { name: "Wilson" },
-    { name: "Luggi" },
-    { name: "Eduawr" },
-    { name: "Sachi" },
-    { name: "Manuel" },
-    { name: "Jose Luis" },
-  ];
+0:01.62
+We make it clap.
+
+2
+0:04.24
+We make it clap.
+
+3
+0:08.46
+Yeah, yeah, yeah.
+
+4
+0:09.72
+Flipmode.
+
+5
+0:10.34
+Busta Rhymes.
+
+6
+0:11.10
+Busta Rhymes.
+
+7
+0:11.58
+Sean Paul.
+
+8
+0:12.36
+Sean Paul.
+
+9
+0:12.90
+One more time.
+
+10
+0:13.72
+Ha.
+
+11
+0:14.04
+Singing with the rhyme.
+
+12
+0:15.29
+Uh.
+
+13
+0:15.36
+Remix time.
+
+14
+0:16.34
+Remix.
+
+15
+0:17.04
+Singing.
+
+16
+0:17.66
+Yo, Flip star.
+
+17
+0:19.32
+Flip.
+
+18
+0:19.35
+Flipmode Squad.
+
+19
+0:20.30
+Ha.
+
+20
+0:20.56
+Singing with the rhyme.
+
+21
+0:21.43
+Come on.
+
+22
+0:21.74
+Singing.
+
+23
+0:22.72
+Come and say jump up.
+
+24
+0:23.80
+Clap when you wanna sit down.
+
+25
+0:25.08
+Get up again now wig out.
+
+26
+0:26.38
+Make everybody flip out.
+
+27
+0:27.50
+You love to carry on till you're tired and wanna chill out.
+
+28
+0:30.28
+All of the gal I spit out, make your body keep clapping out.
+
+29
+0:32.96
+Flipmode around with all the hottest little girl in the dance.
+
+30
+0:35.22
+And don't think I'm with the other girl, jump up and prance.
+
+31
+0:37.94
+Busta Rhymes and Sean Paul, the lyrical magician.
+
+32
+0:40.96
+Definite, them switch up, jump up, wave up their hands.
+
+33
+0:43.18
+Flipmode around with all the hottest little girl in the dance.
+
+34
+0:45.72
+And don't think I'm with the other girl, jump up and prance.
+
+35
+0:48.46
+Busta Rhymes and Sean Paul, the lyrical magician.
+
+36
+0:51.40
+Definite, them switch up, jump up, wave up their hands.
+
+37
+0:54.20
+So push it up there.
+
+38
+0:55.38
+Back with the remix with Spliff and Sean and Paul on the corner.
+
+39
+0:58.08
+Can't believe when we do it, we smack it down how we wanna.
+
+40
+1:00.66
+Keeping it coming, keeping it going 'cause we ain't playing.
+
+41
+1:03.12
+I'm talking to all my people 'cause what I'm saying is.
+
+42
+1:05.46
+In case you ain't knowing, in case you ain't heard.
+
+43
+1:07.76
+And if you want us to set it, just give me the word.
+
+44
+1:10.00
+This one goes down to my soldiers that be flipping them birds.
+
+45
+1:12.94
+To all my shorties wiggling and shaking their curves.
+
+46
+1:15.22
+We make it clap.
+
+47
+1:17.82
+We make it clap.
+
+48
+1:20.46
+We make it clap.
+
+49
+1:23.08
+We make it clap.
+
+50
+1:25.94
+Oh, snapper.
+
+51
+1:26.90
+Look at shorty shaking it and making it clap.
+
+52
+1:29.18
+Booty big, poking out like 20s on a.
+
+53
+1:31.78
+When I give it to her, shorty know how to throw it back.
+
+54
+1:34.42
+Shorty bang it to the beat, sometimes we overlap.
+
+55
+1:37.28
+Sing, girl, peel out your blouse and your tight jeans.
+
+56
+1:40.30
+Let me lay you down, dip you with some ice cream.
+
+57
+1:42.94
+Girl, holla, holla, money when I.
+
+58
+1:45.36
+Thunderstorm, rain, sleet, and lightning.
+
+59
+1:48.14
+Hold me tight, feel the Trini man grinding and grinding and grinding.
+
+60
+1:53.80
+Girl, dip and bounce, start whining.
+
+61
+1:55.88
+You see Spliff, Sean Paul, and Busta Rhymes in.
+
+62
+1:58.54
+We got dough.
+
+63
+1:59.32
+You can tell by what we driving.
+
+64
+2:01.32
+Look at the jewels.
+
+65
+2:02.04
+How we're stripping and blinding and blinding and blinding.
+
+66
+2:06.44
+It's like that.
+
+67
+2:07.24
+Make it clap now.
+
+68
+2:08.43
+Come on.
+
+69
+2:08.46
+In case you ain't knowing, in case you ain't heard.
+
+70
+2:10.76
+And if you want us to set it, just give me the word.
+
+71
+2:13.00
+This one goes down to my soldiers that be flipping them birds.
+
+72
+2:15.96
+To all my shorties wiggling and shaking their curves.
+
+73
+2:18.22
+We make it clap.
+
+74
+2:20.84
+We make it clap.
+
+75
+2:23.48
+We make it clap.
+
+76
+2:26.08
+We make it clap.
+
+77
+2:28.06
+Flipmode around with all the hottest little girl in the dance.
+
+78
+2:30.72
+And don't think I'm with the other girl, jump up and prance.
+
+79
+2:33.48
+Busta Rhymes and Sean Paul, the lyrical magician.
+
+80
+2:36.46
+Definite, them switch up, jump up, wave up their hands.
+
+81
+2:38.68
+Flipmode around with all the hottest little girl in the dance.
+
+82
+2:41.24
+And don't think I'm with the other girl, jump up and prance.
+
+83
+2:43.98
+Busta Rhymes and Sean Paul, the lyrical magician.
+
+84
+2:46.90
+Definite, them switch up, jump up, wave up their hands.
+
+85
+2:49.70
+We make it clap.
+
+86
+2:50.56
+Who man call me?
+
+87
+2:51.18
+The abominable snowman.
+
+88
+2:52.68
+Put it down, make 'em say, "You're such a phenomenal show, man."
+
+89
+2:55.54
+Unbelievable how you be stacking the dough, man.
+
+90
+2:57.96
+Like we rolling a thousand headcracks in a row, man.
+
+91
+3:00.62
+The way we stop the show and how we constantly flow, man.
+
+92
+3:03.20
+Regular paper coming, watch me properly blow, man.
+
+93
+3:05.86
+Come on, keeping it coming, keeping it going 'cause we ain't playing.
+
+94
+3:08.82
+I'm talking to all of my people because what I'm saying is.
+
+95
+3:11.46
+In case you ain't knowing, in case you ain't heard.
+
+96
+3:13.74
+Come on.
+
+97
+3:13.76
+And if you want us to set it, just give me the word.
+
+98
+3:16.00
+This one goes down to my soldiers that be flipping them birds.
+
+99
+3:18.96
+To all my shorties wiggling and shaking their curves.
+
+100
+3:21.24
+We make it clap.
+
+101
+3:23.84
+We make it clap.
+
+102
+3:26.46
+We make it clap.
+
+103
+3:29.08
+We make it clap.
+
+104
+3:31.74
+We make it clap.
+
+105
+3:34.36
+We make it clap.
+
+106
+3:36.98
+We make it clap.
+
+107
+3:39.62
+We make it clap.

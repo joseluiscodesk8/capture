@@ -40,7 +40,7 @@
     "**/*.mts",
     ".next\\dev/types/**/*.ts",
     ".next\\dev/types/**/*.ts"
-  ],
+, "src/app/enrutamiento/components/HangmanDrawing.js"  ],
   "exclude": [
     "node_modules"
   ]
