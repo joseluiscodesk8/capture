@@ -1,6 +1,7 @@
 import Link from "next/link";
 import songsData from "@/data/songs.json";
 import grammarData from "@/data/grammar.json";
+import readingsData from "@/data/readings.json";
 import styles from "./styles/home.module.scss";
 
 type Song = {
@@ -13,6 +14,7 @@ type Song = {
 export default function Home() {
   const songs = songsData as Song[];
   const topics = grammarData.topics;
+  const readings = readingsData.readings;
   const exerciseCount = topics.reduce(
     (total, topic) => total + topic.exercises.length,
     0
@@ -54,14 +56,16 @@ export default function Home() {
           </span>
           <h2 className={styles.cardTitle}>Gramática</h2>
           <p className={styles.cardText}>
-            Ejercicios de relleno sobre frases reales de las canciones: elige la
-            forma correcta y lee por qué.
+            Ejercicios de relleno sobre frases reales de las canciones, y
+            lecturas de historias contadas enteras en simple present o simple
+            past.
           </p>
           <div className={styles.cardMeta}>
             <span className={styles.tag}>
               {topics.length} temas
             </span>
             <span className={styles.tag}>{exerciseCount} ejercicios</span>
+            <span className={styles.tag}>{readings.length} lecturas</span>
             <span className={styles.tag}>{levels.join(" · ")}</span>
           </div>
           <span className={styles.cta}>Abrir Gramática →</span>

@@ -1,0 +1,17 @@
+{
+  "textHash": "f374a5bfe127",
+  "voice": "Samantha",
+  "wordsPerMinute": 165,
+  "gapSeconds": 0.45,
+  "blocks": 7,
+  "starts": [
+    0,
+    11.414,
+    21.446,
+    34.876,
+    45.381,
+    57.708,
+    67.934
+  ],
+  "duration": 77.656
+}

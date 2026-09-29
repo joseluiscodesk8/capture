@@ -41,13 +41,23 @@
   top: 84px;
 }
 
-.sidebarTitle {
+@mixin sidebarTitle {
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
   padding: 4px 8px 10px;
+}
+
+.sidebarTitle {
+  @include sidebarTitle;
+}
+
+.sidebarTitleSpaced {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
 }
 
 .topicList {
@@ -88,7 +98,7 @@
   font-weight: 600;
 }
 
-.level {
+@mixin badge {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -98,6 +108,17 @@
   border-radius: var(--radius-pill);
   padding: 2px 8px;
   white-space: nowrap;
+}
+
+.level {
+  @include badge;
+}
+
+.tenseBadge {
+  @include badge;
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--surface);
 }
 
 .topicMeta {

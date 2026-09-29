@@ -1,0 +1,76 @@
+{
+  "readings": [
+    {
+      "id": "dbz-super-saiyan-past",
+      "title": "La transformación Super Saiyan",
+      "series": "Dragon Ball Z",
+      "tense": "past",
+      "level": "A2",
+      "audio": "/audio/dbz-super-saiyan-past.mp3",
+      "timings": "/data/dbz-super-saiyan-past.timings.json",
+      "text": "Goku flew through the sky above a dying planet. Far below, Frieza's soldiers were destroying everything: the towns, the forests, the people. Krillin was left alone against Frieza.\n\nGoku wanted to arrive sooner. He could not. His body was too weak. Before he left, a wise old man gave him a special medicine that healed his heart only once. The disease was still inside him, and it made his heart beat faster and faster.\n\nThen he saw it. A young man with a shaved head stood between Frieza and a woman with no arms. Goku knew that boy. They trained together. They became friends.\n\nThe boy tried to fight. He fought well, but Frieza was much stronger. Frieza lifted him up, held him in the air, and dropped him. The boy was silent. His eyes stayed open. The ground shook with the impact.\n\nGoku screamed. All the pain he carried broke out of him. He felt a power he never knew before rising from deep inside his chest. His hair turned gold and stood up. His eyes turned green. The ground cracked under his feet.\n\nEveryone on the planet felt the same power. Vegeta opened his eyes. Gohan felt it far away on Earth. Frieza smiled and called his son's name.\n\nGoku returned to the planet. Nobody saw him move. He fought Frieza too fast for anyone to follow. He won. Then he took his friend's body in his arms and flew home.",
+      "vocabulary": [
+        { "term": "Saiyan", "meaning": "raza de guerreros de un planeta destruido" },
+        { "term": "tail", "meaning": "cola" },
+        { "term": "Frieza", "meaning": "enemigo que destruye el planeta" },
+        { "term": "Krillin", "meaning": "amigo cercano de Goku" },
+        { "term": "medicine", "meaning": "medicamento" },
+        { "term": "to heal", "meaning": "curar" },
+        { "term": "the ground cracked", "meaning": "el suelo se agrietó" }
+      ]
+    },
+    {
+      "id": "dbz-super-saiyan-present",
+      "title": "La transformación Super Saiyan",
+      "series": "Dragon Ball Z",
+      "tense": "present",
+      "level": "A2",
+      "text": "Goku is a Saiyan warrior who protects the Earth. He fights every time a strong enemy appears, and he never runs away. He is a kind man who does not know when to stop.\n\nGoku's body is stronger than it looks. He heals faster than any human, and no disease lasts long in him. When he is in danger, his heart works faster and his power grows.\n\nKrillin is his best friend. They train together, they eat together, and they always protect each other. Vegeta is Goku's rival. He says he hates Goku, but he fights beside him when Earth needs help.\n\nFrieza is the enemy in this story. He destroys towns and kills people without mercy. Nobody on the planet is strong enough to stop him. Goku is far away, and his heart is not strong enough to arrive in time.\n\nThen Goku sees it. A young boy with a shaved head stands alone in front of Frieza. The boy is his friend. The boy fights well, but he is not strong enough. Frieza drops him, and the boy never moves again.\n\nSomething changes in Goku. Something deep inside him breaks. A power he does not know yet rises from his chest. His hair turns gold. His eyes turn green. The ground cracks under his feet.\n\nEvery warrior on the planet feels the same power. Goku returns. He fights faster than anyone can see, and he wins. Then he holds his friend in his arms and flies home. Every time he loses someone he loves, he comes back stronger.",
+      "vocabulary": [
+        { "term": "Saiyan", "meaning": "raza de guerreros de un planeta destruido" },
+        { "term": "tail", "meaning": "cola" },
+        { "term": "Frieza", "meaning": "enemigo que destruye el planeta" },
+        { "term": "Krillin", "meaning": "amigo cercano de Goku" },
+        { "term": "to heal", "meaning": "curar" },
+        { "term": "rival", "meaning": "rival, competidor" },
+        { "term": "without mercy", "meaning": "sin piedad" }
+      ]
+    },
+    {
+      "id": "samurai-x-oath-past",
+      "title": "El juramento de no matar",
+      "series": "Samurai X (Rurouni Kenshin)",
+      "tense": "past",
+      "level": "B1",
+      "text": "In 1868, in the last years of Edo, a young swordsman lived in Tokyo. His name was Himura Kenshin. People called him Hitokiri Battosai, the Manslayer of the Dragon Gate. He was famous because he never lost a fight, and because he was very, very fast.\n\nBut his fame was built on a lie. The Shinsengumi, the new masters of the city, planned everything from the beginning. They chose Kenshin for one reason. He was strong enough to kill a man like Ito Hayato, the strongest swordsman in the country. Hayato was also Kenshin's own master.\n\nOne evening, the Shinsengumi arranged a duel between them. Kenshin fought well, and he won. Hayato died on the ground. Then the Shinsengumi told Kenshin the truth. They arranged the duel for him, and they took his master away from his world.\n\nKenshin was full of rage. He killed the two men who planned it, Isao Hyodo and Seijo Kataoka, in one night. Then he stopped.\n\nHe buried his master in a small temple on the outside of the city. He gave the sword that killed Hayato to the Shinsengumi, and he asked them to keep it for him. He made a promise to the grave. He made a promise to the boy beside him, and to the friend he betrayed. He would never take another life.\n\nAfter that night, he stopped using the name Kenshin. He became Himura Kenshin again, and he called himself a rurouni, a wanderer with no home. He carried a sword with the edge turned backwards, so that a cut could never kill. He walked from town to town and protected people who were completely alone. He kept that promise for the rest of his life.",
+      "vocabulary": [
+        { "term": "swordsman", "meaning": "espadachín" },
+        { "term": "the Shinsengumi", "meaning": "la policía militar de Tokio en 1868" },
+        { "term": "duel", "meaning": "duelo" },
+        { "term": "master", "meaning": "maestro" },
+        { "term": "to betray", "meaning": "traicionar" },
+        { "term": "rurouni", "meaning": "vagabundo errante que no tiene hogar" },
+        { "term": "wanderer", "meaning": "vagabundo" },
+        { "term": "rage", "meaning": "furia" }
+      ]
+    },
+    {
+      "id": "samurai-x-oath-present",
+      "title": "El juramento de no matar",
+      "series": "Samurai X (Rurouni Kenshin)",
+      "tense": "present",
+      "level": "B1",
+      "text": "Himura Kenshin is a wandering swordsman who lives in the last years of Edo. He is famous in three countries. People know him as Hitokiri Battosai, the Manslayer of the Dragon Gate, but the name belongs to a past life that he does not use anymore.\n\nKenshin is fast. He is so fast that people see only a flash of his sword, and then the fight is over. He wins almost every battle that he chooses.\n\nKenshin is also the man who keeps a promise he never breaks. There is one reason for that promise, and it is the worst night of his life. The Shinsengumi arranges a duel between Kenshin and his own master, because they need a swordsman strong enough to kill the best in the country. Kenshin wins, and his master dies on the ground. Then the Shinsengumi tells him the truth: they use Kenshin's strength to destroy his master's life. He kills both of them the same night. He never takes another life after that.\n\nHe buries his master in a small temple outside the city and gives the sword to the Shinsengumi. He makes a promise to his master's grave, to his friend, and to a boy who stands beside him. He never takes another life.\n\nSo he turns his sword around. The edge faces the sky, and a cut can only stop a fight, never end a life. He calls himself a rurouni, a wanderer with no home, and he travels from town to town.\n\nEvery time someone in trouble asks for help, Kenshin goes. He does not need money. He does not need a house. He needs a fight that is not a murder, and he always finds one.\n\nKenshin is the strongest swordsman of his time. He chooses to be the weakest one he can be. A strong man who kills is only a murderer. A rurouni is only a man who does not kill.",
+      "vocabulary": [
+        { "term": "swordsman", "meaning": "espadachín" },
+        { "term": "the Shinsengumi", "meaning": "la policía militar de Tokio en 1868" },
+        { "term": "duel", "meaning": "duelo" },
+        { "term": "master", "meaning": "maestro" },
+        { "term": "rurouni", "meaning": "vagabundo errante que no tiene hogar" },
+        { "term": "wanderer", "meaning": "vagabundo" },
+        { "term": "to betray", "meaning": "traicionar" },
+        { "term": "murderer", "meaning": "asesino" }
+      ]
+    }
+  ]
+}

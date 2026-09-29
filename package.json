@@ -6,7 +6,9 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:readings": "node scripts/check-readings.mjs",
+    "narrate": "node scripts/generate-narration.mjs"
   },
   "browserslist": [
     ">0.2%",

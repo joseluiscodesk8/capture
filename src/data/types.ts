@@ -28,3 +28,31 @@ export type GrammarTopic = {
 export type GrammarData = {
   topics: GrammarTopic[];
 };
+
+export type Tense = "present" | "past";
+
+export type ReadingTimings = {
+  textHash: string;
+  voice: string;
+  wordsPerMinute: number;
+  gapSeconds: number;
+  blocks: number;
+  starts: number[];
+  duration: number;
+};
+
+export type Reading = {
+  id: string;
+  title: string;
+  series: string;
+  tense: Tense;
+  level: string;
+  text: string;
+  audio?: string;
+  timings?: string;
+  vocabulary: { term: string; meaning: string }[];
+};
+
+export type ReadingData = {
+  readings: Reading[];
+};
