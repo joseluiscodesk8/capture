@@ -1,52 +1,68 @@
 [
   {
-    "title": "papercut",
+    "id": "papercut",
+    "title": "Papercut",
     "audio": "/papercut.mp3",
     "lrc": "/data/papercut.lrc"
   },
   {
-    "title": "ultimaterush",
+    "id": "ultimaterush",
+    "title": "The Ultimate Rush",
     "audio": "/ultimaterush.mp3",
     "lrc": "/data/ultimaterush.lrc"
   },
   {
-    "title": "heartzofman",
+    "id": "heartzofman",
+    "title": "Heart of a Man",
     "audio": "/heartzofman.mp3",
     "lrc": "/data/heartzofman.lrc"
   },
   {
-    "title": "valle de las sombras",
+    "id": "valle",
+    "title": "Valle de las Sombras",
     "audio": "/valle.mp3",
     "lrc": "/data/valle.lrc"
   },
   {
-    "title": "8 mile",
+    "id": "8mile",
+    "title": "8 Mile",
     "audio": "/8 Mile.mp3",
     "lrc": "/data/8mile.lrc"
   },
   {
-    "title": "promiscuous",
+    "id": "promiscuous",
+    "title": "Promiscuous",
     "audio": "/Promiscuous.mp3",
     "lrc": "/data/promiscuous.lrc"
   },
-    {
-    "title": "makeitclap",
+  {
+    "id": "makeitclap",
+    "title": "Make It Clap",
     "audio": "/makeItClap.mp3",
     "lrc": "/data/makeitclap.lrc"
   },
-      {
-    "title": "madeniggaz",
+  {
+    "id": "madeniggaz",
+    "title": "Made Niggaz",
     "audio": "/madeniggaz.mp3",
     "lrc": "/data/madeniggaz.lrc"
   },
-     {
-    "title": "allmylife",
+  {
+    "id": "allmylife",
+    "title": "All My Life",
     "audio": "/allmylife.mp3",
     "lrc": "/data/allmylife.lrc"
   },
   {
-    "title": "bluesoul",
+    "id": "bluesoul",
+    "title": "Blue Soul",
     "audio": "/bluesoul.mp3",
     "lrc": "/data/bluesoul.lrc"
-  } 
+  },
+  {
+    "id": "painkiller",
+    "title": "Painkiller",
+    "audio": "/PainKiller.mp3",
+    "lrc": "/data/painkiller.lrc"
+  }
 ]

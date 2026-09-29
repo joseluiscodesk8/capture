@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import styles from "../styles/index.module.scss";
-import songsData from "../../data/songs.json";
+import styles from "../styles/lyrics.module.scss";
+import songsData from "@/data/songs.json";
 
 type LyricLine = {
   time: number;
@@ -10,6 +10,7 @@ type LyricLine = {
 };
 
 type Song = {
+  id: string;
   title: string;
   audio: string;
   lrc: string;
@@ -63,20 +64,26 @@ export default function LyricsPlayer() {
   const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
+    let cancelled = false;
+
     const loadLRC = async () => {
       try {
         const res = await fetch(songs[currentIndex].lrc);
         const text = await res.text();
-        setLyrics(parseLRC(text));
+        if (!cancelled) setLyrics(parseLRC(text));
       } catch (err) {
         console.error("Error loading LRC:", err);
-        setLyrics([]);
+        if (!cancelled) setLyrics([]);
       }
     };
 
     if (songs.length > 0) {
       loadLRC();
     }
+
+    return () => {
+      cancelled = true;
+    };
   }, [currentIndex, songs]);
 
   useEffect(() => {
@@ -89,16 +96,25 @@ export default function LyricsPlayer() {
     return () => audio.removeEventListener("timeupdate", update);
   }, []);
 
+  const selectSong = (index: number) => {
+    const audio = audioRef.current;
+
+    setCurrentIndex(index);
+    setCurrentTime(0);
+    lastScrollIndex.current = -1;
+
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+    }
+  };
+
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    audio.currentTime = 0;
-    setCurrentTime(0);
-    lastScrollIndex.current = -1;
-
     audio.play().catch(() => {});
-  }, [currentIndex]);
+  }, []);
 
   const getActiveIndex = () => {
     for (let i = lyrics.length - 1; i >= 0; i--) {
@@ -126,56 +142,59 @@ export default function LyricsPlayer() {
 
   return (
     <div className={styles.container}>
-      {/* 🔘 selector */}
       <div className={styles.playlist}>
         {songs.map((song, index) => (
           <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={
-              index === currentIndex ? styles.activeSong : ""
-            }
+            key={song.id}
+            onClick={() => selectSong(index)}
+            className={`${styles.chip} ${
+              index === currentIndex ? styles.chipActive : ""
+            }`}
           >
             {song.title}
           </button>
         ))}
       </div>
 
-      {/* 🎵 audio */}
-      <audio
-        ref={audioRef}
-        controls
-        src={songs[currentIndex]?.audio}
-        className={styles.player}
-      />
+      <div className={styles.playerWrap}>
+        <audio
+          ref={audioRef}
+          controls
+          src={songs[currentIndex]?.audio}
+          className={styles.player}
+        />
+      </div>
 
-      {/* 🎤 lyrics */}
       <div className={styles.lyrics}>
-        {lyrics.map((line, i) => {
-          const distance = Math.abs(i - activeIndex);
+        {lyrics.length === 0 ? (
+          <p className={styles.empty}>No hay letra para esta canción.</p>
+        ) : (
+          lyrics.map((line, i) => {
+            const distance = Math.abs(i - activeIndex);
 
-          let className = styles.line;
+            let className = styles.line;
 
-          if (i === activeIndex) {
-            className += ` ${styles.active}`;
-          } else if (distance === 1) {
-            className += ` ${styles.near}`;
-          } else {
-            className += ` ${styles.far}`;
-          }
+            if (i === activeIndex) {
+              className += ` ${styles.active}`;
+            } else if (distance === 1) {
+              className += ` ${styles.near}`;
+            } else {
+              className += ` ${styles.far}`;
+            }
 
-          return (
-            <p
-              key={i}
-              ref={(el) => {
-                lineRefs.current[i] = el;
-              }}
-              className={className}
-            >
-              {line.text}
-            </p>
-          );
-        })}
+            return (
+              <p
+                key={i}
+                ref={(el) => {
+                  lineRefs.current[i] = el;
+                }}
+                className={className}
+              >
+                {line.text}
+              </p>
+            );
+          })
+        )}
       </div>
     </div>
   );

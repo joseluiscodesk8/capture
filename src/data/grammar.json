@@ -1,0 +1,347 @@
+{
+  "topics": [
+    {
+      "id": "to-be",
+      "title": "El verbo to be",
+      "level": "A1",
+      "summary": "am, is, are, was, were. El verbo más usado del inglés: siempre acompaña al sujeto y concuerda en número.",
+      "songIds": ["bluesoul", "promiscuous", "8mile", "papercut", "ultimaterush"],
+      "exercises": [
+        {
+          "id": "to-be-1",
+          "type": "gap-fill",
+          "line": "Blue ___ the color of my soul",
+          "answer": "is",
+          "options": ["is", "am", "are", "be"],
+          "explanation": "'Blue' equivale a 'it'. En inglés el verbo to be siempre es 'is' en tercera persona del singular."
+        },
+        {
+          "id": "to-be-2",
+          "type": "gap-fill",
+          "line": "I ___ at a loss for words the first time that we spoke",
+          "answer": "was",
+          "options": ["was", "were", "am", "is"],
+          "explanation": "Acción cerrada en el pasado con sujeto 'I' → 'was'. 'Were' es para 'you', 'we' y 'they'."
+        },
+        {
+          "id": "to-be-3",
+          "type": "gap-fill",
+          "line": "Now my days ___ all overcast",
+          "answer": "are",
+          "options": ["are", "is", "was", "be"],
+          "explanation": "'days' es plural → 'are'. En pasado el plural es 'were'."
+        },
+        {
+          "id": "to-be-4",
+          "type": "gap-fill",
+          "line": "Now Biggie Smalls is ___ the type to fall in love",
+          "answer": "not",
+          "options": ["not", "no", "none", "nothing"],
+          "explanation": "'Is not' completo = no es. La forma abreviada es \"isn't\": Biggie Smalls isn't the type to fall in love."
+        },
+        {
+          "id": "to-be-5",
+          "type": "gap-fill",
+          "line": "___ like a whirlwind inside of my head",
+          "answer": "It's",
+          "options": ["It's", "Its", "It", "Its'"],
+          "explanation": "'It's' con apóstrofo es 'it is'. 'Its' sin apóstrofo es el posesivo ('su')."
+        }
+      ]
+    },
+    {
+      "id": "negatives",
+      "title": "Negativos",
+      "level": "A1",
+      "summary": "don't, doesn't, can't, won't, didn't y ain't: el auxiliar va delante y el verbo queda en infinitivo.",
+      "songIds": ["papercut", "makeitclap", "painkiller", "bluesoul", "promiscuous"],
+      "exercises": [
+        {
+          "id": "neg-1",
+          "type": "gap-fill",
+          "line": "I ___ know what stressed me first",
+          "answer": "don't",
+          "options": ["don't", "doesn't", "didn't", "isn't"],
+          "explanation": "Sujeto 'I' → 'don't' + verbo base ('know'). 'Doesn't' es para he/she/it."
+        },
+        {
+          "id": "neg-2",
+          "type": "gap-fill",
+          "line": "___ believe when we do it, we smack it down how we wanna",
+          "answer": "Can't",
+          "options": ["Can't", "Don't", "Didn't", "Wouldn't"],
+          "explanation": "'can' + 'not' = no poder. El verbo 'believe' queda en infinitivo, sin 'to'."
+        },
+        {
+          "id": "neg-3",
+          "type": "gap-fill",
+          "line": "Pressure and it ___ stop",
+          "answer": "won't",
+          "options": ["won't", "wouldn't", "can't", "wasn't"],
+          "explanation": "'will not' = no va a / no quiere. 'Wouldn't' suena a(condition o cortesía, no a negación de 'will'."
+        },
+        {
+          "id": "neg-4",
+          "type": "gap-fill",
+          "line": "You ___ worth much when your blood is cold",
+          "answer": "ain't",
+          "options": ["ain't", "isn't", "aren't", "wasn't"],
+          "explanation": "'Ain't' cubre is not / are not / am not y have/has not. Es la forma más común en el rap."
+        },
+        {
+          "id": "neg-5",
+          "type": "gap-fill",
+          "line": "___ think so",
+          "answer": "Didn't",
+          "options": ["Didn't", "Don't", "Doesn't", "Wasn't"],
+          "explanation": "'Did' en pasado + negación = 'didn't' + verbo base. Es el pasado de 'don't'."
+        }
+      ]
+    },
+    {
+      "id": "present-perfect",
+      "title": "Presente perfecto",
+      "level": "A2",
+      "summary": "have / has + participio. Habla de pasado con efecto todavía visible en el presente.",
+      "songIds": ["allmylife", "bluesoul", "madeniggaz"],
+      "exercises": [
+        {
+          "id": "pp-1",
+          "type": "gap-fill",
+          "line": "All my life I've ___ searching for something",
+          "answer": "been",
+          "options": ["been", "be", "being", "was"],
+          "explanation": "'Have/has been' + gerundio = acción empezada en el pasado que sigue continuando."
+        },
+        {
+          "id": "pp-2",
+          "type": "gap-fill",
+          "line": "I don't know but I've been ___",
+          "answer": "told",
+          "options": ["told", "tell", "telling", "tells"],
+          "explanation": "Have + participio. 'Tell' es irregular: tell → told → told."
+        },
+        {
+          "id": "pp-3",
+          "type": "gap-fill",
+          "line": "When it comes around and it's ___ away",
+          "answer": "taken",
+          "options": ["taken", "took", "take", "taking"],
+          "explanation": "Participio irregular de 'take' (take → took → taken). 'It's taken away' = se la llevan."
+        },
+        {
+          "id": "pp-4",
+          "type": "gap-fill",
+          "line": "___ got a feeling I'm going wrong",
+          "answer": "I've",
+          "options": ["I've", "I", "It", "I'd"],
+          "explanation": "'I've' es 'I have'. El participio ('got') va siempre después del auxiliar."
+        },
+        {
+          "id": "pp-5",
+          "type": "gap-fill",
+          "line": "And seein blood spill ain't shit cause I ___ it at the beginnin",
+          "answer": "seen",
+          "options": ["seen", "see", "seeing", "sees"],
+          "explanation": "'Have seen' = he visto. El participio de 'see' es irregular: see → saw → seen."
+        }
+      ]
+    },
+    {
+      "id": "modals",
+      "title": "Verbos modales",
+      "level": "B1",
+      "summary": "can, should, will, might. Siempre van con el verbo en infinitivo y sin 'to'.",
+      "songIds": ["ultimaterush", "promiscuous", "bluesoul", "8mile"],
+      "exercises": [
+        {
+          "id": "mod-1",
+          "type": "gap-fill",
+          "line": "___ I wine and dine you, put rings on your fingers",
+          "answer": "Should",
+          "options": ["Should", "Would", "Could", "Will"],
+          "explanation": "'Should' + verbo base = consejo o propuesta. Aquí propone: ¿te invito a cenar?"
+        },
+        {
+          "id": "mod-2",
+          "type": "gap-fill",
+          "line": "Hey, I ___ keep my mind off you",
+          "answer": "can't",
+          "options": ["can't", "couldn't", "mustn't", "wouldn't"],
+          "explanation": "'Can' + 'not' = no poder. 'Keep' va en infinitivo: no decir 'can't keeps'."
+        },
+        {
+          "id": "mod-3",
+          "type": "gap-fill",
+          "line": "All my sorrows ___ be overcome",
+          "answer": "will",
+          "options": ["will", "would", "shall", "can"],
+          "explanation": "'Will' = futuro o certeza. 'Would' aquí sonaría hipotético, no seguro."
+        },
+        {
+          "id": "mod-4",
+          "type": "gap-fill",
+          "line": "Girl, I'm a freak, you ___ say those things",
+          "answer": "shouldn't",
+          "options": ["shouldn't", "couldn't", "wouldn't", "can't"],
+          "explanation": "'Shouldn't' = no deberías. El verbo 'say' se queda en infinitivo."
+        },
+        {
+          "id": "mod-5",
+          "type": "gap-fill",
+          "line": "Sometimes I just feel like quittin', I still ___",
+          "answer": "might",
+          "options": ["might", "must", "may", "would"],
+          "explanation": "'Might' expresa posibilidad: 'igual sí lo dejo'. 'Must' sería obligación ('debo') y 'may', permiso."
+        }
+      ]
+    },
+    {
+      "id": "conditionals",
+      "title": "If, wish y recomendaciones",
+      "level": "B1",
+      "summary": "Cláusulas con 'if' en presente, deseos con 'wish' y 'had better' para recomendaciones.",
+      "songIds": ["allmylife", "promiscuous", "8mile", "ultimaterush"],
+      "exercises": [
+        {
+          "id": "cond-1",
+          "type": "gap-fill",
+          "line": "___ I get any closer",
+          "answer": "If",
+          "options": ["If", "But", "So", "Because"],
+          "explanation": "'If' + presente = situación posible o habitual. Nunca lleva 'will' detrás."
+        },
+        {
+          "id": "cond-2",
+          "type": "gap-fill",
+          "line": "But ___ I get lonely, I'ma need your help",
+          "answer": "if",
+          "options": ["if", "than", "when", "while"],
+          "explanation": "'If' introduce una condición: 'si me siento sola, necesitaré tu ayuda'."
+        },
+        {
+          "id": "cond-3",
+          "type": "gap-fill",
+          "line": "Wish I ___ be the daddy that neither one of us had",
+          "answer": "could",
+          "options": ["could", "can", "would", "may"],
+          "explanation": "'Wish' + 'could' expresa un deseo sobre algo que no ocurrió y duele: 'ojalá hubiera sido'."
+        },
+        {
+          "id": "cond-4",
+          "type": "gap-fill",
+          "line": "___ I find something in there",
+          "answer": "Will",
+          "options": ["Will", "Would", "Did", "Shall"],
+          "explanation": "'Will' en pregunta = disposición ('¿encontraré?'). 'Would' sería condicional o Cortesía."
+        },
+        {
+          "id": "cond-5",
+          "type": "gap-fill",
+          "line": "___ better slow your roll, baby",
+          "answer": "You'd",
+          "options": ["You'd", "You", "You've", "You are"],
+          "explanation": "'Had better' contraído = 'you'd better' = más te vale. Es una recomendación, no un condicional."
+        }
+      ]
+    },
+    {
+      "id": "prepositions",
+      "title": "Preposiciones de lugar",
+      "level": "A2",
+      "summary": "in, on y at no significan lo mismo que en español: hay que aprenderse el uso, no la traducción.",
+      "songIds": ["ultimaterush", "8mile", "heartzofman", "bluesoul"],
+      "exercises": [
+        {
+          "id": "prep-1",
+          "type": "gap-fill",
+          "line": "Tuesday I saw you ___ a Z, but you still wanna get with me",
+          "answer": "in",
+          "options": ["in", "at", "on", "to"],
+          "explanation": "'In' = dentro de un espacio o un lugar concreto pequeño. Con 'at' sería un punto exacto."
+        },
+        {
+          "id": "prep-2",
+          "type": "gap-fill",
+          "line": "___ the bar tipping, with your money, can you pay the difference?",
+          "answer": "at",
+          "options": ["at", "in", "on", "by"],
+          "explanation": "'At' = en un punto exacto (la barra). 'In the bar' no existe en inglés."
+        },
+        {
+          "id": "prep-3",
+          "type": "gap-fill",
+          "line": "But I keep runnin' ___ somethin' I never wanted so bad",
+          "answer": "from",
+          "options": ["from", "for", "of", "to"],
+          "explanation": "'From' = origen o separación: huir de algo."
+        },
+        {
+          "id": "prep-4",
+          "type": "gap-fill",
+          "line": "___ hood to the 'burbs, every one of you niggas heard of me",
+          "answer": "From",
+          "options": ["From", "To", "At", "In"],
+          "explanation": "Rango o recorrido: 'from... to...' = de... a..."
+        },
+        {
+          "id": "prep-5",
+          "type": "gap-fill",
+          "line": "And I can't seem to find my way ___ this lonely road",
+          "answer": "upon",
+          "options": ["upon", "on", "in", "at"],
+          "explanation": "'Upon' = 'on' con matiz más formal o literario. En la canción: 'no encuentro mi camino en esta carretera'."
+        }
+      ]
+    },
+    {
+      "id": "colloquial",
+      "title": "Inglés coloquial del rap",
+      "level": "A2",
+      "summary": "Las formas que suenan en las canciones no son inglés de libro: son slang, pero hay que reconocerlas.",
+      "songIds": ["8mile", "painkiller"],
+      "exercises": [
+        {
+          "id": "col-1",
+          "type": "gap-fill",
+          "line": "Somethin' ___ right, hit the brake lights",
+          "answer": "ain't",
+          "options": ["ain't", "isn't", "was not", "has"],
+          "explanation": "'Ain't' = is not / am not / are not. En estas letras sustituye a todas las formas negativas."
+        },
+        {
+          "id": "col-2",
+          "type": "gap-fill",
+          "line": "I'm ___ make it anyway",
+          "answer": "gonna",
+          "options": ["gonna", "going to", "gone to", "got to"],
+          "explanation": "'Gonna' = 'going to'. Se usa siempre en presente o futuro, nunca en pasado."
+        },
+        {
+          "id": "col-3",
+          "type": "gap-fill",
+          "line": "Sometimes I ___ jump on stage and just kill mics",
+          "answer": "wanna",
+          "options": ["wanna", "want to", "want", "wants"],
+          "explanation": "'Wanna' = 'want to'. Igual de coloquial que gonna."
+        },
+        {
+          "id": "col-4",
+          "type": "gap-fill",
+          "line": "Man, I ___ stay charged",
+          "answer": "gotta",
+          "options": ["gotta", "got to", "going to", "get to"],
+          "explanation": "'Gotta' = 'got to' / 'have to', una obligación. No confundir con 'got' (tener)."
+        },
+        {
+          "id": "col-5",
+          "type": "gap-fill",
+          "line": "___ chase rap, gotta move ASAP",
+          "answer": "Tryna",
+          "options": ["Tryna", "Trying to", "Try to", "Trina"],
+          "explanation": "'Tryna' = 'trying to'. Se escribe sin la 'g' ni la 'i'."
+        }
+      ]
+    }
+  ]
+}
