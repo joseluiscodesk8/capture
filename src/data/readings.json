@@ -1,75 +1,559 @@
 {
   "readings": [
     {
+      "id": "db-01-bulma-past",
+      "verbs": "/data/db-01-bulma-past.verbs.json",
+      "title": "1 · El viaje con Bulma",
+      "series": "Dragon Ball",
+      "tense": "past",
+      "text": "Goku lived alone high in the mountains with his grandfather. The old man found him as a baby inside a basket and raised him by himself. They knew no house, no town and no school, only the mountains and the forest below them. They slept outside at night under a clear sky, and the old man told him old stories about brave fighters. He also trained the boy beside a cold stream and a small waterfall. Goku grew up strange and very strong. He lifted heavy rocks with one hand, he ran faster than wild animals, and a long tail grew at his back. He was not an ordinary boy, and he was not even human.\n\nOne morning a young woman arrived above the trees on a small green cloud that she built with her own machine. She was Bulma, a girl full of energy who spoke very fast. Her grandfather loved old stories about the Dragon Balls during all his life. Those stories said that seven balls appeared in different parts of the world a long time ago. They also said that the person who gathered all seven woke a dragon, and that the dragon granted one wish to whoever called it. Nobody in the world could refuse that wish. A king saw their power and hid the seven balls in secret, so many families waited for years without any luck. Bulma wanted to finish the collection of her grandfather, so she built a machine that could find them.\n\nGoku climbed onto the cloud with her, and the two of them flew away together. Bulma steered the cloud while Goku looked down at the land below them. They found the first ball inside an empty house in the mountains. The second one waited on a lonely mountain road, near a small temple. The third one lay in the hot sand of the desert, where dry dust blew over their faces. Each stop brought them closer to the old legend, and Bulma kept the machine working until night fell over the hills.\n\nA fat pig with the name Oolong also wanted a wish for himself. He stole the third ball and ran away across the fields. He grew so big that Goku needed both hands to hold him. Goku ran after him, and the pig tried every trick he could think of to get free. He turned into a huge bird, then into a small mouse, and then into many other strange shapes. At last he gave up and joined the group instead of staying alone. A blue cat with the name Puar came with them too, and he talked like a person. A young man with long hair and sharp eyes also walked with the group. His name was Yamcha, and he lived by stealing. He met Bulma once in a forest, and the dust she threw at him made him fall in love with her from that moment.\n\nIn a small village they met a girl who lived in an inn. She hid her true situation very well, and only later did they learn that she was the granddaughter of a famous fighter. Her name was Chi-Chi, and she fought well, although she was still very young.\n\nThe road led them to a castle on a rocky hill. Its owner was a rich man with a round face. His name was Pilaf, and he wanted the same balls for himself. He lied about them to keep the travelers away, and his army stood between the group and the treasure. Soldiers in shiny armor and strange robots marched out to stop Goku. Some of the robots looked like tall soldiers with metal faces, and others rolled along on thick wheels. The fight filled the halls of the castle with noise and smoke.\n\nOne night, while the group slept outdoors, the moon came out and it changed Goku in an unexpected way. He was sick with a fever, and his body grew into a giant ape. He became taller than the trees around the castle, and he broke walls, roofs and doors wherever he walked. Bulma ran away with her machine to save her life, and she left the others behind in the forest.\n\nBulma found the old man near a small river, and she brought him back to the boy. His kind hands turned the ape into a human child again. The old man felt that his time arrived, so he gave Goku one last lesson before he died. He told the boy to keep training his body and his mind for as long as he could. Then he put a round stone high in the air and showed Goku how to catch it before it fell to the ground. The boy looked at that simple trick for a long time, and a new idea came to his mind. From that idea he built his first great attack, the Kamehameha.\n\nThen Goku faced the army of Pilaf inside the castle. He gathered his energy and released the Kamehameha, a huge blast of blue light that crossed the whole hall. The soldiers and the robots fell to the floor and did not get up again. Goku took the ball that Oolong stole and put it back with the others. Pilaf escaped in the confusion and hid with his people, so the group lost him for good.\n\nAfter that the group continued the search along the road. They still needed three more balls, and they did not know where the last three waited for them. The dragon from the old legend did not appear, because the seven balls were not together yet. They slept outdoors, ate simple food and took turns cooking, and Goku trained his legs before he slept. Their journey went on with Goku growing stronger, and the little green cloud carried them above the fields toward the next secret of the world.",
+      "vocabulary": [
+        {
+          "term": "Dragon Balls",
+          "meaning": "esferas del dragón"
+        },
+        {
+          "term": "collection",
+          "meaning": "colección"
+        },
+        {
+          "term": "grant a wish",
+          "meaning": "conceder un deseo"
+        },
+        {
+          "term": "legend",
+          "meaning": "leyenda"
+        },
+        {
+          "term": "wish",
+          "meaning": "deseo"
+        },
+        {
+          "term": "stole",
+          "meaning": "robó"
+        },
+        {
+          "term": "trick",
+          "meaning": "trampa, astucia"
+        },
+        {
+          "term": "fever",
+          "meaning": "fiebre"
+        },
+        {
+          "term": "giant ape",
+          "meaning": "mono gigante"
+        },
+        {
+          "term": "catch a falling stone",
+          "meaning": "atrapar una piedra que cae"
+        },
+        {
+          "term": "Kamehameha",
+          "meaning": "el gran ataque de Goku"
+        },
+        {
+          "term": "escape",
+          "meaning": "escapar"
+        }
+      ]
+    },
+    {
+      "id": "db-02-roshi-past",
+      "verbs": "/data/db-02-roshi-past.verbs.json",
+      "title": "2 · El maestro Roshi",
+      "series": "Dragon Ball",
+      "tense": "past",
+      "text": "The old man died in the mountains during the night, and Goku stayed alone beside the body for a long while. He lost the only person who taught him anything, and the boy understood that he knew nothing about fighting. Every other fighter in the world followed a master, and he followed nobody. So the boy left the mountains for the first time in his life. He needed a teacher, and he needed one very soon.\n\nGoku jumped into the sea from the top of a cliff. A huge creature with fins and sharp teeth lived in the water down below. It came at him with an open mouth, and he fought it with his fists until it sank into the deep. Then he kept swimming until the small island of the old man appeared. Roshi sat alone on the sand with a turtle on his back. The animal walked slowly on two legs and it carried a heavy stick. Roshi looked at the boy and laughed at the tail behind his back. The hermit decided to test him. He shouted with a very loud voice, and the ground shook around the boy. Goku told the hermit that his own master died, and that he needed to learn from somebody. Roshi looked at him for a long while and then took him in. In that moment the boy became his student.\n\nEvery morning Roshi woke him up before sunrise. The boy carried water up the hill on his back until his legs shook. He hit wooden dummies on the slopes of the island, and he broke them with one hand. Harder than all of it came the red stick and the small green cloud. Roshi gave him a stick so long that it grew taller than a man. The old man also explained how to carry the power of a cloud, and how to fly with one over the island. Goku learned both of them in a few weeks. He kept his own great attack from the mountains, and nobody in the village asked where that secret came from.\n\nThen Roshi made a strange decision. He entered the tournament himself, but he hid his face behind a false identity. The world knew that fighter as Jackie Chun, a long-faced man with hair down to his shoulders, and nobody connected him with the old hermit who carried a turtle on his back.\n\nOn the road the three travellers stopped in a small city in the desert. Two other students of Roshi waited there for the tournament. The first of them was a fighter with three eyes, two of them low on his forehead, and the white of the third one went up and down with his mood. That fighter called himself Tenshinhan. The second one was a small boy with a white face and two dots of red on his cheeks, and he kept quiet almost all the time. He was Chiaotzu, the youngest of the three. The two of them respected nobody on the road, and the men laughed at the turtle and at the stick of their own teacher. Even so, their teacher stayed quiet.\n\nIn that city Goku fought Tenshinhan in the middle of the street, with a big crowd around the ring. The man with three eyes made a blinding light that burned the eyes of his enemy, and for a moment he saw nothing at all. Goku got up with blood on his face and sent him flying through a wall. The judges saw who won each round, and they gave the fight to the boy. The old man watched from the ring without a word.\n\nThat night Roshi took the three boys to a hotel and left them alone in a room with two beds. He went out and walked down the hall. The army of the Red Ribbon saw the fight, and its men waited inside the hotel. They filled a bag with sleeping gas and threw it into a plate of rice. After that they opened a case with the money of the tournament and prepared to run away with it. The three boys woke up in the middle of the night. The old training came back to them in a single hour. Nobody slept again that night, and the soldiers ran away without one coin.\n\nThe final fight of the tournament began, and Goku faced Jackie Chun alone in front of the crowd. Nobody in the stadium knew what waited behind that face. The best technique of the hermit hit the boy again and again, and the fight went badly for him. The judges counted the rounds, and Goku knew that he was losing. In the last seconds he picked up a broken piece of the ring and threw it high in the air. Jackie Chun jumped to catch it, and for one moment his feet left the ring. That moment decided the fight. The judges gave the victory to Goku, because the champion stepped out of the ring, and nobody argued with the rules of the arena.\n\nThe next morning the hermit took off the long hair, and everybody understood it. Jackie Chun was Roshi, the strongest fighter of the country, an old man in a costume with a false head of hair on top. He fought in the ring to make his student stronger and better, and the money of the bet went to Goku. Nobody laughed at the old turtle that morning. Even the fighters who laughed at him a few days before bowed in front of him, and the world kept that secret for years.\n\nYears later Goku married Chi-Chi, the girl who waited for him on the mountain, and he asked Roshi to go on teaching him. The old man agreed and sailed back to his island, and Bulma went with him. Krillin went with them too, a short bald boy with a plain face and a very good heart. He became the second student of Roshi, and the four of them kept the island and the long practice on the beach for many years.",
+      "vocabulary": [
+        {
+          "term": "a turtle on his back",
+          "meaning": "una tortuga a la espalda"
+        },
+        {
+          "term": "hermit",
+          "meaning": "ermitaño"
+        },
+        {
+          "term": "follow a master",
+          "meaning": "seguir a un maestro"
+        },
+        {
+          "term": "test",
+          "meaning": "poner a prueba"
+        },
+        {
+          "term": "a wooden dummy",
+          "meaning": "un muñeco de madera"
+        },
+        {
+          "term": "the red stick",
+          "meaning": "el bastón rojo"
+        },
+        {
+          "term": "a false identity",
+          "meaning": "una identidad falsa"
+        },
+        {
+          "term": "bet on a fighter",
+          "meaning": "apostar por un luchador"
+        },
+        {
+          "term": "a blinding light",
+          "meaning": "una luz cegadora"
+        },
+        {
+          "term": "sleeping gas",
+          "meaning": "gas de dormir"
+        },
+        {
+          "term": "disqualified",
+          "meaning": "descalificado"
+        },
+        {
+          "term": "bald",
+          "meaning": "calvo"
+        }
+      ]
+    },
+    {
+      "id": "db-03-red-ribbon-past",
+      "verbs": "/data/db-03-red-ribbon-past.verbs.json",
+      "title": "3 · El ejército de la Red Ribbon",
+      "series": "Dragon Ball",
+      "tense": "past",
+      "text": "The Red Ribbon army was the biggest criminal group in the world, and its leader wanted the Dragon Balls for a wish of his own. He sent soldiers to every corner of the land, and the soldiers looked for Goku everywhere. They lost sleep in their camps for many weeks, because the boy destroyed the castle of Pilaf. Goku was still young, but he already beat armoured cars and tanks in the desert, so the army feared him more than anybody else. The army also put a price on his head, and many fighters looked for the boy because of the money.\n\nGoku came back to his house in the mountains with his wife Chi-Chi. People from a small village walked down the path one morning and stood in front of the door. They came to ask for help, because a band of giant gorillas took the crops and a bull with great value. Nobody in the village was strong enough to fight them, so the whole village watched the road and hoped that somebody strong went by. An old woman told Goku that the animals lived in a valley above a lake, and she showed him the road that went up the mountain.\n\nGoku went up to the valley alone and fought the gorillas. He beat them in a short time, and the loud noise shook the trees around the grass. Then he surprised everybody, because he stopped the fight so early. He gave them food and water instead of blows, and he sat down with them on the ground until they calmed down. The gorillas became his friends, and a strange army followed him after that. Krillin laughed when he saw them, and Yamcha refused to believe such a strange story at first.\n\nThe army answered with metal instead of flesh. A tall soldier appeared with no skin and no hair, and half of his body was a machine. He was stronger and faster than any human being. Goku fought him for a long time and came close to death, because the fists of the machine were like hammers of steel. The grass around them turned to mud and water, and small stones floated in the air. Goku won at last, and the ground around the two of them stayed ruined forever.\n\nThe army dug a long tunnel under the island where the tournament happened. Weeks later, they sent a monster through that tunnel, and the creature came out at night close to the shore. Bulma and Chi-Chi met the monster under the island, far away from every light, and they saw nothing at all. Goku arrived soon after that and fought the monster for a long time. Bulma was taken away while he tried to help her.\n\nTwo officers of the army tried a different trick. They invited Goku to a house high in the mountains and cooked a hot meal for him. Somebody mixed poison into the food, and the plate under the meal was a bomb with a timer inside. The smell of the hot food made Goku stop and think, because something about it looked wrong. Goku smelled the poison before he touched anything. The whole house came down around them in a cloud of dust, and the two officers escaped through a door at the back.\n\nThe army took Bulma to their base with a trick of its own. One of the officers was a shapeshifter with the name Blue, and he took the face and the body of a young woman. He dressed like her, he spoke with a friendly voice, and he walked all the way to the house of the girl. Nobody there knew who he really was. He entered the house alone with her, and he told her that her friend wanted to meet her outside the walls.\n\nGoku came to the base alone, because none of his friends knew where it was. Deep inside the mountain, the army kept a treasure room with two Dragon Balls in it, and they offered both spheres in exchange for Bulma. Goku gave them the balls he carried for her, because he wanted to see her again as soon as possible. Then soldiers took the spheres from the table and carried Bulma even deeper into the mountain.\n\nGoku destroyed the base. The walls fell, the rooms broke apart, and the soldiers ran away into the trees. The two spheres came out of the debris and rolled over the stone floor. The Red Ribbon army stopped existing as a real army that day, and its leaders escaped and hid far away in other lands. Nobody followed them for long, and nobody heard from the army again. Bulma and the two spheres came out of the mountain together, and Goku laughed with a happy noise.\n\nNear the ruins, a boy with the nickname Upa waited with his grandfather. The old man told them the whole truth about the army and about the spheres. The group already carried four spheres in their bag, and the army kept the next two locked in the base. Only the seventh sphere remained in the whole world, and it belonged to a witch who lived alone on a high mountain far to the north. Years before, the father of the boy climbed that mountain, drank from a cold spring there, and came back down as a monster. He lived alone in a cave after that and stayed far away from every village.\n\nThe friends stood together on the road and looked at the six spheres in their hands. Six spheres gave them nothing at all, because the dragon only woke up when all seven of them met together. The old man explained that reaching the mountain of the witch came before anything else, and that the last sphere waited somewhere far above them. Old Roshi walked behind the group and said that the witch frightened farmers in those mountains for many years. So the whole group began the long climb the next morning, and nobody in the valley knew what waited at the top.",
+      "vocabulary": [
+        {
+          "term": "Red Ribbon army",
+          "meaning": "ejército de la Red Ribbon"
+        },
+        {
+          "term": "Dragon Balls",
+          "meaning": "esferas del Dragón"
+        },
+        {
+          "term": "giant gorillas",
+          "meaning": "gorilas gigantes"
+        },
+        {
+          "term": "tournament",
+          "meaning": "torneo"
+        },
+        {
+          "term": "metal soldier",
+          "meaning": "soldado de metal"
+        },
+        {
+          "term": "tunnel",
+          "meaning": "túnel"
+        },
+        {
+          "term": "shapeshifter",
+          "meaning": "cambiaformas"
+        },
+        {
+          "term": "treasure room",
+          "meaning": "sala del tesoro"
+        },
+        {
+          "term": "poison",
+          "meaning": "veneno"
+        },
+        {
+          "term": "spring",
+          "meaning": "manantial"
+        },
+        {
+          "term": "witch",
+          "meaning": "bruja"
+        },
+        {
+          "term": "to come close to death",
+          "meaning": "estar a punto de morir"
+        }
+      ]
+    },
+    {
+      "id": "db-04-baba-past",
+      "verbs": "/data/db-04-baba-past.verbs.json",
+      "title": "4 · La adivina Baba",
+      "series": "Dragon Ball",
+      "tense": "past",
+      "text": "The seventh sphere belonged to Karin, an old witch who lived alone in a small house high on a frozen mountain. She was a shape shifter, and no fighter in that land managed to beat her with strength. Her body and her face took on any shape she wanted, and she took payment for every task. Karin lived far from any town, and every fighter who came to her house went home without his prize. Roshi told everyone that a punch was too weak against her, and that they needed a head instead of a fist.\n\nWhile Goku stayed with the witch, the others searched for a different way to win. Bulma read old books, and Roshi remembered the stories of a famous wizard in a tall tower in the middle of that land. That wizard was Baba, and he lived alone in a tall tower near a busy town. People traveled for many days to stand in front of him, and they paid him a lot of money. Baba held a crystal ball, and with that ball he brought dead people back to life. He also controlled the mind of anyone who sat down in front of him, and few left that tower with a free mind. Some people said that he knew every secret of the world, and others said that he knew the future of each fighter.\n\nGoku climbed to the top of the mountain and stood in front of the witch. She looked at him for a long time, and then she gave him three hard tasks. In the first one he fought a giant lizard inside a cave without any light, and the animal smashed the walls with its tail. In the second one he trained in front of a stone statue for many days, and he ate almost nothing. In the third one he carried a huge egg down a steep path, and the shell stayed whole. The egg finally opened at the last step, and a tiny dinosaur came out and followed him everywhere he walked.\n\nThen the witch gave him a cup of water and told him to drink it. That water came from the Fountain of Heaven, high above the clouds. It took away a strange power that lived inside his body. Goku felt that something inside him slipped away, and he walked more slowly than before. After he drank it, his muscles felt weak and soft. Everyone expected that, since the old books described the same thing.\n\nWhile Goku was busy, Roshi took a secret potion to a mountain far away from the village. The witch only gave the seventh sphere to someone who brought the potion back, and she gave him very little time. Roshi rode through the night and got back just before the last moment. Meanwhile Goku received a sleep spell, and the others carried him to the edge of the world while he slept. A thief found him on the road and carried him to a rare flower that grew on a high cliff. Goku woke up alone, picked the flower, and got back before the time ran out. So the group won against the witch with a head and not with fists, and they took the seventh sphere from her house. Bulma and the others waited near that tower, and they hoped that all of them came back in time before the night ended.\n\nWhile Goku and the others were away, a group of very strong fighters arrived at the same tower. One of those fighters was a very old man with the body of a young man, and nobody understood that trick. The arena of that tower was full from top to bottom, and the crowd waited for hours. Baba welcomed all of them, and he looked at each group before the fights began.\n\nThe last fight began when Goku faced Tenshinhan, the fighter with three eyes from a village in the mountains. Tenshinhan left his village as a small boy, and he trained alone on a mountain for many years. The fight went on for a long time, and both men took heavy blows again and again. Goku left the ring on purpose, jumped high into the air, and came back from above. The judges looked at the ring for a long moment and then gave him the prize. Some of the people in the arena shouted so hard that they lost their voices.\n\nThe old wizard handed the seventh sphere to the group and asked for no more money. Bulma put all seven spheres on the ground in a row, and a long line of light climbed into the sky. The ground trembled, and a huge red dragon appeared above the hills with big white eyes. Everyone threw themselves to the ground and covered their faces with both hands. The dragon spoke in a voice that moved the trees on the hill.\n\nUpa walked to the dragon and asked for his dead father to come back to life. The dragon listened, and the wish came true. The man opened his eyes, and the whole village ran to him and shouted with joy. Nobody slept that night, and the music and the food went on until morning. Upa held the hand of his father, and the two of them stood there together. The father walked slowly among the houses, and many people hugged him.\n\nBefore the dragon flew away, it told the group that the seven spheres were about to go far apart again. It also told them that a long year waited ahead before anyone picked them up again. Then it disappeared into the sky, and the celebration went on until dawn. Roshi looked at the sky with a quiet face, and Bulma held the seven balls close to her chest.",
+      "vocabulary": [
+        {
+          "term": "shape shifter",
+          "meaning": "cambiaformas"
+        },
+        {
+          "term": "sphere",
+          "meaning": "esfera"
+        },
+        {
+          "term": "crystal ball",
+          "meaning": "bola de cristal"
+        },
+        {
+          "term": "potion",
+          "meaning": "poción"
+        },
+        {
+          "term": "sleep spell",
+          "meaning": "hechizo de sueño"
+        },
+        {
+          "term": "lizard",
+          "meaning": "lagarto"
+        },
+        {
+          "term": "the edge of the world",
+          "meaning": "el borde del mundo"
+        },
+        {
+          "term": "fountain",
+          "meaning": "fuente"
+        },
+        {
+          "term": "arena",
+          "meaning": "arena"
+        },
+        {
+          "term": "ring",
+          "meaning": "ring"
+        },
+        {
+          "term": "judges",
+          "meaning": "jueces"
+        }
+      ]
+    },
+    {
+      "id": "db-05-tenshinhan-past",
+      "verbs": "/data/db-05-tenshinhan-past.verbs.json",
+      "title": "5 · Tenshinhan",
+      "series": "Dragon Ball",
+      "tense": "past",
+      "text": "Tao Pai Pai arrived in the country with a small group of his best pupils. He believed in a hard way of fighting, and he treated mercy as a weakness. The people of those lands did not want to challenge him, and nobody spoke against his rules. Two of those pupils stepped into the ring long before Goku. One of them grew to a giant size and threw heavy rocks at everything around him. The other hid inside the clothes of Goku and grew on the outside, tearing the skin off his back with every movement. The crowd watched in shock, and the young fighter could not stop him.\n\nThe judges entered the ring and stopped everything, because the fight turned too dangerous for the young men inside it. Their decision gave the victory to Tao Pai Pai and his cruel pupils. Goku packed his things and walked out of the country with a heavy heart. His friends waited for him in a quiet house, and none of them knew what to say. He did not want to hurt anyone, and that strange way of fighting meant nothing to him.\n\nA new figure arrived in that country a few months later. He was very old, more than one hundred years, and his skin was green. He was thin and extremely tall, and he wore a long white cape and a turban over his head. His tongue was cut in two, and his neck was longer than that of any man. People in the mountains knew who he was. He was Piccolo Daimao, the Demon King, who came from the same blood as the old witch of the mountain.\n\nHe walked into the arena of the tournament and killed a young fighter, Krillin, right in front of Goku. He did it with one finger, and then he laughed at the crowd. The old man did not even look at the body on the ground. After that, he took the seven Dragon Balls away and carried them to his castle in the high mountains.\n\nGoku went back to the mountain of the witch and asked for her power a second time. The old woman laughed at him and told him that the water of the valley never worked twice with the same man. Her magic touched him once already, and that gift was gone for good. She changed her face since the last visit, and she frowned at him with the eyes of a young girl.\n\nSo Goku stayed alone on that mountain for a whole year. Roshi, Krillin, Yamcha and the others watched him from the valley below, and none of them went up to help him. He ran down the slope and up it again, again and again, until his legs burned with pain. He ran beside a wide river and pushed through a forest where the ground was full of sharp stones. He ate almost nothing and slept very little. His muscles hurt, but he did not stop and he did not leave the mountain. He found an old stone wall near the trees and hit it with both hands, again and again, until the wall broke into pieces. Then he felt something new inside his body. His muscles grew stronger each time his body reached the edge of its limits, and after those long months he was far stronger than before.\n\nOne night a tall stranger appeared on the mountain. Nobody knew where he came from, but he defeated many young fighters before, and he looked exactly like Goku. He pretended to be him in front of the others, and he wore the same kind of clothes. He tricked Roshi and his friends with bags of dirty bombs, and the smell of those bombs was so bad that nobody could breathe. The stranger laughed at them and walked away before morning.\n\nBack in the arena, Chi-Chi stood near the seats and followed each fight with her eyes, and her hands gripped the rail very hard. When her husband entered the ring, she shouted to him about the strength he carried inside, and about the power that grew when he stopped hiding it. She told him the truth that day, and he listened. Her words pushed him forward, and he walked into the ring with new fire in his eyes.\n\nIn the last fight, Goku faced Piccolo Daimao, and the old demon used all the techniques that Goku himself invented. He copied each move before Goku finished it, and he enjoyed the shock that ran through the arena. Goku felt weaker as the seconds went by, and the old king laughed with joy. Then something new woke up inside him. It was a power that never appeared in any fighter before, and it grew from his own body and his own heart. He used it and won the fight.\n\nAfter the fight, Piccolo Daimao lay on the ground and was dying. His body turned into a liquid, and he coughed up an enormous egg. Then he begged the dragon of Namek to give him back one more year of his life, and he died there on the ground.\n\nAn old Namekian man appeared before Goku. He lived on another planet, and he looked at the Earth through a clear crystal ball. He gave Goku seven new Dragon Balls, small and green, and he told him about a great danger. He said that an army of Saiyajin was coming, and that the day of their arrival was one year away. He said they would be stronger than anyone on Earth.\n\nThe egg finally opened, and a small green boy came out of it. There was only one eye on his face, his neck was very long, and a tail moved behind him. He said that he was Piccolo, and that the old king was his father. He looked at the ground, he bowed to the group, and he left them alone and went away. He wanted to finish the job that his father began, and that job was far from finished. Some of the others did not trust the boy at all, but they let him stay.",
+      "vocabulary": [
+        {
+          "term": "tournament",
+          "meaning": "torneo"
+        },
+        {
+          "term": "arena",
+          "meaning": "arena de combate"
+        },
+        {
+          "term": "pupils",
+          "meaning": "alumnos, discípulos"
+        },
+        {
+          "term": "giant",
+          "meaning": "gigante"
+        },
+        {
+          "term": "cape",
+          "meaning": "capa"
+        },
+        {
+          "term": "turban",
+          "meaning": "turbante"
+        },
+        {
+          "term": "demon king",
+          "meaning": "rey demonio"
+        },
+        {
+          "term": "Dragon Balls",
+          "meaning": "esferas del dragón"
+        },
+        {
+          "term": "slope",
+          "meaning": "ladera, pendiente"
+        },
+        {
+          "term": "muscles",
+          "meaning": "músculos"
+        },
+        {
+          "term": "bombs",
+          "meaning": "bombas"
+        }
+      ]
+    },
+    {
+      "id": "db-06-piccolo-past",
+      "verbs": "/data/db-06-piccolo-past.verbs.json",
+      "title": "6 · Piccolo Daimao",
+      "series": "Dragon Ball",
+      "tense": "past",
+      "text": "The young Piccolo carried out the last scheme of his father. He left the hidden temple of the demon lord and sent three small monsters into the world, and people in many lands learned to recognize them as the Saibaiman. Each one was a tiny brown copy of a bigger creature, with a thin body and a cold look in its eyes. Each one could multiply every time somebody cut it with a blade, so a single strike only made the danger bigger. The boy directed those creatures toward the cities where the strongest fighters lived.\n\nYamcha and Krillin met two of those monsters in a city and fought them with all their strength. Yamcha stepped into a swamp by accident, and the creature dragged him under the mud. He died there, far from his friends, with no one close to help him. Goku arrived too late to save Yamcha, but he defeated every creature he found in the city. Then the boy Piccolo appeared suddenly. He caught Krillin by the neck and took him high into the air, away from the crowd and the noise of the city. He threw him from a great height, and Krillin died on the ground below. A heavy silence covered the city after that. The death of Krillin hurt Goku more than any blow of the tournament.\n\nAfter those fights, Goku and the boy Piccolo trained together on a cliff beside the sea. Gohan, the little son of Goku, sat on the shore below them and observed their movements from far away. He was only four years old, and his eyes followed the two fighters across the sky. Goku studied that small creature with total attention, because the small one copied the power of the demon lord exactly. The boy Piccolo practiced the techniques of his father, and Goku responded with the style of the old master Roshi. The sea crashed against the rocks, and the two warriors moved over the water like birds. The two rivals understood each other better with each new session on that cliff.\n\nThe tournament moved to a big city, and twenty-three fighters appeared there from many distant lands. The young Piccolo joined the tournament with a false identity, and he won every single match without difficulty. Goku reached the final against him, and a huge crowd filled the stadium. In the middle of that fight, one fighter blew up his own body. That explosion came from a power of the boy Piccolo, a strike that could make a target explode in the air. The boy invented a new technique in that instant and stopped the blast with a quick movement. He saved the whole stadium and every single person inside it, and the people of the city cheered for him.\n\nLater, Goku faced Tenshinhan, the fighter with three eyes, in the longest match of the whole series. Tenshinhan came from a cruel school of martial arts, and he gave everything inside him. He took his own body and made a bomb of it, and the explosion burned a part of Goku. The fire caught the arm of the young warrior, but Goku kept his calm. He cut off the burned piece of his own body and stayed alive. Then he won the match with a new technique, the Dragon Fist, a hidden strike that he kept a secret until that very day. The crowd saw the strike for the first time, and Tenshinhan fell to the floor of the arena.\n\nThe boy Piccolo then flew to the moon, far above the earth, because he knew that Oolong, the pig, became a giant monkey under the light of the full moon. That transformation meant a great danger for the whole world, so the moon needed to disappear from the sky. The boy began his task of destruction, but Goku chased him into the silent night and stopped the technique before the moon broke. Then the two fighters met in the air above the sea. The sea stretched below their feet as far as the horizon. They struck with great speed. The sea trembled with their blows, and neither warrior gave ground.\n\nIn the middle of that battle, the ancient elder appeared, the same elder who gave the new Dragon Balls in the previous chapter. He watched the two fighters from a high place and did not move. When the fight ended, Goku stood in the ring and hurt in every muscle, and the old man threw him a special seed. That seed returned his strength in a single moment. Then the old man spoke the honest truth about the boy: behind all the hate, he was a good man deep inside.\n\nThe boy Piccolo did not die. He dropped to the ground in the final round, and Goku won the cup. The boy lay still for a long moment, and then he sat up and looked at the crowd with his one eye. Goku understood the words of the old man, and the silent elder watched the two fighters with wise eyes.\n\nA full peaceful year followed those battles. The Saiyajin, proud warriors from another world, stayed far away in that whole time, and the earth knew no war. The prize of the tournament was the Dragon Balls, and the group made a wish for the lives of Yamcha and Krillin. The great dragon of the sky granted that wish, and the two warriors walked the earth of their home once more. Then the Dragon Balls scattered across the whole world again, and nobody least expected what came over the sky in the following spring.",
+      "vocabulary": [
+        {
+          "term": "Saibaiman",
+          "meaning": "semillas del mal, monstruos soldado"
+        },
+        {
+          "term": "scheme",
+          "meaning": "plan, maquinación"
+        },
+        {
+          "term": "swamp",
+          "meaning": "pantano"
+        },
+        {
+          "term": "cliff",
+          "meaning": "acantilado"
+        },
+        {
+          "term": "full moon",
+          "meaning": "luna llena"
+        },
+        {
+          "term": "blast",
+          "meaning": "explosión, onda expansiva"
+        },
+        {
+          "term": "hidden strike",
+          "meaning": "golpe oculto"
+        },
+        {
+          "term": "seed",
+          "meaning": "semilla"
+        },
+        {
+          "term": "student",
+          "meaning": "discípulo, alumno"
+        },
+        {
+          "term": "wish",
+          "meaning": "deseo"
+        },
+        {
+          "term": "Dragon Balls",
+          "meaning": "esferas del dragón"
+        },
+        {
+          "term": "Saiyajin",
+          "meaning": "los sayajin, guerreros del espacio"
+        }
+      ]
+    },
+    {
+      "id": "db-07-piccolo-junior-past",
+      "verbs": "/data/db-07-piccolo-junior-past.verbs.json",
+      "title": "7 · El joven Piccolo",
+      "series": "Dragon Ball",
+      "tense": "past",
+      "text": "Early that year, Piccolo took the small son of Goku to a lonely mountain far away from every town. The boy Gohan was only four years old, and the training was cruel and cold from the very first morning. Piccolo told him to be afraid of him and to save every bit of his strength. He pushed the child through hard lessons one after another, and he said nothing kind about any of them. Gohan was afraid of the tall green creature for many long months. Little by little his body grew stronger, and he began to respect the monster that frightened him so much. The two of them became friends, although neither of them said it out loud.\n\nThen three tall warriors came down to the land. They wore bright blue clothes and each of them carried a long furry tail. Their faces were hard, and their eyes looked down on everybody they saw. They were Saiyajin, the same kind of fighters that an old man with a white beard spoke about long before. The three of them burned a whole village of farmers near the mountains. Only black ashes and old walls stayed there after the fire. Before they left the area, they left a message in the air for Goku to read. The message was simple, because Goku needed to come out and face them at once.\n\nGoku waited no more than a few hours. He met the tallest one, Raditz, in a wide field far from the mountains. Raditz fought with the same style as Goku, and in the first minutes he looked stronger. Their fight lasted a long time, and the soil of the field was torn open under their feet. Raditz gathered a huge ball of light above his head, but Goku was faster than him. When the fight reached its hardest moment, Goku lifted both arms above his body. Everyone on the world felt weak for a moment, because that power came from all living things at once. Goku threw the ball of light forward, and it struck Raditz in the chest. The Saiyajin flew far away and landed on the grass. People of that world knew that technique as the Spirit Bomb.\n\nRaditz died a few minutes later, but before he went his blood touched the skin of Goku. That blood carried a poison into the body of the winner. The two other Saiyajin arrived soon after and carried the hurt Goku away into the sky. He lay in a deep forest far from his friends, and the poison finished its effect. Goku died there, and his soul left the world of the living behind him. He arrived in a strange world above the clouds, where the air smelled of nothing at all. An old king with the title Kaio waited for him there. The old king accepted Goku as a student and trained him hard for a whole year. The training gave Goku many techniques that stayed completely unknown to him, and the old king became a second father for him.\n\nWhile Goku was away, Gohan grew taller on the mountain with Piccolo. The training went better than anyone expected, and the boy became very strong for his age. Piccolo stayed hard and cold, but he pushed the child harder with every season. Then one evening he told Gohan the most painful truth of his life. If the bad Piccolo lost a fight, Gohan needed to defeat him one day. The green man admitted that kindness played no part in him. A demon formed inside the heart of anyone who stayed weak. Gohan listened with wide eyes and understood only part of it, but he trained harder after that talk.\n\nGoku came back to the world of the living one year later, and he was stronger than before. The final fight began on a wide plain under an empty sky. Nappa ran toward Goku, and Vegeta walked toward Piccolo, and both battles moved across the ground like two storms. The earth split in the middle, and a huge crater opened below the fighters. Goku defeated Nappa after a long struggle, but he lost an arm in the middle of that fight. Bulma stood close to the danger with an old man who knew strange arts. She carried a small green bean in her pocket, and the old man opened it near the wounded arm. The arm of Goku grew back in a few seconds.\n\nPiccolo lost against Vegeta, and the fight was short. Vegeta hit him again and again, and Piccolo went down for good. Vegeta prepared to finish him there in the open, so Piccolo tried one last trick. Piccolo covered his body with a wall of small green balls, and the balls spun around him at high speed. Vegeta destroyed every one of those balls in a few seconds. The last blow reached Piccolo, and he died there in the dust.\n\nThen the two Saiyajin took Gohan, who barely breathed after the fight. They lifted the small boy high above their heads and laughed at how small he was. The hair of the boy became gold and stood straight up in the air. His eyes became green, and something wild and strange came out of him. He killed Nappa with a single blow before any of them took another step.\n\nVegeta gathered an enormous ball of energy above his head and threw it at the boy. Gohan got up and sent the same ball back with his own hands. The two balls met in the air, and a white light covered the whole plain. Gohan landed on the ground and made no sign of life at all. Vegeta took the boy back to his own house and put him in a bed.\n\nGoku still carried no strength at all, and the little group in that house seemed finished for good. But the seven Dragon Balls were already waiting for that evening. The Earth Dragon came down from the sky and brought Piccolo back to the world of the living. Piccolo left the others behind and went to live with Gohan, as he promised long before. Goku, Krillin, Bulma and their good friends stayed in that house, and Vegeta escaped in his ship toward another world.",
+      "vocabulary": [
+        {
+          "term": "lonely mountain",
+          "meaning": "montaña solitaria"
+        },
+        {
+          "term": "strength",
+          "meaning": "fuerza"
+        },
+        {
+          "term": "Saiyajin",
+          "meaning": "los sayajin, guerreros del espacio"
+        },
+        {
+          "term": "village",
+          "meaning": "aldea de granjeros"
+        },
+        {
+          "term": "Spirit Bomb",
+          "meaning": "Bola de Espíritu"
+        },
+        {
+          "term": "poison",
+          "meaning": "veneno"
+        },
+        {
+          "term": "crater",
+          "meaning": "cráter enorme"
+        },
+        {
+          "term": "bean",
+          "meaning": "frijol mágico, semilla de la vida"
+        },
+        {
+          "term": "trick",
+          "meaning": "truco"
+        },
+        {
+          "term": "plain",
+          "meaning": "llanura, campo abierto"
+        },
+        {
+          "term": "student",
+          "meaning": "alumno, discípulo"
+        }
+      ]
+    },
+    {
       "id": "dbz-super-saiyan-past",
+      "verbs": "/data/dbz-super-saiyan-past.verbs.json",
       "title": "La transformación Super Saiyan",
       "series": "Dragon Ball Z",
       "tense": "past",
-      "level": "A2",
       "audio": "/audio/dbz-super-saiyan-past.mp3",
       "timings": "/data/dbz-super-saiyan-past.timings.json",
       "text": "Goku flew through the sky above a dying planet. Far below, Frieza's soldiers were destroying everything: the towns, the forests, the people. Krillin was left alone against Frieza.\n\nGoku wanted to arrive sooner. He could not. His body was too weak. Before he left, a wise old man gave him a special medicine that healed his heart only once. The disease was still inside him, and it made his heart beat faster and faster.\n\nThen he saw it. A young man with a shaved head stood between Frieza and a woman with no arms. Goku knew that boy. They trained together. They became friends.\n\nThe boy tried to fight. He fought well, but Frieza was much stronger. Frieza lifted him up, held him in the air, and dropped him. The boy was silent. His eyes stayed open. The ground shook with the impact.\n\nGoku screamed. All the pain he carried broke out of him. He felt a power he never knew before rising from deep inside his chest. His hair turned gold and stood up. His eyes turned green. The ground cracked under his feet.\n\nEveryone on the planet felt the same power. Vegeta opened his eyes. Gohan felt it far away on Earth. Frieza smiled and called his son's name.\n\nGoku returned to the planet. Nobody saw him move. He fought Frieza too fast for anyone to follow. He won. Then he took his friend's body in his arms and flew home.",
       "vocabulary": [
-        { "term": "Saiyan", "meaning": "raza de guerreros de un planeta destruido" },
-        { "term": "tail", "meaning": "cola" },
-        { "term": "Frieza", "meaning": "enemigo que destruye el planeta" },
-        { "term": "Krillin", "meaning": "amigo cercano de Goku" },
-        { "term": "medicine", "meaning": "medicamento" },
-        { "term": "to heal", "meaning": "curar" },
-        { "term": "the ground cracked", "meaning": "el suelo se agrietó" }
+        {
+          "term": "Saiyan",
+          "meaning": "raza de guerreros de un planeta destruido"
+        },
+        {
+          "term": "tail",
+          "meaning": "cola"
+        },
+        {
+          "term": "Frieza",
+          "meaning": "enemigo que destruye el planeta"
+        },
+        {
+          "term": "Krillin",
+          "meaning": "amigo cercano de Goku"
+        },
+        {
+          "term": "medicine",
+          "meaning": "medicamento"
+        },
+        {
+          "term": "to heal",
+          "meaning": "curar"
+        },
+        {
+          "term": "the ground cracked",
+          "meaning": "el suelo se agrietó"
+        }
       ]
     },
     {
       "id": "dbz-super-saiyan-present",
+      "verbs": "/data/dbz-super-saiyan-present.verbs.json",
       "title": "La transformación Super Saiyan",
       "series": "Dragon Ball Z",
       "tense": "present",
-      "level": "A2",
       "text": "Goku is a Saiyan warrior who protects the Earth. He fights every time a strong enemy appears, and he never runs away. He is a kind man who does not know when to stop.\n\nGoku's body is stronger than it looks. He heals faster than any human, and no disease lasts long in him. When he is in danger, his heart works faster and his power grows.\n\nKrillin is his best friend. They train together, they eat together, and they always protect each other. Vegeta is Goku's rival. He says he hates Goku, but he fights beside him when Earth needs help.\n\nFrieza is the enemy in this story. He destroys towns and kills people without mercy. Nobody on the planet is strong enough to stop him. Goku is far away, and his heart is not strong enough to arrive in time.\n\nThen Goku sees it. A young boy with a shaved head stands alone in front of Frieza. The boy is his friend. The boy fights well, but he is not strong enough. Frieza drops him, and the boy never moves again.\n\nSomething changes in Goku. Something deep inside him breaks. A power he does not know yet rises from his chest. His hair turns gold. His eyes turn green. The ground cracks under his feet.\n\nEvery warrior on the planet feels the same power. Goku returns. He fights faster than anyone can see, and he wins. Then he holds his friend in his arms and flies home. Every time he loses someone he loves, he comes back stronger.",
       "vocabulary": [
-        { "term": "Saiyan", "meaning": "raza de guerreros de un planeta destruido" },
-        { "term": "tail", "meaning": "cola" },
-        { "term": "Frieza", "meaning": "enemigo que destruye el planeta" },
-        { "term": "Krillin", "meaning": "amigo cercano de Goku" },
-        { "term": "to heal", "meaning": "curar" },
-        { "term": "rival", "meaning": "rival, competidor" },
-        { "term": "without mercy", "meaning": "sin piedad" }
+        {
+          "term": "Saiyan",
+          "meaning": "raza de guerreros de un planeta destruido"
+        },
+        {
+          "term": "tail",
+          "meaning": "cola"
+        },
+        {
+          "term": "Frieza",
+          "meaning": "enemigo que destruye el planeta"
+        },
+        {
+          "term": "Krillin",
+          "meaning": "amigo cercano de Goku"
+        },
+        {
+          "term": "to heal",
+          "meaning": "curar"
+        },
+        {
+          "term": "rival",
+          "meaning": "rival, competidor"
+        },
+        {
+          "term": "without mercy",
+          "meaning": "sin piedad"
+        }
       ]
     },
     {
       "id": "samurai-x-oath-past",
+      "verbs": "/data/samurai-x-oath-past.verbs.json",
       "title": "El juramento de no matar",
       "series": "Samurai X (Rurouni Kenshin)",
       "tense": "past",
-      "level": "B1",
       "text": "In 1868, in the last years of Edo, a young swordsman lived in Tokyo. His name was Himura Kenshin. People called him Hitokiri Battosai, the Manslayer of the Dragon Gate. He was famous because he never lost a fight, and because he was very, very fast.\n\nBut his fame was built on a lie. The Shinsengumi, the new masters of the city, planned everything from the beginning. They chose Kenshin for one reason. He was strong enough to kill a man like Ito Hayato, the strongest swordsman in the country. Hayato was also Kenshin's own master.\n\nOne evening, the Shinsengumi arranged a duel between them. Kenshin fought well, and he won. Hayato died on the ground. Then the Shinsengumi told Kenshin the truth. They arranged the duel for him, and they took his master away from his world.\n\nKenshin was full of rage. He killed the two men who planned it, Isao Hyodo and Seijo Kataoka, in one night. Then he stopped.\n\nHe buried his master in a small temple on the outside of the city. He gave the sword that killed Hayato to the Shinsengumi, and he asked them to keep it for him. He made a promise to the grave. He made a promise to the boy beside him, and to the friend he betrayed. He would never take another life.\n\nAfter that night, he stopped using the name Kenshin. He became Himura Kenshin again, and he called himself a rurouni, a wanderer with no home. He carried a sword with the edge turned backwards, so that a cut could never kill. He walked from town to town and protected people who were completely alone. He kept that promise for the rest of his life.",
       "vocabulary": [
-        { "term": "swordsman", "meaning": "espadachín" },
-        { "term": "the Shinsengumi", "meaning": "la policía militar de Tokio en 1868" },
-        { "term": "duel", "meaning": "duelo" },
-        { "term": "master", "meaning": "maestro" },
-        { "term": "to betray", "meaning": "traicionar" },
-        { "term": "rurouni", "meaning": "vagabundo errante que no tiene hogar" },
-        { "term": "wanderer", "meaning": "vagabundo" },
-        { "term": "rage", "meaning": "furia" }
+        {
+          "term": "swordsman",
+          "meaning": "espadachín"
+        },
+        {
+          "term": "the Shinsengumi",
+          "meaning": "la policía militar de Tokio en 1868"
+        },
+        {
+          "term": "duel",
+          "meaning": "duelo"
+        },
+        {
+          "term": "master",
+          "meaning": "maestro"
+        },
+        {
+          "term": "to betray",
+          "meaning": "traicionar"
+        },
+        {
+          "term": "rurouni",
+          "meaning": "vagabundo errante que no tiene hogar"
+        },
+        {
+          "term": "wanderer",
+          "meaning": "vagabundo"
+        },
+        {
+          "term": "rage",
+          "meaning": "furia"
+        }
       ]
     },
     {
       "id": "samurai-x-oath-present",
+      "verbs": "/data/samurai-x-oath-present.verbs.json",
       "title": "El juramento de no matar",
       "series": "Samurai X (Rurouni Kenshin)",
       "tense": "present",
-      "level": "B1",
       "text": "Himura Kenshin is a wandering swordsman who lives in the last years of Edo. He is famous in three countries. People know him as Hitokiri Battosai, the Manslayer of the Dragon Gate, but the name belongs to a past life that he does not use anymore.\n\nKenshin is fast. He is so fast that people see only a flash of his sword, and then the fight is over. He wins almost every battle that he chooses.\n\nKenshin is also the man who keeps a promise he never breaks. There is one reason for that promise, and it is the worst night of his life. The Shinsengumi arranges a duel between Kenshin and his own master, because they need a swordsman strong enough to kill the best in the country. Kenshin wins, and his master dies on the ground. Then the Shinsengumi tells him the truth: they use Kenshin's strength to destroy his master's life. He kills both of them the same night. He never takes another life after that.\n\nHe buries his master in a small temple outside the city and gives the sword to the Shinsengumi. He makes a promise to his master's grave, to his friend, and to a boy who stands beside him. He never takes another life.\n\nSo he turns his sword around. The edge faces the sky, and a cut can only stop a fight, never end a life. He calls himself a rurouni, a wanderer with no home, and he travels from town to town.\n\nEvery time someone in trouble asks for help, Kenshin goes. He does not need money. He does not need a house. He needs a fight that is not a murder, and he always finds one.\n\nKenshin is the strongest swordsman of his time. He chooses to be the weakest one he can be. A strong man who kills is only a murderer. A rurouni is only a man who does not kill.",
       "vocabulary": [
-        { "term": "swordsman", "meaning": "espadachín" },
-        { "term": "the Shinsengumi", "meaning": "la policía militar de Tokio en 1868" },
-        { "term": "duel", "meaning": "duelo" },
-        { "term": "master", "meaning": "maestro" },
-        { "term": "rurouni", "meaning": "vagabundo errante que no tiene hogar" },
-        { "term": "wanderer", "meaning": "vagabundo" },
-        { "term": "to betray", "meaning": "traicionar" },
-        { "term": "murderer", "meaning": "asesino" }
+        {
+          "term": "swordsman",
+          "meaning": "espadachín"
+        },
+        {
+          "term": "the Shinsengumi",
+          "meaning": "la policía militar de Tokio en 1868"
+        },
+        {
+          "term": "duel",
+          "meaning": "duelo"
+        },
+        {
+          "term": "master",
+          "meaning": "maestro"
+        },
+        {
+          "term": "rurouni",
+          "meaning": "vagabundo errante que no tiene hogar"
+        },
+        {
+          "term": "wanderer",
+          "meaning": "vagabundo"
+        },
+        {
+          "term": "to betray",
+          "meaning": "traicionar"
+        },
+        {
+          "term": "murderer",
+          "meaning": "asesino"
+        }
       ]
     }
   ]

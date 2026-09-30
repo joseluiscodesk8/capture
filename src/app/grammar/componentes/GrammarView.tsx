@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { GrammarTopic, Reading, Song } from "@/data/types";
 import Reader from "./Reader";
@@ -12,15 +12,38 @@ type Props = {
   readings: Reading[];
 };
 
+function readingTenseLabel(tense: Reading["tense"]) {
+  return tense === "present" ? "Simple present" : "Simple past";
+}
+
 export default function GrammarView({ topics, songs, readings }: Props) {
   const [topicId, setTopicId] = useState(topics[0]?.id ?? "");
+  const [readingSeries, setReadingSeries] = useState<string | null>(null);
   const [readingId, setReadingId] = useState<string | null>(null);
+  const [openExercises, setOpenExercises] = useState(false);
+  const [openLecturas, setOpenLecturas] = useState(false);
   const [step, setStep] = useState(0);
   const [picked, setPicked] = useState<string | null>(null);
   const [solved, setSolved] = useState<Record<string, number>>({});
 
   const topic = topics.find((item) => item.id === topicId) ?? topics[0];
-  const reading = readings.find((item) => item.id === readingId) ?? null;
+
+  const seriesGroups = useMemo(() => {
+    const groups = new Map<string, Reading[]>();
+
+    for (const item of readings) {
+      const list = groups.get(item.series) ?? [];
+      list.push(item);
+      groups.set(item.series, list);
+    }
+
+    return [...groups.entries()].map(([series, items]) => ({ series, items }));
+  }, [readings]);
+
+  const seriesReadings = useMemo(
+    () => seriesGroups.find((group) => group.series === readingSeries)?.items ?? [],
+    [seriesGroups, readingSeries]
+  );
 
   const exercises = topic?.exercises ?? [];
   const total = exercises.length;
@@ -35,13 +58,24 @@ export default function GrammarView({ topics, songs, readings }: Props) {
 
   const selectTopic = (id: string) => {
     setTopicId(id);
+    setReadingSeries(null);
     setReadingId(null);
     setStep(0);
     setPicked(null);
   };
 
+  const selectSeries = (series: string) => {
+    setOpenLecturas(true);
+
+    if (series === readingSeries) return;
+
+    setReadingSeries(series);
+    setReadingId(null);
+  };
+
   const selectReading = (id: string) => {
-    setReadingId(id);
+    setOpenLecturas(true);
+    setReadingId((current) => (current === id ? null : id));
   };
 
   const choose = (option: string) => {
@@ -67,7 +101,7 @@ export default function GrammarView({ topics, songs, readings }: Props) {
     selectTopic(nextTopic.id);
   };
 
-  if (!topic && !reading) {
+  if (!topic && !readingSeries) {
     return (
       <p className={styles.card}>Todavía no hay contenido de gramática.</p>
     );
@@ -76,82 +110,186 @@ export default function GrammarView({ topics, songs, readings }: Props) {
   return (
     <div className={styles.layout}>
       <aside className={styles.sidebar}>
-        <p className={styles.sidebarTitle}>Ejercicios</p>
-        <div className={styles.topicList}>
-          {topics.map((item) => {
-            const isActive = reading === null && item.id === topic?.id;
+        <section className={styles.sidebarSection}>
+          <button
+            type="button"
+            className={styles.sectionHeader}
+            onClick={() => setOpenExercises((current) => !current)}
+            aria-expanded={openExercises}
+          >
+            <span className={styles.sectionTitle}>Ejercicios</span>
+            <span className={styles.sectionCount}>{topics.length}</span>
+            <span
+              className={`${styles.chevron} ${
+                openExercises ? styles.chevronOpen : ""
+              }`}
+              aria-hidden="true"
+            >
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path
+                  d="M1 1l4 4 4-4"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </button>
 
-            return (
-              <button
-                key={item.id}
-                onClick={() => selectTopic(item.id)}
-                className={
-                  isActive
-                    ? `${styles.topicButton} ${styles.topicActive}`
-                    : styles.topicButton
-                }
-                aria-current={isActive ? "true" : undefined}
-              >
-                <span className={styles.topicTop}>
-                  <span className={styles.topicName}>{item.title}</span>
-                  <span className={styles.level}>{item.level}</span>
-                </span>
-                <span className={styles.topicMeta}>
-                  {solved[item.id] ?? 0}/{item.exercises.length} resueltos
-                </span>
-              </button>
-            );
-          })}
-        </div>
+          {openExercises && (
+            <div className={styles.sectionBody}>
+              <div className={styles.topicList}>
+                {topics.map((item) => {
+                  const isActive =
+                    readingSeries === null && item.id === topic?.id;
+
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => selectTopic(item.id)}
+                      className={
+                        isActive
+                          ? `${styles.topicButton} ${styles.topicActive}`
+                          : styles.topicButton
+                      }
+                      aria-current={isActive ? "true" : undefined}
+                    >
+                      <span className={styles.topicTop}>
+                        <span className={styles.topicName}>{item.title}</span>
+                        <span className={styles.level}>{item.level}</span>
+                      </span>
+                      <span className={styles.topicMeta}>
+                        {solved[item.id] ?? 0}/{item.exercises.length}{" "}
+                        resueltos
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </section>
 
         {readings.length > 0 && (
-          <>
-            <p className={`${styles.sidebarTitle} ${styles.sidebarTitleSpaced}`}>
-              Lecturas
-            </p>
-            <div className={styles.topicList}>
-              {readings.map((item) => {
-                const isActive = item.id === readingId;
+          <section className={styles.sidebarSection}>
+            <button
+              type="button"
+              className={styles.sectionHeader}
+              onClick={() => setOpenLecturas((current) => !current)}
+              aria-expanded={openLecturas}
+            >
+              <span className={styles.sectionTitle}>Lecturas</span>
+              <span className={styles.sectionCount}>
+                {seriesGroups.length}
+              </span>
+              <span
+                className={`${styles.chevron} ${
+                  openLecturas ? styles.chevronOpen : ""
+                }`}
+                aria-hidden="true"
+              >
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+                  <path
+                    d="M1 1l4 4 4-4"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </button>
 
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => selectReading(item.id)}
-                    className={
-                      isActive
-                        ? `${styles.topicButton} ${styles.topicActive}`
-                        : styles.topicButton
-                    }
-                    aria-current={isActive ? "true" : undefined}
-                  >
-                    <span className={styles.topicTop}>
-                      <span className={styles.topicName}>{item.title}</span>
-                      <span className={styles.tenseBadge}>
-                        {item.tense === "present" ? "Presente" : "Pasado"}
-                      </span>
-                    </span>
-                    <span className={styles.topicMeta}>{item.series}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </>
+            {openLecturas && (
+              <div className={styles.sectionBody}>
+                <div className={styles.topicList}>
+                  {seriesGroups.map((group) => {
+                    const isActive = readingSeries === group.series;
+
+                    return (
+                      <button
+                        key={group.series}
+                        type="button"
+                        onClick={() => selectSeries(group.series)}
+                        className={
+                          isActive
+                            ? `${styles.topicButton} ${styles.topicActive}`
+                            : styles.topicButton
+                        }
+                        aria-current={isActive ? "true" : undefined}
+                      >
+                        <span className={styles.topicName}>{group.series}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </section>
         )}
       </aside>
 
-      {reading ? (
+      {readingSeries ? (
         <section className={styles.card}>
           <div className={styles.cardTop}>
-            <h2 className={styles.cardTitle}>{reading.title}</h2>
+            <h2 className={styles.cardTitle}>{readingSeries}</h2>
           </div>
 
           <p className={styles.summary}>
-            Lectura completa en{" "}
-            {reading.tense === "present" ? "simple present" : "simple past"}.
-            El bloque que lees queda oscuro; el resto se apaga.
+            Elige una versión de la historia. Están cerradas para que elijas
+            sin que ocupen espacio.
           </p>
 
-          <Reader key={reading.id} reading={reading} />
+          <div className={styles.readingPicker}>
+            {seriesReadings.map((item) => {
+              const isOpen = item.id === readingId;
+
+              return (
+                <div
+                  key={item.id}
+                  className={
+                    isOpen
+                      ? `${styles.readingOption} ${styles.readingOptionOpen}`
+                      : styles.readingOption
+                  }
+                >
+                  <button
+                    type="button"
+                    onClick={() => selectReading(item.id)}
+                    className={styles.readingOptionHead}
+                    aria-expanded={isOpen}
+                  >
+                    <span className={styles.readingOptionTitle}>
+                      {item.title}
+                    </span>
+                    <span className={styles.readingOptionMeta}>
+                      <span className={styles.tenseBadge}>
+                        {item.tense === "present" ? "Presente" : "Pasado"}
+                      </span>
+                      <span className={styles.readingOptionSub}>
+                        {readingTenseLabel(item.tense)}
+                      </span>
+                    </span>
+                  </button>
+
+                  {isOpen && (
+                    <div className={styles.readingBody}>
+                      <p className={styles.summary}>
+                        Lectura completa en{" "}
+                        {item.tense === "present"
+                          ? "simple present"
+                          : "simple past"}
+                        . El bloque que lees queda oscuro; el resto se apaga.
+                      </p>
+
+                      <Reader key={item.id} reading={item} />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </section>
       ) : topic ? (
         <section className={styles.card}>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import songsData from "@/data/songs.json";
 import grammarData from "@/data/grammar.json";
 import readingsData from "@/data/readings.json";
+import verbCatalog from "@/data/verb-catalog.json";
 import styles from "./styles/home.module.scss";
 
 type Song = {
@@ -69,6 +70,40 @@ export default function Home() {
             <span className={styles.tag}>{levels.join(" · ")}</span>
           </div>
           <span className={styles.cta}>Abrir Gramática →</span>
+        </Link>
+
+        <Link href="/verbs" className={styles.card}>
+          <span className={styles.cardIcon} aria-hidden="true">
+            V
+          </span>
+          <h2 className={styles.cardTitle}>Verbos</h2>
+          <p className={styles.cardText}>
+            Tabla con las tres formas de cada verbo y una frase real de las
+            lecturas donde se ve el verbo en su tiempo.
+          </p>
+          <div className={styles.cardMeta}>
+            <span className={styles.tag}>
+              {verbCatalog.lemmas.length + 2} verbos
+            </span>
+            <span className={styles.tag}>buscador</span>
+          </div>
+          <span className={styles.cta}>Abrir Verbos →</span>
+        </Link>
+
+        <Link href="/tenses" className={styles.card}>
+          <span className={styles.cardIcon} aria-hidden="true">
+            P
+          </span>
+          <h2 className={styles.cardTitle}>Presente y pasado</h2>
+          <p className={styles.cardText}>
+            Cuándo y cómo se usan el simple present y el simple past, explicado
+            con las mismas frases que lees en las historias.
+          </p>
+          <div className={styles.cardMeta}>
+            <span className={styles.tag}>simple present</span>
+            <span className={styles.tag}>simple past</span>
+          </div>
+          <span className={styles.cta}>Abrir Presente y pasado →</span>
         </Link>
       </div>
     </main>

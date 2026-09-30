@@ -1,0 +1,745 @@
+{
+  "textHash": "0554db775c7e",
+  "tense": "past",
+  "counts": {
+    "present": 0,
+    "past": 105
+  },
+  "verbs": [
+    {
+      "from": 12,
+      "to": 16,
+      "tense": "past",
+      "lemma": "die",
+      "surface": "died"
+    },
+    {
+      "from": 61,
+      "to": 67,
+      "tense": "past",
+      "lemma": "stay",
+      "surface": "stayed"
+    },
+    {
+      "from": 111,
+      "to": 115,
+      "tense": "past",
+      "lemma": "lose",
+      "surface": "lost"
+    },
+    {
+      "from": 136,
+      "to": 142,
+      "tense": "past",
+      "lemma": "teach",
+      "surface": "taught"
+    },
+    {
+      "from": 169,
+      "to": 179,
+      "tense": "past",
+      "lemma": "understand",
+      "surface": "understood"
+    },
+    {
+      "from": 188,
+      "to": 192,
+      "tense": "past",
+      "lemma": "know",
+      "surface": "knew"
+    },
+    {
+      "from": 250,
+      "to": 258,
+      "tense": "past",
+      "lemma": "follow",
+      "surface": "followed"
+    },
+    {
+      "from": 276,
+      "to": 284,
+      "tense": "past",
+      "lemma": "follow",
+      "surface": "followed"
+    },
+    {
+      "from": 304,
+      "to": 308,
+      "tense": "past",
+      "lemma": "leave",
+      "surface": "left"
+    },
+    {
+      "from": 358,
+      "to": 364,
+      "tense": "past",
+      "lemma": "need",
+      "surface": "needed"
+    },
+    {
+      "from": 383,
+      "to": 389,
+      "tense": "past",
+      "lemma": "need",
+      "surface": "needed"
+    },
+    {
+      "from": 498,
+      "to": 503,
+      "tense": "past",
+      "lemma": "live",
+      "surface": "lived"
+    },
+    {
+      "from": 532,
+      "to": 536,
+      "tense": "past",
+      "lemma": "come",
+      "surface": "came"
+    },
+    {
+      "from": 571,
+      "to": 577,
+      "tense": "past",
+      "lemma": "fight",
+      "surface": "fought"
+    },
+    {
+      "from": 633,
+      "to": 637,
+      "tense": "past",
+      "lemma": "keep",
+      "surface": "kept"
+    },
+    {
+      "from": 685,
+      "to": 693,
+      "tense": "past",
+      "lemma": "appear",
+      "surface": "appeared"
+    },
+    {
+      "from": 761,
+      "to": 767,
+      "tense": "past",
+      "lemma": "walk",
+      "surface": "walked"
+    },
+    {
+      "from": 794,
+      "to": 801,
+      "tense": "past",
+      "lemma": "carry",
+      "surface": "carried"
+    },
+    {
+      "from": 823,
+      "to": 829,
+      "tense": "past",
+      "lemma": "look",
+      "surface": "looked"
+    },
+    {
+      "from": 845,
+      "to": 852,
+      "tense": "past",
+      "lemma": "laugh",
+      "surface": "laughed"
+    },
+    {
+      "from": 964,
+      "to": 969,
+      "tense": "past",
+      "lemma": "shake",
+      "surface": "shook"
+    },
+    {
+      "from": 991,
+      "to": 995,
+      "tense": "past",
+      "lemma": "tell",
+      "surface": "told"
+    },
+    {
+      "from": 1027,
+      "to": 1031,
+      "tense": "past",
+      "lemma": "die",
+      "surface": "died"
+    },
+    {
+      "from": 1045,
+      "to": 1051,
+      "tense": "past",
+      "lemma": "need",
+      "surface": "needed"
+    },
+    {
+      "from": 1082,
+      "to": 1088,
+      "tense": "past",
+      "lemma": "look",
+      "surface": "looked"
+    },
+    {
+      "from": 1122,
+      "to": 1126,
+      "tense": "past",
+      "lemma": "take",
+      "surface": "took"
+    },
+    {
+      "from": 1158,
+      "to": 1164,
+      "tense": "past",
+      "lemma": "become",
+      "surface": "became"
+    },
+    {
+      "from": 1199,
+      "to": 1203,
+      "tense": "past",
+      "lemma": "wake",
+      "surface": "woke"
+    },
+    {
+      "from": 1235,
+      "to": 1242,
+      "tense": "past",
+      "lemma": "carry",
+      "surface": "carried"
+    },
+    {
+      "from": 1288,
+      "to": 1293,
+      "tense": "past",
+      "lemma": "shake",
+      "surface": "shook"
+    },
+    {
+      "from": 1353,
+      "to": 1358,
+      "tense": "past",
+      "lemma": "break",
+      "surface": "broke"
+    },
+    {
+      "from": 1401,
+      "to": 1405,
+      "tense": "past",
+      "lemma": "come",
+      "surface": "came"
+    },
+    {
+      "from": 1453,
+      "to": 1457,
+      "tense": "past",
+      "lemma": "give",
+      "surface": "gave"
+    },
+    {
+      "from": 1486,
+      "to": 1490,
+      "tense": "past",
+      "lemma": "grow",
+      "surface": "grew"
+    },
+    {
+      "from": 1527,
+      "to": 1536,
+      "tense": "past",
+      "lemma": "explain",
+      "surface": "explained"
+    },
+    {
+      "from": 1618,
+      "to": 1625,
+      "tense": "past",
+      "lemma": "learn",
+      "surface": "learned"
+    },
+    {
+      "from": 1658,
+      "to": 1662,
+      "tense": "past",
+      "lemma": "keep",
+      "surface": "kept"
+    },
+    {
+      "from": 1730,
+      "to": 1735,
+      "tense": "past",
+      "lemma": "ask",
+      "surface": "asked"
+    },
+    {
+      "from": 1754,
+      "to": 1758,
+      "tense": "past",
+      "lemma": "come",
+      "surface": "came"
+    },
+    {
+      "from": 1777,
+      "to": 1781,
+      "tense": "past",
+      "lemma": "make",
+      "surface": "made"
+    },
+    {
+      "from": 1805,
+      "to": 1812,
+      "tense": "past",
+      "lemma": "enter",
+      "surface": "entered"
+    },
+    {
+      "from": 1844,
+      "to": 1847,
+      "tense": "past",
+      "lemma": "hide",
+      "surface": "hid"
+    },
+    {
+      "from": 1892,
+      "to": 1896,
+      "tense": "past",
+      "lemma": "know",
+      "surface": "knew"
+    },
+    {
+      "from": 1933,
+      "to": 1938,
+      "tense": "past",
+      "lemma": "face",
+      "surface": "faced"
+    },
+    {
+      "from": 2025,
+      "to": 2032,
+      "tense": "past",
+      "lemma": "carry",
+      "surface": "carried"
+    },
+    {
+      "from": 2089,
+      "to": 2096,
+      "tense": "past",
+      "lemma": "stop",
+      "surface": "stopped"
+    },
+    {
+      "from": 2156,
+      "to": 2162,
+      "tense": "past",
+      "lemma": "wait",
+      "surface": "waited"
+    },
+    {
+      "from": 2207,
+      "to": 2210,
+      "tense": "past",
+      "lemma": "be",
+      "surface": "was"
+    },
+    {
+      "from": 2302,
+      "to": 2306,
+      "tense": "past",
+      "lemma": "go",
+      "surface": "went"
+    },
+    {
+      "from": 2347,
+      "to": 2353,
+      "tense": "past",
+      "lemma": "call",
+      "surface": "called"
+    },
+    {
+      "from": 2389,
+      "to": 2392,
+      "tense": "past",
+      "lemma": "be",
+      "surface": "was"
+    },
+    {
+      "from": 2465,
+      "to": 2469,
+      "tense": "past",
+      "lemma": "keep",
+      "surface": "kept"
+    },
+    {
+      "from": 2500,
+      "to": 2503,
+      "tense": "past",
+      "lemma": "be",
+      "surface": "was"
+    },
+    {
+      "from": 2599,
+      "to": 2606,
+      "tense": "past",
+      "lemma": "laugh",
+      "surface": "laughed"
+    },
+    {
+      "from": 2683,
+      "to": 2689,
+      "tense": "past",
+      "lemma": "stay",
+      "surface": "stayed"
+    },
+    {
+      "from": 2716,
+      "to": 2722,
+      "tense": "past",
+      "lemma": "fight",
+      "surface": "fought"
+    },
+    {
+      "from": 2821,
+      "to": 2825,
+      "tense": "past",
+      "lemma": "make",
+      "surface": "made"
+    },
+    {
+      "from": 2848,
+      "to": 2854,
+      "tense": "past",
+      "lemma": "burn",
+      "surface": "burned"
+    },
+    {
+      "from": 2898,
+      "to": 2901,
+      "tense": "past",
+      "lemma": "see",
+      "surface": "saw"
+    },
+    {
+      "from": 2957,
+      "to": 2961,
+      "tense": "past",
+      "lemma": "send",
+      "surface": "sent"
+    },
+    {
+      "from": 3000,
+      "to": 3003,
+      "tense": "past",
+      "lemma": "see",
+      "surface": "saw"
+    },
+    {
+      "from": 3008,
+      "to": 3011,
+      "tense": "past",
+      "lemma": "win",
+      "surface": "won"
+    },
+    {
+      "from": 3033,
+      "to": 3037,
+      "tense": "past",
+      "lemma": "give",
+      "surface": "gave"
+    },
+    {
+      "from": 3072,
+      "to": 3079,
+      "tense": "past",
+      "lemma": "watch",
+      "surface": "watched"
+    },
+    {
+      "from": 3128,
+      "to": 3132,
+      "tense": "past",
+      "lemma": "take",
+      "surface": "took"
+    },
+    {
+      "from": 3163,
+      "to": 3167,
+      "tense": "past",
+      "lemma": "leave",
+      "surface": "left"
+    },
+    {
+      "from": 3207,
+      "to": 3211,
+      "tense": "past",
+      "lemma": "go",
+      "surface": "went"
+    },
+    {
+      "from": 3220,
+      "to": 3226,
+      "tense": "past",
+      "lemma": "walk",
+      "surface": "walked"
+    },
+    {
+      "from": 3269,
+      "to": 3272,
+      "tense": "past",
+      "lemma": "see",
+      "surface": "saw"
+    },
+    {
+      "from": 3296,
+      "to": 3302,
+      "tense": "past",
+      "lemma": "wait",
+      "surface": "waited"
+    },
+    {
+      "from": 3361,
+      "to": 3366,
+      "tense": "past",
+      "lemma": "throw",
+      "surface": "threw"
+    },
+    {
+      "from": 3408,
+      "to": 3414,
+      "tense": "past",
+      "lemma": "open",
+      "surface": "opened"
+    },
+    {
+      "from": 3459,
+      "to": 3467,
+      "tense": "past",
+      "lemma": "prepare",
+      "surface": "prepared"
+    },
+    {
+      "from": 3504,
+      "to": 3508,
+      "tense": "past",
+      "lemma": "wake",
+      "surface": "woke"
+    },
+    {
+      "from": 3557,
+      "to": 3561,
+      "tense": "past",
+      "lemma": "come",
+      "surface": "came"
+    },
+    {
+      "from": 3600,
+      "to": 3605,
+      "tense": "past",
+      "lemma": "sleep",
+      "surface": "slept"
+    },
+    {
+      "from": 3641,
+      "to": 3644,
+      "tense": "past",
+      "lemma": "run",
+      "surface": "ran"
+    },
+    {
+      "from": 3703,
+      "to": 3708,
+      "tense": "past",
+      "lemma": "begin",
+      "surface": "began"
+    },
+    {
+      "from": 3719,
+      "to": 3724,
+      "tense": "past",
+      "lemma": "face",
+      "surface": "faced"
+    },
+    {
+      "from": 3788,
+      "to": 3792,
+      "tense": "past",
+      "lemma": "know",
+      "surface": "knew"
+    },
+    {
+      "from": 3798,
+      "to": 3804,
+      "tense": "past",
+      "lemma": "wait",
+      "surface": "waited"
+    },
+    {
+      "from": 3899,
+      "to": 3903,
+      "tense": "past",
+      "lemma": "go",
+      "surface": "went"
+    },
+    {
+      "from": 3930,
+      "to": 3937,
+      "tense": "past",
+      "lemma": "count",
+      "surface": "counted"
+    },
+    {
+      "from": 3959,
+      "to": 3963,
+      "tense": "past",
+      "lemma": "know",
+      "surface": "knew"
+    },
+    {
+      "from": 3972,
+      "to": 3975,
+      "tense": "past",
+      "lemma": "be",
+      "surface": "was"
+    },
+    {
+      "from": 4007,
+      "to": 4013,
+      "tense": "past",
+      "lemma": "pick",
+      "surface": "picked"
+    },
+    {
+      "from": 4048,
+      "to": 4053,
+      "tense": "past",
+      "lemma": "throw",
+      "surface": "threw"
+    },
+    {
+      "from": 4134,
+      "to": 4138,
+      "tense": "past",
+      "lemma": "leave",
+      "surface": "left"
+    },
+    {
+      "from": 4191,
+      "to": 4195,
+      "tense": "past",
+      "lemma": "give",
+      "surface": "gave"
+    },
+    {
+      "from": 4339,
+      "to": 4343,
+      "tense": "past",
+      "lemma": "take",
+      "surface": "took"
+    },
+    {
+      "from": 4377,
+      "to": 4387,
+      "tense": "past",
+      "lemma": "understand",
+      "surface": "understood"
+    },
+    {
+      "from": 4404,
+      "to": 4407,
+      "tense": "past",
+      "lemma": "be",
+      "surface": "was"
+    },
+    {
+      "from": 4514,
+      "to": 4520,
+      "tense": "past",
+      "lemma": "fight",
+      "surface": "fought"
+    },
+    {
+      "from": 4599,
+      "to": 4603,
+      "tense": "past",
+      "lemma": "go",
+      "surface": "went"
+    },
+    {
+      "from": 4620,
+      "to": 4627,
+      "tense": "past",
+      "lemma": "laugh",
+      "surface": "laughed"
+    },
+    {
+      "from": 4682,
+      "to": 4689,
+      "tense": "past",
+      "lemma": "laugh",
+      "surface": "laughed"
+    },
+    {
+      "from": 4752,
+      "to": 4756,
+      "tense": "past",
+      "lemma": "keep",
+      "surface": "kept"
+    },
+    {
+      "from": 4798,
+      "to": 4805,
+      "tense": "past",
+      "lemma": "marry",
+      "surface": "married"
+    },
+    {
+      "from": 4828,
+      "to": 4834,
+      "tense": "past",
+      "lemma": "wait",
+      "surface": "waited"
+    },
+    {
+      "from": 4867,
+      "to": 4872,
+      "tense": "past",
+      "lemma": "ask",
+      "surface": "asked"
+    },
+    {
+      "from": 4914,
+      "to": 4920,
+      "tense": "past",
+      "lemma": "agree",
+      "surface": "agreed"
+    },
+    {
+      "from": 4962,
+      "to": 4966,
+      "tense": "past",
+      "lemma": "go",
+      "surface": "went"
+    },
+    {
+      "from": 4985,
+      "to": 4989,
+      "tense": "past",
+      "lemma": "go",
+      "surface": "went"
+    },
+    {
+      "from": 5066,
+      "to": 5072,
+      "tense": "past",
+      "lemma": "become",
+      "surface": "became"
+    },
+    {
+      "from": 5123,
+      "to": 5127,
+      "tense": "past",
+      "lemma": "keep",
+      "surface": "kept"
+    }
+  ]
+}

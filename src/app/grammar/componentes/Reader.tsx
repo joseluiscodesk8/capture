@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type { Reading, ReadingTimings } from "@/data/types";
-import { groupSentences } from "@/lib/reading-blocks.mjs";
+import type { Reading, ReadingTimings, ReadingVerbs } from "@/data/types";
+import { buildBlocks } from "@/lib/reading-blocks.mjs";
 import styles from "../styles/reader.module.scss";
 
 type Props = {
@@ -26,6 +26,10 @@ export default function Reader({ reading }: Props) {
     id: string;
     data: ReadingTimings;
   } | null>(null);
+  const [loadedVerbs, setLoadedVerbs] = useState<{
+    id: string;
+    data: ReadingVerbs;
+  } | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -33,7 +37,11 @@ export default function Reader({ reading }: Props) {
   const [listenOnly, setListenOnly] = useState(false);
   const [loopIndex, setLoopIndex] = useState<number | null>(null);
 
-  const blocks = useMemo(() => groupSentences(reading.text), [reading.text]);
+  const verbMarks = loadedVerbs?.id === reading.id ? loadedVerbs.data.verbs : null;
+  const blocks = useMemo(
+    () => buildBlocks(reading.text, verbMarks),
+    [reading.text, verbMarks]
+  );
   const timings = loaded?.id === reading.id ? loaded.data : null;
   const hasAudio = Boolean(reading.audio && timings);
   const audioDriven = hasAudio && isPlaying && follow;
@@ -56,6 +64,25 @@ export default function Reader({ reading }: Props) {
       cancelled = true;
     };
   }, [reading.id, reading.timings]);
+
+  useEffect(() => {
+    if (!reading.verbs) return;
+
+    let cancelled = false;
+
+    fetch(reading.verbs)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: ReadingVerbs | null) => {
+        if (!cancelled && data) {
+          setLoadedVerbs({ id: reading.id, data });
+        }
+      })
+      .catch(() => {});
+
+    return () => {
+      cancelled = true;
+    };
+  }, [reading.id, reading.verbs]);
 
   const blockAt = useCallback(
     (time: number) => {
@@ -303,6 +330,22 @@ export default function Reader({ reading }: Props) {
         </div>
       )}
 
+      <div className={styles.legend}>
+        <span className={styles.legendItem}>
+          <span className={`${styles.legendSwatch} ${styles.verbPresent}`}>
+           Aa
+          </span>
+          simple present
+        </span>
+        <span className={styles.legendItem}>
+          <span className={`${styles.legendSwatch} ${styles.verbPast}`}>Aa</span>
+          simple past
+        </span>
+        <span className={styles.legendNote}>
+          {verbMarks ? `${verbMarks.length} verbos marcados` : "sin verbos"}
+        </span>
+      </div>
+
       <div
         ref={panelRef}
         onScroll={onScroll}
@@ -335,12 +378,22 @@ export default function Reader({ reading }: Props) {
               className={className}
               onClick={() => goTo(index)}
             >
-              {block.fragments.map((fragment, position) => (
-                <span key={position}>
-                  {position > 0 && <br />}
-                  {fragment}
-                </span>
-              ))}
+              {block.segments.map((segment, position) =>
+                segment.tense ? (
+                  <mark
+                    key={position}
+                    className={
+                      segment.tense === "present"
+                        ? styles.verbPresent
+                        : styles.verbPast
+                    }
+                  >
+                    {segment.text}
+                  </mark>
+                ) : (
+                  <span key={position}>{segment.text}</span>
+                )
+              )}
             </p>
           );
         })}

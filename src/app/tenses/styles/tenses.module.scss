@@ -1,0 +1,284 @@
+.page {
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.header {
+  margin-bottom: 26px;
+}
+
+.title {
+  font-size: clamp(1.5rem, 3.4vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  margin-top: 8px;
+  max-width: 68ch;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.presentWord {
+  color: var(--verb-present);
+}
+
+.pastWord {
+  color: var(--verb-past);
+}
+
+.accordions {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.groupTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.groupCount {
+  padding: 2px 9px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-pill);
+}
+
+.groupCountPresent {
+  color: var(--verb-present);
+  background: color-mix(in srgb, var(--verb-present) 12%, transparent);
+}
+
+.groupCountPast {
+  color: var(--verb-past);
+  background: color-mix(in srgb, var(--verb-past) 12%, transparent);
+}
+
+.groupIntro {
+  margin-top: 6px;
+  max-width: 68ch;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.tenseList {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tense {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.tenseOpen {
+  border-color: var(--border-strong);
+}
+
+.tenseHead {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 13px 16px;
+  cursor: pointer;
+  transition: background var(--transition);
+
+  &:hover {
+    background: var(--surface-alt);
+  }
+}
+
+.tenseName {
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.tenseAlias {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.chevron {
+  margin-left: auto;
+  display: inline-flex;
+  color: var(--text-muted);
+  transition: transform var(--transition);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.tenseClosed .body {
+  display: none;
+}
+
+.body {
+  padding: 2px 18px 20px;
+  border-top: 1px solid var(--border);
+}
+
+.intro {
+  margin-top: 14px;
+  color: var(--text);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.sectionLabel {
+  margin-top: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sectionPresent {
+  color: var(--verb-present);
+}
+
+.sectionPast {
+  color: var(--verb-past);
+}
+
+.uses {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.use {
+  line-height: 1.55;
+  font-size: 0.92rem;
+}
+
+.useExample {
+  display: inline-block;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+.formsTable {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: minmax(84px, auto) 1fr auto;
+  gap: 12px;
+  align-items: baseline;
+  padding: 8px 12px;
+  background: var(--surface-alt);
+  border-radius: var(--radius-md);
+}
+
+.formLabel {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.formula {
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.formExample {
+  font-family: var(--font-geist-mono);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.markers {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.marker {
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+}
+
+.markerPresent {
+  color: var(--verb-present);
+  background: color-mix(in srgb, var(--verb-present) 10%, transparent);
+}
+
+.markerPast {
+  color: var(--verb-past);
+  background: color-mix(in srgb, var(--verb-past) 10%, transparent);
+}
+
+.examples {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.example {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.examplePresent {
+  color: var(--verb-present);
+}
+
+.examplePast {
+  color: var(--verb-past);
+}
+
+.mistakes {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mistake {
+  font-family: var(--font-geist-mono);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+@media (max-width: 720px) {
+  .formRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+
+  .formExample {
+    white-space: normal;
+  }
+}

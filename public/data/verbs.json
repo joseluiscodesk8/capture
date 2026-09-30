@@ -1,0 +1,3237 @@
+{
+  "generatedFrom": "src/data/verb-catalog.json",
+  "readings": [
+    {
+      "id": "db-01-bulma-past",
+      "title": "1 · El viaje con Bulma",
+      "series": "Dragon Ball",
+      "tense": "past"
+    },
+    {
+      "id": "db-02-roshi-past",
+      "title": "2 · El maestro Roshi",
+      "series": "Dragon Ball",
+      "tense": "past"
+    },
+    {
+      "id": "db-03-red-ribbon-past",
+      "title": "3 · El ejército de la Red Ribbon",
+      "series": "Dragon Ball",
+      "tense": "past"
+    },
+    {
+      "id": "db-04-baba-past",
+      "title": "4 · La adivina Baba",
+      "series": "Dragon Ball",
+      "tense": "past"
+    },
+    {
+      "id": "db-05-tenshinhan-past",
+      "title": "5 · Tenshinhan",
+      "series": "Dragon Ball",
+      "tense": "past"
+    },
+    {
+      "id": "db-06-piccolo-past",
+      "title": "6 · Piccolo Daimao",
+      "series": "Dragon Ball",
+      "tense": "past"
+    },
+    {
+      "id": "db-07-piccolo-junior-past",
+      "title": "7 · El joven Piccolo",
+      "series": "Dragon Ball",
+      "tense": "past"
+    },
+    {
+      "id": "dbz-super-saiyan-past",
+      "title": "La transformación Super Saiyan",
+      "series": "Dragon Ball Z",
+      "tense": "past"
+    },
+    {
+      "id": "dbz-super-saiyan-present",
+      "title": "La transformación Super Saiyan",
+      "series": "Dragon Ball Z",
+      "tense": "present"
+    },
+    {
+      "id": "samurai-x-oath-past",
+      "title": "El juramento de no matar",
+      "series": "Samurai X (Rurouni Kenshin)",
+      "tense": "past"
+    },
+    {
+      "id": "samurai-x-oath-present",
+      "title": "El juramento de no matar",
+      "series": "Samurai X (Rurouni Kenshin)",
+      "tense": "present"
+    }
+  ],
+  "total": 147,
+  "withExample": 123,
+  "verbs": [
+    {
+      "lemma": "agree",
+      "thirdPerson": "agrees",
+      "past": "agreed",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "The old man agreed and sailed back to his island, and Bulma went with him.",
+          "from": 12,
+          "to": 18
+        }
+      ]
+    },
+    {
+      "lemma": "answer",
+      "thirdPerson": "answers",
+      "past": "answered",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-03-red-ribbon-past",
+          "readingTitle": "3 · El ejército de la Red Ribbon",
+          "series": "Dragon Ball",
+          "sentence": "The army answered with metal instead of flesh.",
+          "from": 9,
+          "to": 17
+        }
+      ]
+    },
+    {
+      "lemma": "appear",
+      "thirdPerson": "appears",
+      "past": "appeared",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "He fights every time a strong enemy appears, and he never runs away.",
+          "from": 36,
+          "to": 43
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Those stories said that seven balls appeared in different parts of the world a long time ago.",
+          "from": 36,
+          "to": 44
+        }
+      ]
+    },
+    {
+      "lemma": "arrange",
+      "thirdPerson": "arranges",
+      "past": "arranged",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "The Shinsengumi arranges a duel between Kenshin and his own master, because they need a swordsman strong enough to kill the best in the country.",
+          "from": 16,
+          "to": 24
+        },
+        {
+          "tense": "past",
+          "readingId": "samurai-x-oath-past",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "One evening, the Shinsengumi arranged a duel between them.",
+          "from": 29,
+          "to": 37
+        }
+      ]
+    },
+    {
+      "lemma": "arrive",
+      "thirdPerson": "arrives",
+      "past": "arrived",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "One morning a young woman arrived above the trees on a small green cloud that she built with her own machine.",
+          "from": 26,
+          "to": 33
+        }
+      ]
+    },
+    {
+      "lemma": "ask",
+      "thirdPerson": "asks",
+      "past": "asked",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "Every time someone in trouble asks for help, Kenshin goes.",
+          "from": 30,
+          "to": 34
+        },
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "He kept his own great attack from the mountains, and nobody in the village asked where that secret came from.",
+          "from": 75,
+          "to": 80
+        }
+      ]
+    },
+    {
+      "lemma": "attack",
+      "thirdPerson": "attacks",
+      "past": "attacked",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "be",
+      "thirdPerson": "is",
+      "past": "was",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Goku is a Saiyan warrior who protects the Earth.",
+          "from": 5,
+          "to": 7
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "He was not an ordinary boy, and he was not even human.",
+          "from": 3,
+          "to": 10
+        }
+      ]
+    },
+    {
+      "lemma": "beat",
+      "thirdPerson": "beats",
+      "past": "beated",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "become",
+      "thirdPerson": "becomes",
+      "past": "became",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "He became taller than the trees around the castle, and he broke walls, roofs and doors wherever he walked.",
+          "from": 3,
+          "to": 9
+        }
+      ]
+    },
+    {
+      "lemma": "begin",
+      "thirdPerson": "begins",
+      "past": "began",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "The final fight of the tournament began, and Goku faced Jackie Chun alone in front of the crowd.",
+          "from": 34,
+          "to": 39
+        }
+      ]
+    },
+    {
+      "lemma": "believe",
+      "thirdPerson": "believes",
+      "past": "believed",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-05-tenshinhan-past",
+          "readingTitle": "5 · Tenshinhan",
+          "series": "Dragon Ball",
+          "sentence": "He believed in a hard way of fighting, and he treated mercy as a weakness.",
+          "from": 3,
+          "to": 11
+        }
+      ]
+    },
+    {
+      "lemma": "belong",
+      "thirdPerson": "belongs",
+      "past": "belonged",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "People know him as Hitokiri Battosai, the Manslayer of the Dragon Gate, but the name belongs to a past life that he does not use anymore.",
+          "from": 85,
+          "to": 92
+        },
+        {
+          "tense": "past",
+          "readingId": "db-03-red-ribbon-past",
+          "readingTitle": "3 · El ejército de la Red Ribbon",
+          "series": "Dragon Ball",
+          "sentence": "Only the seventh sphere remained in the whole world, and it belonged to a witch who lived alone on a high mountain far to the north.",
+          "from": 60,
+          "to": 68
+        }
+      ]
+    },
+    {
+      "lemma": "betray",
+      "thirdPerson": "betrays",
+      "past": "betrayed",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "samurai-x-oath-past",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "He made a promise to the boy beside him, and to the friend he betrayed.",
+          "from": 62,
+          "to": 70
+        }
+      ]
+    },
+    {
+      "lemma": "break",
+      "thirdPerson": "breaks",
+      "past": "broke",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Something deep inside him breaks.",
+          "from": 26,
+          "to": 32
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "He became taller than the trees around the castle, and he broke walls, roofs and doors wherever he walked.",
+          "from": 58,
+          "to": 63
+        }
+      ]
+    },
+    {
+      "lemma": "bring",
+      "thirdPerson": "brings",
+      "past": "brought",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Each stop brought them closer to the old legend, and Bulma kept the machine working until night fell over the hills.",
+          "from": 10,
+          "to": 17
+        }
+      ]
+    },
+    {
+      "lemma": "build",
+      "thirdPerson": "builds",
+      "past": "built",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "One morning a young woman arrived above the trees on a small green cloud that she built with her own machine.",
+          "from": 82,
+          "to": 87
+        }
+      ]
+    },
+    {
+      "lemma": "burn",
+      "thirdPerson": "burns",
+      "past": "burned",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "The man with three eyes made a blinding light that burned the eyes of his enemy, and for a moment he saw nothing at all.",
+          "from": 51,
+          "to": 57
+        }
+      ]
+    },
+    {
+      "lemma": "bury",
+      "thirdPerson": "buries",
+      "past": "buried",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "He buries his master in a small temple outside the city and gives the sword to the Shinsengumi.",
+          "from": 3,
+          "to": 9
+        },
+        {
+          "tense": "past",
+          "readingId": "samurai-x-oath-past",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "He buried his master in a small temple on the outside of the city.",
+          "from": 3,
+          "to": 9
+        }
+      ]
+    },
+    {
+      "lemma": "call",
+      "thirdPerson": "calls",
+      "past": "called",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "He calls himself a rurouni, a wanderer with no home, and he travels from town to town.",
+          "from": 3,
+          "to": 8
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "They also said that the person who gathered all seven woke a dragon, and that the dragon granted one wish to whoever called it.",
+          "from": 117,
+          "to": 123
+        }
+      ]
+    },
+    {
+      "lemma": "carry",
+      "thirdPerson": "carries",
+      "past": "carried",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Their journey went on with Goku growing stronger, and the little green cloud carried them above the fields toward the next secret of the world.",
+          "from": 77,
+          "to": 84
+        }
+      ]
+    },
+    {
+      "lemma": "catch",
+      "thirdPerson": "catches",
+      "past": "caught",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-06-piccolo-past",
+          "readingTitle": "6 · Piccolo Daimao",
+          "series": "Dragon Ball",
+          "sentence": "He caught Krillin by the neck and took him high into the air, away from the crowd and the noise of the city.",
+          "from": 3,
+          "to": 9
+        }
+      ]
+    },
+    {
+      "lemma": "celebrate",
+      "thirdPerson": "celebrates",
+      "past": "celebrated",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "change",
+      "thirdPerson": "changes",
+      "past": "changed",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Something changes in Goku.",
+          "from": 10,
+          "to": 17
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "One night, while the group slept outdoors, the moon came out and it changed Goku in an unexpected way.",
+          "from": 68,
+          "to": 75
+        }
+      ]
+    },
+    {
+      "lemma": "choose",
+      "thirdPerson": "chooses",
+      "past": "chose",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "He wins almost every battle that he chooses.",
+          "from": 36,
+          "to": 43
+        },
+        {
+          "tense": "past",
+          "readingId": "samurai-x-oath-past",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "They chose Kenshin for one reason.",
+          "from": 5,
+          "to": 10
+        }
+      ]
+    },
+    {
+      "lemma": "climb",
+      "thirdPerson": "climbs",
+      "past": "climbed",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Goku climbed onto the cloud with her, and the two of them flew away together.",
+          "from": 5,
+          "to": 12
+        }
+      ]
+    },
+    {
+      "lemma": "close",
+      "thirdPerson": "closes",
+      "past": "closed",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "collect",
+      "thirdPerson": "collects",
+      "past": "collected",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "come",
+      "thirdPerson": "comes",
+      "past": "came",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Every time he loses someone he loves, he comes back stronger.",
+          "from": 41,
+          "to": 46
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "A blue cat with the name Puar came with them too, and he talked like a person.",
+          "from": 30,
+          "to": 34
+        }
+      ]
+    },
+    {
+      "lemma": "cough",
+      "thirdPerson": "coughs",
+      "past": "coughed",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-05-tenshinhan-past",
+          "readingTitle": "5 · Tenshinhan",
+          "series": "Dragon Ball",
+          "sentence": "His body turned into a liquid, and he coughed up an enormous egg.",
+          "from": 38,
+          "to": 45
+        }
+      ]
+    },
+    {
+      "lemma": "count",
+      "thirdPerson": "counts",
+      "past": "counted",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "The judges counted the rounds, and Goku knew that he was losing.",
+          "from": 11,
+          "to": 18
+        }
+      ]
+    },
+    {
+      "lemma": "crack",
+      "thirdPerson": "cracks",
+      "past": "cracked",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "The ground cracks under his feet.",
+          "from": 11,
+          "to": 17
+        },
+        {
+          "tense": "past",
+          "readingId": "dbz-super-saiyan-past",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "The ground cracked under his feet.",
+          "from": 11,
+          "to": 18
+        }
+      ]
+    },
+    {
+      "lemma": "cross",
+      "thirdPerson": "crosses",
+      "past": "crossed",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "He gathered his energy and released the Kamehameha, a huge blast of blue light that crossed the whole hall.",
+          "from": 84,
+          "to": 91
+        }
+      ]
+    },
+    {
+      "lemma": "cry",
+      "thirdPerson": "cries",
+      "past": "cried",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "darken",
+      "thirdPerson": "darkens",
+      "past": "darkened",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "destroy",
+      "thirdPerson": "destroys",
+      "past": "destroyed",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "He destroys towns and kills people without mercy.",
+          "from": 3,
+          "to": 11
+        },
+        {
+          "tense": "past",
+          "readingId": "db-03-red-ribbon-past",
+          "readingTitle": "3 · El ejército de la Red Ribbon",
+          "series": "Dragon Ball",
+          "sentence": "They lost sleep in their camps for many weeks, because the boy destroyed the castle of Pilaf.",
+          "from": 63,
+          "to": 72
+        }
+      ]
+    },
+    {
+      "lemma": "die",
+      "thirdPerson": "dies",
+      "past": "died",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "Kenshin wins, and his master dies on the ground.",
+          "from": 29,
+          "to": 33
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "The old man felt that his time arrived, so he gave Goku one last lesson before he died.",
+          "from": 82,
+          "to": 86
+        }
+      ]
+    },
+    {
+      "lemma": "disappear",
+      "thirdPerson": "disappears",
+      "past": "disappeared",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-04-baba-past",
+          "readingTitle": "4 · La adivina Baba",
+          "series": "Dragon Ball",
+          "sentence": "Then it disappeared into the sky, and the celebration went on until dawn.",
+          "from": 8,
+          "to": 19
+        }
+      ]
+    },
+    {
+      "lemma": "do",
+      "thirdPerson": "does",
+      "past": "did",
+      "irregular": true,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "drink",
+      "thirdPerson": "drinks",
+      "past": "drank",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-03-red-ribbon-past",
+          "readingTitle": "3 · El ejército de la Red Ribbon",
+          "series": "Dragon Ball",
+          "sentence": "Years before, the father of the boy climbed that mountain, drank from a cold spring there, and came back down as a monster.",
+          "from": 59,
+          "to": 64
+        }
+      ]
+    },
+    {
+      "lemma": "drop",
+      "thirdPerson": "drops",
+      "past": "dropped",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Frieza drops him, and the boy never moves again.",
+          "from": 7,
+          "to": 12
+        },
+        {
+          "tense": "past",
+          "readingId": "db-06-piccolo-past",
+          "readingTitle": "6 · Piccolo Daimao",
+          "series": "Dragon Ball",
+          "sentence": "He dropped to the ground in the final round, and Goku won the cup.",
+          "from": 3,
+          "to": 10
+        }
+      ]
+    },
+    {
+      "lemma": "earn",
+      "thirdPerson": "earns",
+      "past": "earned",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "eat",
+      "thirdPerson": "eats",
+      "past": "ate",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "They train together, they eat together, and they always protect each other.",
+          "from": 26,
+          "to": 29
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "They slept outdoors, ate simple food and took turns cooking, and Goku trained his legs before he slept.",
+          "from": 21,
+          "to": 24
+        }
+      ]
+    },
+    {
+      "lemma": "end",
+      "thirdPerson": "ends",
+      "past": "ended",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "The edge faces the sky, and a cut can only stop a fight, never end a life.",
+          "from": 57,
+          "to": 66
+        },
+        {
+          "tense": "past",
+          "readingId": "db-04-baba-past",
+          "readingTitle": "4 · La adivina Baba",
+          "series": "Dragon Ball",
+          "sentence": "Bulma and the others waited near that tower, and they hoped that all of them came back in time before the night ended.",
+          "from": 112,
+          "to": 117
+        }
+      ]
+    },
+    {
+      "lemma": "enter",
+      "thirdPerson": "enters",
+      "past": "entered",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "He entered the tournament himself, but he hid his face behind a false identity.",
+          "from": 3,
+          "to": 10
+        }
+      ]
+    },
+    {
+      "lemma": "expect",
+      "thirdPerson": "expects",
+      "past": "expected",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-04-baba-past",
+          "readingTitle": "4 · La adivina Baba",
+          "series": "Dragon Ball",
+          "sentence": "Everyone expected that, since the old books described the same thing.",
+          "from": 9,
+          "to": 17
+        }
+      ]
+    },
+    {
+      "lemma": "explain",
+      "thirdPerson": "explains",
+      "past": "explained",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "The old man also explained how to carry the power of a cloud, and how to fly with one over the island.",
+          "from": 17,
+          "to": 26
+        }
+      ]
+    },
+    {
+      "lemma": "face",
+      "thirdPerson": "faces",
+      "past": "faced",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "The edge faces the sky, and a cut can only stop a fight, never end a life.",
+          "from": 9,
+          "to": 14
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Then Goku faced the army of Pilaf inside the castle.",
+          "from": 10,
+          "to": 15
+        }
+      ]
+    },
+    {
+      "lemma": "fall",
+      "thirdPerson": "falls",
+      "past": "fell",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Each stop brought them closer to the old legend, and Bulma kept the machine working until night fell over the hills.",
+          "from": 96,
+          "to": 100
+        }
+      ]
+    },
+    {
+      "lemma": "fear",
+      "thirdPerson": "fears",
+      "past": "feared",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-03-red-ribbon-past",
+          "readingTitle": "3 · El ejército de la Red Ribbon",
+          "series": "Dragon Ball",
+          "sentence": "Goku was still young, but he already beat armoured cars and tanks in the desert, so the army feared him more than anybody else.",
+          "from": 93,
+          "to": 99
+        }
+      ]
+    },
+    {
+      "lemma": "feel",
+      "thirdPerson": "feels",
+      "past": "felt",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Every warrior on the planet feels the same power.",
+          "from": 28,
+          "to": 33
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "The old man felt that his time arrived, so he gave Goku one last lesson before he died.",
+          "from": 12,
+          "to": 16
+        }
+      ]
+    },
+    {
+      "lemma": "fight",
+      "thirdPerson": "fights",
+      "past": "fought",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "He fights every time a strong enemy appears, and he never runs away.",
+          "from": 3,
+          "to": 9
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Her name was Chi-Chi, and she fought well, although she was still very young.",
+          "from": 30,
+          "to": 36
+        }
+      ]
+    },
+    {
+      "lemma": "find",
+      "thirdPerson": "finds",
+      "past": "found",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "He needs a fight that is not a murder, and he always finds one.",
+          "from": 53,
+          "to": 58
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "The old man found him as a baby inside a basket and raised him by himself.",
+          "from": 12,
+          "to": 17
+        }
+      ]
+    },
+    {
+      "lemma": "fly",
+      "thirdPerson": "flies",
+      "past": "flew",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Then he holds his friend in his arms and flies home.",
+          "from": 41,
+          "to": 46
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Goku climbed onto the cloud with her, and the two of them flew away together.",
+          "from": 58,
+          "to": 62
+        }
+      ]
+    },
+    {
+      "lemma": "follow",
+      "thirdPerson": "follows",
+      "past": "followed",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "Every other fighter in the world followed a master, and he followed nobody.",
+          "from": 33,
+          "to": 41
+        }
+      ]
+    },
+    {
+      "lemma": "force",
+      "thirdPerson": "forces",
+      "past": "forced",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "forget",
+      "thirdPerson": "forgets",
+      "past": "forgot",
+      "irregular": true,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "give",
+      "thirdPerson": "gives",
+      "past": "gave",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "He buries his master in a small temple outside the city and gives the sword to the Shinsengumi.",
+          "from": 60,
+          "to": 65
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "At last he gave up and joined the group instead of staying alone.",
+          "from": 11,
+          "to": 15
+        }
+      ]
+    },
+    {
+      "lemma": "go",
+      "thirdPerson": "goes",
+      "past": "went",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "Every time someone in trouble asks for help, Kenshin goes.",
+          "from": 53,
+          "to": 57
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Their journey went on with Goku growing stronger, and the little green cloud carried them above the fields toward the next secret of the world.",
+          "from": 14,
+          "to": 18
+        }
+      ]
+    },
+    {
+      "lemma": "grant",
+      "thirdPerson": "grants",
+      "past": "granted",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "They also said that the person who gathered all seven woke a dragon, and that the dragon granted one wish to whoever called it.",
+          "from": 89,
+          "to": 96
+        }
+      ]
+    },
+    {
+      "lemma": "grow",
+      "thirdPerson": "grows",
+      "past": "grew",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "When he is in danger, his heart works faster and his power grows.",
+          "from": 59,
+          "to": 64
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Goku grew up strange and very strong.",
+          "from": 5,
+          "to": 9
+        }
+      ]
+    },
+    {
+      "lemma": "guard",
+      "thirdPerson": "guards",
+      "past": "guarded",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "happen",
+      "thirdPerson": "happens",
+      "past": "happened",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-03-red-ribbon-past",
+          "readingTitle": "3 · El ejército de la Red Ribbon",
+          "series": "Dragon Ball",
+          "sentence": "The army dug a long tunnel under the island where the tournament happened.",
+          "from": 65,
+          "to": 73
+        }
+      ]
+    },
+    {
+      "lemma": "hatch",
+      "thirdPerson": "hatches",
+      "past": "hatched",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "hate",
+      "thirdPerson": "hates",
+      "past": "hated",
+      "irregular": false,
+      "tenses": [
+        "present"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "He says he hates Goku, but he fights beside him when Earth needs help.",
+          "from": 11,
+          "to": 16
+        }
+      ]
+    },
+    {
+      "lemma": "heal",
+      "thirdPerson": "heals",
+      "past": "healed",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "He heals faster than any human, and no disease lasts long in him.",
+          "from": 3,
+          "to": 8
+        },
+        {
+          "tense": "past",
+          "readingId": "dbz-super-saiyan-past",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Before he left, a wise old man gave him a special medicine that healed his heart only once.",
+          "from": 64,
+          "to": 70
+        }
+      ]
+    },
+    {
+      "lemma": "hide",
+      "thirdPerson": "hides",
+      "past": "hid",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "A king saw their power and hid the seven balls in secret, so many families waited for years without any luck.",
+          "from": 27,
+          "to": 30
+        }
+      ]
+    },
+    {
+      "lemma": "hold",
+      "thirdPerson": "holds",
+      "past": "held",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Then he holds his friend in his arms and flies home.",
+          "from": 8,
+          "to": 13
+        },
+        {
+          "tense": "past",
+          "readingId": "db-04-baba-past",
+          "readingTitle": "4 · La adivina Baba",
+          "series": "Dragon Ball",
+          "sentence": "Baba held a crystal ball, and with that ball he brought dead people back to life.",
+          "from": 5,
+          "to": 9
+        }
+      ]
+    },
+    {
+      "lemma": "invent",
+      "thirdPerson": "invents",
+      "past": "invented",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-05-tenshinhan-past",
+          "readingTitle": "5 · Tenshinhan",
+          "series": "Dragon Ball",
+          "sentence": "In the last fight, Goku faced Piccolo Daimao, and the old demon used all the techniques that Goku himself invented.",
+          "from": 106,
+          "to": 114
+        }
+      ]
+    },
+    {
+      "lemma": "keep",
+      "thirdPerson": "keeps",
+      "past": "kept",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "Kenshin is also the man who keeps a promise he never breaks.",
+          "from": 28,
+          "to": 33
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Each stop brought them closer to the old legend, and Bulma kept the machine working until night fell over the hills.",
+          "from": 59,
+          "to": 63
+        }
+      ]
+    },
+    {
+      "lemma": "kill",
+      "thirdPerson": "kills",
+      "past": "killed",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "He destroys towns and kills people without mercy.",
+          "from": 22,
+          "to": 27
+        },
+        {
+          "tense": "past",
+          "readingId": "db-05-tenshinhan-past",
+          "readingTitle": "5 · Tenshinhan",
+          "series": "Dragon Ball",
+          "sentence": "He walked into the arena of the tournament and killed a young fighter, Krillin, right in front of Goku.",
+          "from": 47,
+          "to": 53
+        }
+      ]
+    },
+    {
+      "lemma": "know",
+      "thirdPerson": "knows",
+      "past": "knew",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "He is a kind man who does not know when to stop.",
+          "from": 21,
+          "to": 34
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "They knew no house, no town and no school, only the mountains and the forest below them.",
+          "from": 5,
+          "to": 9
+        }
+      ]
+    },
+    {
+      "lemma": "last",
+      "thirdPerson": "lasts",
+      "past": "lasted",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "He heals faster than any human, and no disease lasts long in him.",
+          "from": 47,
+          "to": 52
+        },
+        {
+          "tense": "past",
+          "readingId": "db-07-piccolo-junior-past",
+          "readingTitle": "7 · El joven Piccolo",
+          "series": "Dragon Ball",
+          "sentence": "Their fight lasted a long time, and the soil of the field was torn open under their feet.",
+          "from": 12,
+          "to": 18
+        }
+      ]
+    },
+    {
+      "lemma": "laugh",
+      "thirdPerson": "laughs",
+      "past": "laughed",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "Roshi looked at the boy and laughed at the tail behind his back.",
+          "from": 28,
+          "to": 35
+        }
+      ]
+    },
+    {
+      "lemma": "learn",
+      "thirdPerson": "learns",
+      "past": "learned",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "Goku learned both of them in a few weeks.",
+          "from": 5,
+          "to": 12
+        }
+      ]
+    },
+    {
+      "lemma": "leave",
+      "thirdPerson": "leaves",
+      "past": "left",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Bulma ran away with her machine to save her life, and she left the others behind in the forest.",
+          "from": 58,
+          "to": 62
+        }
+      ]
+    },
+    {
+      "lemma": "let",
+      "thirdPerson": "lets",
+      "past": "let",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-05-tenshinhan-past",
+          "readingTitle": "5 · Tenshinhan",
+          "series": "Dragon Ball",
+          "sentence": "Some of the others did not trust the boy at all, but they let him stay.",
+          "from": 58,
+          "to": 61
+        }
+      ]
+    },
+    {
+      "lemma": "lift",
+      "thirdPerson": "lifts",
+      "past": "lifted",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "He lifted heavy rocks with one hand, he ran faster than wild animals, and a long tail grew at his back.",
+          "from": 3,
+          "to": 9
+        }
+      ]
+    },
+    {
+      "lemma": "listen",
+      "thirdPerson": "listens",
+      "past": "listened",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-04-baba-past",
+          "readingTitle": "4 · La adivina Baba",
+          "series": "Dragon Ball",
+          "sentence": "The dragon listened, and the wish came true.",
+          "from": 11,
+          "to": 19
+        }
+      ]
+    },
+    {
+      "lemma": "live",
+      "thirdPerson": "lives",
+      "past": "lived",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "Himura Kenshin is a wandering swordsman who lives in the last years of Edo.",
+          "from": 44,
+          "to": 49
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Goku lived alone high in the mountains with his grandfather.",
+          "from": 5,
+          "to": 10
+        }
+      ]
+    },
+    {
+      "lemma": "look",
+      "thirdPerson": "looks",
+      "past": "looked",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Goku's body is stronger than it looks.",
+          "from": 32,
+          "to": 37
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Bulma steered the cloud while Goku looked down at the land below them.",
+          "from": 35,
+          "to": 41
+        }
+      ]
+    },
+    {
+      "lemma": "lose",
+      "thirdPerson": "loses",
+      "past": "lost",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Every time he loses someone he loves, he comes back stronger.",
+          "from": 14,
+          "to": 19
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Pilaf escaped in the confusion and hid with his people, so the group lost him for good.",
+          "from": 69,
+          "to": 73
+        }
+      ]
+    },
+    {
+      "lemma": "love",
+      "thirdPerson": "loves",
+      "past": "loved",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Every time he loses someone he loves, he comes back stronger.",
+          "from": 31,
+          "to": 36
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Her grandfather loved old stories about the Dragon Balls during all his life.",
+          "from": 16,
+          "to": 21
+        }
+      ]
+    },
+    {
+      "lemma": "make",
+      "thirdPerson": "makes",
+      "past": "made",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "He makes a promise to his master's grave, to his friend, and to a boy who stands beside him.",
+          "from": 3,
+          "to": 8
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "He met Bulma once in a forest, and the dust she threw at him made him fall in love with her from that moment.",
+          "from": 61,
+          "to": 65
+        }
+      ]
+    },
+    {
+      "lemma": "marry",
+      "thirdPerson": "marries",
+      "past": "married",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "Years later Goku married Chi-Chi, the girl who waited for him on the mountain, and he asked Roshi to go on teaching him.",
+          "from": 17,
+          "to": 24
+        }
+      ]
+    },
+    {
+      "lemma": "meet",
+      "thirdPerson": "meets",
+      "past": "met",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "He met Bulma once in a forest, and the dust she threw at him made him fall in love with her from that moment.",
+          "from": 3,
+          "to": 6
+        }
+      ]
+    },
+    {
+      "lemma": "miss",
+      "thirdPerson": "misses",
+      "past": "missed",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "move",
+      "thirdPerson": "moves",
+      "past": "moved",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Frieza drops him, and the boy never moves again.",
+          "from": 30,
+          "to": 41
+        },
+        {
+          "tense": "past",
+          "readingId": "db-04-baba-past",
+          "readingTitle": "4 · La adivina Baba",
+          "series": "Dragon Ball",
+          "sentence": "The dragon spoke in a voice that moved the trees on the hill.",
+          "from": 33,
+          "to": 38
+        }
+      ]
+    },
+    {
+      "lemma": "multiply",
+      "thirdPerson": "multiplies",
+      "past": "multiplied",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "need",
+      "thirdPerson": "needs",
+      "past": "needed",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "He says he hates Goku, but he fights beside him when Earth needs help.",
+          "from": 59,
+          "to": 64
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "He grew so big that Goku needed both hands to hold him.",
+          "from": 25,
+          "to": 31
+        }
+      ]
+    },
+    {
+      "lemma": "offer",
+      "thirdPerson": "offers",
+      "past": "offered",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-03-red-ribbon-past",
+          "readingTitle": "3 · El ejército de la Red Ribbon",
+          "series": "Dragon Ball",
+          "sentence": "Deep inside the mountain, the army kept a treasure room with two Dragon Balls in it, and they offered both spheres in exchange for Bulma.",
+          "from": 94,
+          "to": 101
+        }
+      ]
+    },
+    {
+      "lemma": "open",
+      "thirdPerson": "opens",
+      "past": "opened",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "After that they opened a case with the money of the tournament and prepared to run away with it.",
+          "from": 16,
+          "to": 22
+        }
+      ]
+    },
+    {
+      "lemma": "pass",
+      "thirdPerson": "passes",
+      "past": "passed",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "pick",
+      "thirdPerson": "picks",
+      "past": "picked",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "In the last seconds he picked up a broken piece of the ring and threw it high in the air.",
+          "from": 23,
+          "to": 29
+        }
+      ]
+    },
+    {
+      "lemma": "plan",
+      "thirdPerson": "plans",
+      "past": "planned",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "samurai-x-oath-past",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "The Shinsengumi, the new masters of the city, planned everything from the beginning.",
+          "from": 46,
+          "to": 53
+        }
+      ]
+    },
+    {
+      "lemma": "pour",
+      "thirdPerson": "pours",
+      "past": "poured",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "prepare",
+      "thirdPerson": "prepares",
+      "past": "prepared",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "After that they opened a case with the money of the tournament and prepared to run away with it.",
+          "from": 67,
+          "to": 75
+        }
+      ]
+    },
+    {
+      "lemma": "protect",
+      "thirdPerson": "protects",
+      "past": "protected",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Goku is a Saiyan warrior who protects the Earth.",
+          "from": 29,
+          "to": 37
+        },
+        {
+          "tense": "past",
+          "readingId": "samurai-x-oath-past",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "He walked from town to town and protected people who were completely alone.",
+          "from": 32,
+          "to": 41
+        }
+      ]
+    },
+    {
+      "lemma": "put",
+      "thirdPerson": "puts",
+      "past": "put",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Then he put a round stone high in the air and showed Goku how to catch it before it fell to the ground.",
+          "from": 8,
+          "to": 11
+        }
+      ]
+    },
+    {
+      "lemma": "raise",
+      "thirdPerson": "raises",
+      "past": "raised",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "The old man found him as a baby inside a basket and raised him by himself.",
+          "from": 52,
+          "to": 58
+        }
+      ]
+    },
+    {
+      "lemma": "reach",
+      "thirdPerson": "reaches",
+      "past": "reached",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-05-tenshinhan-past",
+          "readingTitle": "5 · Tenshinhan",
+          "series": "Dragon Ball",
+          "sentence": "His muscles grew stronger each time his body reached the edge of its limits, and after those long months he was far stronger than before.",
+          "from": 45,
+          "to": 52
+        }
+      ]
+    },
+    {
+      "lemma": "read",
+      "thirdPerson": "reads",
+      "past": "read",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-04-baba-past",
+          "readingTitle": "4 · La adivina Baba",
+          "series": "Dragon Ball",
+          "sentence": "Bulma read old books, and Roshi remembered the stories of a famous wizard in a tall tower in the middle of that land.",
+          "from": 6,
+          "to": 10
+        }
+      ]
+    },
+    {
+      "lemma": "recognize",
+      "thirdPerson": "recognizes",
+      "past": "recognized",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "refuse",
+      "thirdPerson": "refuses",
+      "past": "refused",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-03-red-ribbon-past",
+          "readingTitle": "3 · El ejército de la Red Ribbon",
+          "series": "Dragon Ball",
+          "sentence": "Krillin laughed when he saw them, and Yamcha refused to believe such a strange story at first.",
+          "from": 45,
+          "to": 52
+        }
+      ]
+    },
+    {
+      "lemma": "remember",
+      "thirdPerson": "remembers",
+      "past": "remembered",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-04-baba-past",
+          "readingTitle": "4 · La adivina Baba",
+          "series": "Dragon Ball",
+          "sentence": "Bulma read old books, and Roshi remembered the stories of a famous wizard in a tall tower in the middle of that land.",
+          "from": 32,
+          "to": 42
+        }
+      ]
+    },
+    {
+      "lemma": "return",
+      "thirdPerson": "returns",
+      "past": "returned",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Goku returns.",
+          "from": 5,
+          "to": 12
+        },
+        {
+          "tense": "past",
+          "readingId": "db-06-piccolo-past",
+          "readingTitle": "6 · Piccolo Daimao",
+          "series": "Dragon Ball",
+          "sentence": "That seed returned his strength in a single moment.",
+          "from": 10,
+          "to": 18
+        }
+      ]
+    },
+    {
+      "lemma": "rise",
+      "thirdPerson": "rises",
+      "past": "rose",
+      "irregular": true,
+      "tenses": [
+        "present"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "A power he does not know yet rises from his chest.",
+          "from": 29,
+          "to": 34
+        }
+      ]
+    },
+    {
+      "lemma": "run",
+      "thirdPerson": "runs",
+      "past": "ran",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "He fights every time a strong enemy appears, and he never runs away.",
+          "from": 52,
+          "to": 62
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "He lifted heavy rocks with one hand, he ran faster than wild animals, and a long tail grew at his back.",
+          "from": 40,
+          "to": 43
+        }
+      ]
+    },
+    {
+      "lemma": "say",
+      "thirdPerson": "says",
+      "past": "said",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "He says he hates Goku, but he fights beside him when Earth needs help.",
+          "from": 3,
+          "to": 7
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Those stories said that seven balls appeared in different parts of the world a long time ago.",
+          "from": 14,
+          "to": 18
+        }
+      ]
+    },
+    {
+      "lemma": "scream",
+      "thirdPerson": "screams",
+      "past": "screamed",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "dbz-super-saiyan-past",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Goku screamed.",
+          "from": 5,
+          "to": 13
+        }
+      ]
+    },
+    {
+      "lemma": "search",
+      "thirdPerson": "searches",
+      "past": "searched",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-04-baba-past",
+          "readingTitle": "4 · La adivina Baba",
+          "series": "Dragon Ball",
+          "sentence": "While Goku stayed with the witch, the others searched for a different way to win.",
+          "from": 45,
+          "to": 53
+        }
+      ]
+    },
+    {
+      "lemma": "see",
+      "thirdPerson": "sees",
+      "past": "saw",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Then Goku sees it.",
+          "from": 10,
+          "to": 14
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "A king saw their power and hid the seven balls in secret, so many families waited for years without any luck.",
+          "from": 7,
+          "to": 10
+        }
+      ]
+    },
+    {
+      "lemma": "sell",
+      "thirdPerson": "sells",
+      "past": "sold",
+      "irregular": true,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "send",
+      "thirdPerson": "sends",
+      "past": "sent",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "Goku got up with blood on his face and sent him flying through a wall.",
+          "from": 39,
+          "to": 43
+        }
+      ]
+    },
+    {
+      "lemma": "set",
+      "thirdPerson": "sets",
+      "past": "set",
+      "irregular": true,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "shake",
+      "thirdPerson": "shakes",
+      "past": "shook",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "He shouted with a very loud voice, and the ground shook around the boy.",
+          "from": 50,
+          "to": 55
+        }
+      ]
+    },
+    {
+      "lemma": "shoot",
+      "thirdPerson": "shoots",
+      "past": "shot",
+      "irregular": true,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "show",
+      "thirdPerson": "shows",
+      "past": "showed",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Then he put a round stone high in the air and showed Goku how to catch it before it fell to the ground.",
+          "from": 46,
+          "to": 52
+        }
+      ]
+    },
+    {
+      "lemma": "sleep",
+      "thirdPerson": "sleeps",
+      "past": "slept",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "They slept outside at night under a clear sky, and the old man told him old stories about brave fighters.",
+          "from": 5,
+          "to": 10
+        }
+      ]
+    },
+    {
+      "lemma": "smile",
+      "thirdPerson": "smiles",
+      "past": "smiled",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "dbz-super-saiyan-past",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "Frieza smiled and called his son's name.",
+          "from": 7,
+          "to": 13
+        }
+      ]
+    },
+    {
+      "lemma": "spend",
+      "thirdPerson": "spends",
+      "past": "spent",
+      "irregular": true,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "stand",
+      "thirdPerson": "stands",
+      "past": "stood",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "A young boy with a shaved head stands alone in front of Frieza.",
+          "from": 31,
+          "to": 37
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "He lied about them to keep the travelers away, and his army stood between the group and the treasure.",
+          "from": 60,
+          "to": 65
+        }
+      ]
+    },
+    {
+      "lemma": "start",
+      "thirdPerson": "starts",
+      "past": "started",
+      "irregular": false,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "stay",
+      "thirdPerson": "stays",
+      "past": "stayed",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "The old man died in the mountains during the night, and Goku stayed alone beside the body for a long while.",
+          "from": 61,
+          "to": 67
+        }
+      ]
+    },
+    {
+      "lemma": "stop",
+      "thirdPerson": "stops",
+      "past": "stopped",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "On the road the three travellers stopped in a small city in the desert.",
+          "from": 33,
+          "to": 40
+        }
+      ]
+    },
+    {
+      "lemma": "study",
+      "thirdPerson": "studies",
+      "past": "studied",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-06-piccolo-past",
+          "readingTitle": "6 · Piccolo Daimao",
+          "series": "Dragon Ball",
+          "sentence": "Goku studied that small creature with total attention, because the small one copied the power of the demon lord exactly.",
+          "from": 5,
+          "to": 12
+        }
+      ]
+    },
+    {
+      "lemma": "take",
+      "thirdPerson": "takes",
+      "past": "took",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "He never takes another life after that.",
+          "from": 3,
+          "to": 14
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Goku took the ball that Oolong stole and put it back with the others.",
+          "from": 5,
+          "to": 9
+        }
+      ]
+    },
+    {
+      "lemma": "talk",
+      "thirdPerson": "talks",
+      "past": "talked",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "A blue cat with the name Puar came with them too, and he talked like a person.",
+          "from": 57,
+          "to": 63
+        }
+      ]
+    },
+    {
+      "lemma": "teach",
+      "thirdPerson": "teaches",
+      "past": "taught",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "He lost the only person who taught him anything, and the boy understood that he knew nothing about fighting.",
+          "from": 28,
+          "to": 34
+        }
+      ]
+    },
+    {
+      "lemma": "tear",
+      "thirdPerson": "tears",
+      "past": "tore",
+      "irregular": true,
+      "tenses": [],
+      "examples": []
+    },
+    {
+      "lemma": "tell",
+      "thirdPerson": "tells",
+      "past": "told",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "Then the Shinsengumi tells him the truth: they use Kenshin's strength to destroy his master's life.",
+          "from": 21,
+          "to": 26
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "They slept outside at night under a clear sky, and the old man told him old stories about brave fighters.",
+          "from": 63,
+          "to": 67
+        }
+      ]
+    },
+    {
+      "lemma": "throw",
+      "thirdPerson": "throws",
+      "past": "threw",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "He met Bulma once in a forest, and the dust she threw at him made him fall in love with her from that moment.",
+          "from": 48,
+          "to": 53
+        }
+      ]
+    },
+    {
+      "lemma": "touch",
+      "thirdPerson": "touches",
+      "past": "touched",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-03-red-ribbon-past",
+          "readingTitle": "3 · El ejército de la Red Ribbon",
+          "series": "Dragon Ball",
+          "sentence": "Goku smelled the poison before he touched anything.",
+          "from": 34,
+          "to": 41
+        }
+      ]
+    },
+    {
+      "lemma": "train",
+      "thirdPerson": "trains",
+      "past": "trained",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "They train together, they eat together, and they always protect each other.",
+          "from": 5,
+          "to": 10
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "He also trained the boy beside a cold stream and a small waterfall.",
+          "from": 8,
+          "to": 15
+        }
+      ]
+    },
+    {
+      "lemma": "travel",
+      "thirdPerson": "travels",
+      "past": "travelled",
+      "irregular": false,
+      "tenses": [
+        "present"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "He calls himself a rurouni, a wanderer with no home, and he travels from town to town.",
+          "from": 60,
+          "to": 67
+        }
+      ]
+    },
+    {
+      "lemma": "try",
+      "thirdPerson": "tries",
+      "past": "tried",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Goku ran after him, and the pig tried every trick he could think of to get free.",
+          "from": 32,
+          "to": 37
+        }
+      ]
+    },
+    {
+      "lemma": "turn",
+      "thirdPerson": "turns",
+      "past": "turned",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "His hair turns gold.",
+          "from": 9,
+          "to": 14
+        },
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "He turned into a huge bird, then into a small mouse, and then into many other strange shapes.",
+          "from": 3,
+          "to": 9
+        }
+      ]
+    },
+    {
+      "lemma": "understand",
+      "thirdPerson": "understands",
+      "past": "understood",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "He lost the only person who taught him anything, and the boy understood that he knew nothing about fighting.",
+          "from": 61,
+          "to": 71
+        }
+      ]
+    },
+    {
+      "lemma": "use",
+      "thirdPerson": "uses",
+      "past": "used",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "samurai-x-oath-present",
+          "readingTitle": "El juramento de no matar",
+          "series": "Samurai X (Rurouni Kenshin)",
+          "sentence": "People know him as Hitokiri Battosai, the Manslayer of the Dragon Gate, but the name belongs to a past life that he does not use anymore.",
+          "from": 116,
+          "to": 128
+        },
+        {
+          "tense": "past",
+          "readingId": "db-05-tenshinhan-past",
+          "readingTitle": "5 · Tenshinhan",
+          "series": "Dragon Ball",
+          "sentence": "In the last fight, Goku faced Piccolo Daimao, and the old demon used all the techniques that Goku himself invented.",
+          "from": 64,
+          "to": 68
+        }
+      ]
+    },
+    {
+      "lemma": "wait",
+      "thirdPerson": "waits",
+      "past": "waited",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "A king saw their power and hid the seven balls in secret, so many families waited for years without any luck.",
+          "from": 75,
+          "to": 81
+        }
+      ]
+    },
+    {
+      "lemma": "wake",
+      "thirdPerson": "wakes",
+      "past": "woke",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "They also said that the person who gathered all seven woke a dragon, and that the dragon granted one wish to whoever called it.",
+          "from": 54,
+          "to": 58
+        }
+      ]
+    },
+    {
+      "lemma": "walk",
+      "thirdPerson": "walks",
+      "past": "walked",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "A young man with long hair and sharp eyes also walked with the group.",
+          "from": 47,
+          "to": 53
+        }
+      ]
+    },
+    {
+      "lemma": "want",
+      "thirdPerson": "wants",
+      "past": "wanted",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-01-bulma-past",
+          "readingTitle": "1 · El viaje con Bulma",
+          "series": "Dragon Ball",
+          "sentence": "Bulma wanted to finish the collection of her grandfather, so she built a machine that could find them.",
+          "from": 6,
+          "to": 12
+        }
+      ]
+    },
+    {
+      "lemma": "watch",
+      "thirdPerson": "watches",
+      "past": "watched",
+      "irregular": false,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "The old man watched from the ring without a word.",
+          "from": 12,
+          "to": 19
+        }
+      ]
+    },
+    {
+      "lemma": "wear",
+      "thirdPerson": "wears",
+      "past": "wore",
+      "irregular": true,
+      "tenses": [
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "past",
+          "readingId": "db-05-tenshinhan-past",
+          "readingTitle": "5 · Tenshinhan",
+          "series": "Dragon Ball",
+          "sentence": "He was thin and extremely tall, and he wore a long white cape and a turban over his head.",
+          "from": 39,
+          "to": 43
+        }
+      ]
+    },
+    {
+      "lemma": "win",
+      "thirdPerson": "wins",
+      "past": "won",
+      "irregular": true,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "He fights faster than anyone can see, and he wins.",
+          "from": 45,
+          "to": 49
+        },
+        {
+          "tense": "past",
+          "readingId": "db-02-roshi-past",
+          "readingTitle": "2 · El maestro Roshi",
+          "series": "Dragon Ball",
+          "sentence": "The judges saw who won each round, and they gave the fight to the boy.",
+          "from": 19,
+          "to": 22
+        }
+      ]
+    },
+    {
+      "lemma": "work",
+      "thirdPerson": "works",
+      "past": "worked",
+      "irregular": false,
+      "tenses": [
+        "present",
+        "past"
+      ],
+      "examples": [
+        {
+          "tense": "present",
+          "readingId": "dbz-super-saiyan-present",
+          "readingTitle": "La transformación Super Saiyan",
+          "series": "Dragon Ball Z",
+          "sentence": "When he is in danger, his heart works faster and his power grows.",
+          "from": 32,
+          "to": 37
+        },
+        {
+          "tense": "past",
+          "readingId": "db-05-tenshinhan-past",
+          "readingTitle": "5 · Tenshinhan",
+          "series": "Dragon Ball",
+          "sentence": "The old woman laughed at him and told him that the water of the valley never worked twice with the same man.",
+          "from": 71,
+          "to": 83
+        }
+      ]
+    }
+  ]
+}

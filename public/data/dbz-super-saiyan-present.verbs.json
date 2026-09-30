@@ -1,0 +1,374 @@
+{
+  "textHash": "aeb720ff6137",
+  "tense": "present",
+  "counts": {
+    "present": 52,
+    "past": 0
+  },
+  "verbs": [
+    {
+      "from": 5,
+      "to": 7,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 29,
+      "to": 37,
+      "tense": "present",
+      "lemma": "protect",
+      "surface": "protects"
+    },
+    {
+      "from": 52,
+      "to": 58,
+      "tense": "present",
+      "lemma": "fight",
+      "surface": "fights"
+    },
+    {
+      "from": 85,
+      "to": 92,
+      "tense": "present",
+      "lemma": "appear",
+      "surface": "appears"
+    },
+    {
+      "from": 101,
+      "to": 111,
+      "tense": "present",
+      "lemma": "run",
+      "surface": "never runs"
+    },
+    {
+      "from": 121,
+      "to": 123,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 139,
+      "to": 152,
+      "tense": "present",
+      "lemma": "know",
+      "surface": "does not know"
+    },
+    {
+      "from": 180,
+      "to": 182,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 200,
+      "to": 205,
+      "tense": "present",
+      "lemma": "look",
+      "surface": "looks"
+    },
+    {
+      "from": 210,
+      "to": 215,
+      "tense": "present",
+      "lemma": "heal",
+      "surface": "heals"
+    },
+    {
+      "from": 254,
+      "to": 259,
+      "tense": "present",
+      "lemma": "last",
+      "surface": "lasts"
+    },
+    {
+      "from": 281,
+      "to": 283,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 305,
+      "to": 310,
+      "tense": "present",
+      "lemma": "work",
+      "surface": "works"
+    },
+    {
+      "from": 332,
+      "to": 337,
+      "tense": "present",
+      "lemma": "grow",
+      "surface": "grows"
+    },
+    {
+      "from": 348,
+      "to": 350,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 373,
+      "to": 378,
+      "tense": "present",
+      "lemma": "train",
+      "surface": "train"
+    },
+    {
+      "from": 394,
+      "to": 397,
+      "tense": "present",
+      "lemma": "eat",
+      "surface": "eat"
+    },
+    {
+      "from": 424,
+      "to": 431,
+      "tense": "present",
+      "lemma": "protect",
+      "surface": "protect"
+    },
+    {
+      "from": 451,
+      "to": 453,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 471,
+      "to": 475,
+      "tense": "present",
+      "lemma": "say",
+      "surface": "says"
+    },
+    {
+      "from": 479,
+      "to": 484,
+      "tense": "present",
+      "lemma": "hate",
+      "surface": "hates"
+    },
+    {
+      "from": 498,
+      "to": 504,
+      "tense": "present",
+      "lemma": "fight",
+      "surface": "fights"
+    },
+    {
+      "from": 527,
+      "to": 532,
+      "tense": "present",
+      "lemma": "need",
+      "surface": "needs"
+    },
+    {
+      "from": 547,
+      "to": 549,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 578,
+      "to": 586,
+      "tense": "present",
+      "lemma": "destroy",
+      "surface": "destroys"
+    },
+    {
+      "from": 597,
+      "to": 602,
+      "tense": "present",
+      "lemma": "kill",
+      "surface": "kills"
+    },
+    {
+      "from": 646,
+      "to": 648,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 681,
+      "to": 683,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 708,
+      "to": 714,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is not"
+    },
+    {
+      "from": 759,
+      "to": 763,
+      "tense": "present",
+      "lemma": "see",
+      "surface": "sees"
+    },
+    {
+      "from": 799,
+      "to": 805,
+      "tense": "present",
+      "lemma": "stand",
+      "surface": "stands"
+    },
+    {
+      "from": 840,
+      "to": 842,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 863,
+      "to": 869,
+      "tense": "present",
+      "lemma": "fight",
+      "surface": "fights"
+    },
+    {
+      "from": 883,
+      "to": 889,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is not"
+    },
+    {
+      "from": 912,
+      "to": 917,
+      "tense": "present",
+      "lemma": "drop",
+      "surface": "drops"
+    },
+    {
+      "from": 935,
+      "to": 946,
+      "tense": "present",
+      "lemma": "move",
+      "surface": "never moves"
+    },
+    {
+      "from": 965,
+      "to": 972,
+      "tense": "present",
+      "lemma": "change",
+      "surface": "changes"
+    },
+    {
+      "from": 1008,
+      "to": 1014,
+      "tense": "present",
+      "lemma": "break",
+      "surface": "breaks"
+    },
+    {
+      "from": 1027,
+      "to": 1040,
+      "tense": "present",
+      "lemma": "know",
+      "surface": "does not know"
+    },
+    {
+      "from": 1045,
+      "to": 1050,
+      "tense": "present",
+      "lemma": "rise",
+      "surface": "rises"
+    },
+    {
+      "from": 1076,
+      "to": 1081,
+      "tense": "present",
+      "lemma": "turn",
+      "surface": "turns"
+    },
+    {
+      "from": 1097,
+      "to": 1101,
+      "tense": "present",
+      "lemma": "turn",
+      "surface": "turn"
+    },
+    {
+      "from": 1120,
+      "to": 1126,
+      "tense": "present",
+      "lemma": "crack",
+      "surface": "cracks"
+    },
+    {
+      "from": 1172,
+      "to": 1177,
+      "tense": "present",
+      "lemma": "feel",
+      "surface": "feels"
+    },
+    {
+      "from": 1199,
+      "to": 1206,
+      "tense": "present",
+      "lemma": "return",
+      "surface": "returns"
+    },
+    {
+      "from": 1211,
+      "to": 1217,
+      "tense": "present",
+      "lemma": "fight",
+      "surface": "fights"
+    },
+    {
+      "from": 1253,
+      "to": 1257,
+      "tense": "present",
+      "lemma": "win",
+      "surface": "wins"
+    },
+    {
+      "from": 1267,
+      "to": 1272,
+      "tense": "present",
+      "lemma": "hold",
+      "surface": "holds"
+    },
+    {
+      "from": 1300,
+      "to": 1305,
+      "tense": "present",
+      "lemma": "fly",
+      "surface": "flies"
+    },
+    {
+      "from": 1326,
+      "to": 1331,
+      "tense": "present",
+      "lemma": "lose",
+      "surface": "loses"
+    },
+    {
+      "from": 1343,
+      "to": 1348,
+      "tense": "present",
+      "lemma": "love",
+      "surface": "loves"
+    },
+    {
+      "from": 1353,
+      "to": 1358,
+      "tense": "present",
+      "lemma": "come",
+      "surface": "comes"
+    }
+  ]
+}

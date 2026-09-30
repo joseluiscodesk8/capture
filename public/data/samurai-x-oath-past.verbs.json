@@ -1,0 +1,276 @@
+{
+  "textHash": "a4cebe418170",
+  "tense": "past",
+  "counts": {
+    "present": 0,
+    "past": 38
+  },
+  "verbs": [
+    {
+      "from": 53,
+      "to": 58,
+      "tense": "past",
+      "lemma": "live",
+      "surface": "lived"
+    },
+    {
+      "from": 78,
+      "to": 81,
+      "tense": "past",
+      "lemma": "be",
+      "surface": "was"
+    },
+    {
+      "from": 105,
+      "to": 111,
+      "tense": "past",
+      "lemma": "call",
+      "surface": "called"
+    },
+    {
+      "from": 172,
+      "to": 175,
+      "tense": "past",
+      "lemma": "be",
+      "surface": "was"
+    },
+    {
+      "from": 194,
+      "to": 204,
+      "tense": "past",
+      "lemma": "lose",
+      "surface": "never lost"
+    },
+    {
+      "from": 229,
+      "to": 232,
+      "tense": "past",
+      "lemma": "be",
+      "surface": "was"
+    },
+    {
+      "from": 264,
+      "to": 267,
+      "tense": "past",
+      "lemma": "be",
+      "surface": "was"
+    },
+    {
+      "from": 330,
+      "to": 337,
+      "tense": "past",
+      "lemma": "plan",
+      "surface": "planned"
+    },
+    {
+      "from": 374,
+      "to": 379,
+      "tense": "past",
+      "lemma": "choose",
+      "surface": "chose"
+    },
+    {
+      "from": 407,
+      "to": 410,
+      "tense": "past",
+      "lemma": "be",
+      "surface": "was"
+    },
+    {
+      "from": 503,
+      "to": 506,
+      "tense": "past",
+      "lemma": "be",
+      "surface": "was"
+    },
+    {
+      "from": 564,
+      "to": 572,
+      "tense": "past",
+      "lemma": "arrange",
+      "surface": "arranged"
+    },
+    {
+      "from": 602,
+      "to": 608,
+      "tense": "past",
+      "lemma": "fight",
+      "surface": "fought"
+    },
+    {
+      "from": 622,
+      "to": 625,
+      "tense": "past",
+      "lemma": "win",
+      "surface": "won"
+    },
+    {
+      "from": 634,
+      "to": 638,
+      "tense": "past",
+      "lemma": "die",
+      "surface": "died"
+    },
+    {
+      "from": 675,
+      "to": 679,
+      "tense": "past",
+      "lemma": "tell",
+      "surface": "told"
+    },
+    {
+      "from": 704,
+      "to": 712,
+      "tense": "past",
+      "lemma": "arrange",
+      "surface": "arranged"
+    },
+    {
+      "from": 740,
+      "to": 744,
+      "tense": "past",
+      "lemma": "take",
+      "surface": "took"
+    },
+    {
+      "from": 786,
+      "to": 789,
+      "tense": "past",
+      "lemma": "be",
+      "surface": "was"
+    },
+    {
+      "from": 807,
+      "to": 813,
+      "tense": "past",
+      "lemma": "kill",
+      "surface": "killed"
+    },
+    {
+      "from": 830,
+      "to": 837,
+      "tense": "past",
+      "lemma": "plan",
+      "surface": "planned"
+    },
+    {
+      "from": 894,
+      "to": 901,
+      "tense": "past",
+      "lemma": "stop",
+      "surface": "stopped"
+    },
+    {
+      "from": 907,
+      "to": 913,
+      "tense": "past",
+      "lemma": "bury",
+      "surface": "buried"
+    },
+    {
+      "from": 974,
+      "to": 978,
+      "tense": "past",
+      "lemma": "give",
+      "surface": "gave"
+    },
+    {
+      "from": 994,
+      "to": 1000,
+      "tense": "past",
+      "lemma": "kill",
+      "surface": "killed"
+    },
+    {
+      "from": 1035,
+      "to": 1040,
+      "tense": "past",
+      "lemma": "ask",
+      "surface": "asked"
+    },
+    {
+      "from": 1069,
+      "to": 1073,
+      "tense": "past",
+      "lemma": "make",
+      "surface": "made"
+    },
+    {
+      "from": 1101,
+      "to": 1105,
+      "tense": "past",
+      "lemma": "make",
+      "surface": "made"
+    },
+    {
+      "from": 1160,
+      "to": 1168,
+      "tense": "past",
+      "lemma": "betray",
+      "surface": "betrayed"
+    },
+    {
+      "from": 1226,
+      "to": 1233,
+      "tense": "past",
+      "lemma": "stop",
+      "surface": "stopped"
+    },
+    {
+      "from": 1261,
+      "to": 1267,
+      "tense": "past",
+      "lemma": "become",
+      "surface": "became"
+    },
+    {
+      "from": 1297,
+      "to": 1303,
+      "tense": "past",
+      "lemma": "call",
+      "surface": "called"
+    },
+    {
+      "from": 1351,
+      "to": 1358,
+      "tense": "past",
+      "lemma": "carry",
+      "surface": "carried"
+    },
+    {
+      "from": 1381,
+      "to": 1387,
+      "tense": "past",
+      "lemma": "turn",
+      "surface": "turned"
+    },
+    {
+      "from": 1434,
+      "to": 1440,
+      "tense": "past",
+      "lemma": "walk",
+      "surface": "walked"
+    },
+    {
+      "from": 1463,
+      "to": 1472,
+      "tense": "past",
+      "lemma": "protect",
+      "surface": "protected"
+    },
+    {
+      "from": 1484,
+      "to": 1488,
+      "tense": "past",
+      "lemma": "be",
+      "surface": "were"
+    },
+    {
+      "from": 1510,
+      "to": 1514,
+      "tense": "past",
+      "lemma": "keep",
+      "surface": "kept"
+    }
+  ]
+}

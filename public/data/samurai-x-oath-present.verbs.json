@@ -1,0 +1,346 @@
+{
+  "textHash": "8bcf89637812",
+  "tense": "present",
+  "counts": {
+    "present": 48,
+    "past": 0
+  },
+  "verbs": [
+    {
+      "from": 15,
+      "to": 17,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 44,
+      "to": 49,
+      "tense": "present",
+      "lemma": "live",
+      "surface": "lives"
+    },
+    {
+      "from": 79,
+      "to": 81,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 116,
+      "to": 120,
+      "tense": "present",
+      "lemma": "know",
+      "surface": "know"
+    },
+    {
+      "from": 194,
+      "to": 201,
+      "tense": "present",
+      "lemma": "belong",
+      "surface": "belongs"
+    },
+    {
+      "from": 225,
+      "to": 237,
+      "tense": "present",
+      "lemma": "use",
+      "surface": "does not use"
+    },
+    {
+      "from": 256,
+      "to": 258,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 268,
+      "to": 270,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 291,
+      "to": 294,
+      "tense": "present",
+      "lemma": "see",
+      "surface": "see"
+    },
+    {
+      "from": 341,
+      "to": 343,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 353,
+      "to": 357,
+      "tense": "present",
+      "lemma": "win",
+      "surface": "wins"
+    },
+    {
+      "from": 386,
+      "to": 393,
+      "tense": "present",
+      "lemma": "choose",
+      "surface": "chooses"
+    },
+    {
+      "from": 404,
+      "to": 406,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 424,
+      "to": 429,
+      "tense": "present",
+      "lemma": "keep",
+      "surface": "keeps"
+    },
+    {
+      "from": 443,
+      "to": 455,
+      "tense": "present",
+      "lemma": "break",
+      "surface": "never breaks"
+    },
+    {
+      "from": 463,
+      "to": 465,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 502,
+      "to": 504,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 550,
+      "to": 558,
+      "tense": "present",
+      "lemma": "arrange",
+      "surface": "arranges"
+    },
+    {
+      "from": 615,
+      "to": 619,
+      "tense": "present",
+      "lemma": "need",
+      "surface": "need"
+    },
+    {
+      "from": 687,
+      "to": 691,
+      "tense": "present",
+      "lemma": "win",
+      "surface": "wins"
+    },
+    {
+      "from": 708,
+      "to": 712,
+      "tense": "present",
+      "lemma": "die",
+      "surface": "dies"
+    },
+    {
+      "from": 749,
+      "to": 754,
+      "tense": "present",
+      "lemma": "tell",
+      "surface": "tells"
+    },
+    {
+      "from": 775,
+      "to": 778,
+      "tense": "present",
+      "lemma": "use",
+      "surface": "use"
+    },
+    {
+      "from": 831,
+      "to": 836,
+      "tense": "present",
+      "lemma": "kill",
+      "surface": "kills"
+    },
+    {
+      "from": 869,
+      "to": 880,
+      "tense": "present",
+      "lemma": "take",
+      "surface": "never takes"
+    },
+    {
+      "from": 910,
+      "to": 916,
+      "tense": "present",
+      "lemma": "bury",
+      "surface": "buries"
+    },
+    {
+      "from": 967,
+      "to": 972,
+      "tense": "present",
+      "lemma": "give",
+      "surface": "gives"
+    },
+    {
+      "from": 1006,
+      "to": 1011,
+      "tense": "present",
+      "lemma": "make",
+      "surface": "makes"
+    },
+    {
+      "from": 1077,
+      "to": 1083,
+      "tense": "present",
+      "lemma": "stand",
+      "surface": "stands"
+    },
+    {
+      "from": 1099,
+      "to": 1110,
+      "tense": "present",
+      "lemma": "take",
+      "surface": "never takes"
+    },
+    {
+      "from": 1132,
+      "to": 1137,
+      "tense": "present",
+      "lemma": "turn",
+      "surface": "turns"
+    },
+    {
+      "from": 1165,
+      "to": 1170,
+      "tense": "present",
+      "lemma": "face",
+      "surface": "faces"
+    },
+    {
+      "from": 1213,
+      "to": 1222,
+      "tense": "present",
+      "lemma": "end",
+      "surface": "never end"
+    },
+    {
+      "from": 1234,
+      "to": 1239,
+      "tense": "present",
+      "lemma": "call",
+      "surface": "calls"
+    },
+    {
+      "from": 1291,
+      "to": 1298,
+      "tense": "present",
+      "lemma": "travel",
+      "surface": "travels"
+    },
+    {
+      "from": 1349,
+      "to": 1353,
+      "tense": "present",
+      "lemma": "ask",
+      "surface": "asks"
+    },
+    {
+      "from": 1372,
+      "to": 1376,
+      "tense": "present",
+      "lemma": "go",
+      "surface": "goes"
+    },
+    {
+      "from": 1381,
+      "to": 1394,
+      "tense": "present",
+      "lemma": "need",
+      "surface": "does not need"
+    },
+    {
+      "from": 1405,
+      "to": 1418,
+      "tense": "present",
+      "lemma": "need",
+      "surface": "does not need"
+    },
+    {
+      "from": 1431,
+      "to": 1436,
+      "tense": "present",
+      "lemma": "need",
+      "surface": "needs"
+    },
+    {
+      "from": 1450,
+      "to": 1456,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is not"
+    },
+    {
+      "from": 1481,
+      "to": 1486,
+      "tense": "present",
+      "lemma": "find",
+      "surface": "finds"
+    },
+    {
+      "from": 1501,
+      "to": 1503,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 1544,
+      "to": 1551,
+      "tense": "present",
+      "lemma": "choose",
+      "surface": "chooses"
+    },
+    {
+      "from": 1602,
+      "to": 1607,
+      "tense": "present",
+      "lemma": "kill",
+      "surface": "kills"
+    },
+    {
+      "from": 1608,
+      "to": 1610,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 1638,
+      "to": 1640,
+      "tense": "present",
+      "lemma": "be",
+      "surface": "is"
+    },
+    {
+      "from": 1656,
+      "to": 1669,
+      "tense": "present",
+      "lemma": "kill",
+      "surface": "does not kill"
+    }
+  ]
+}

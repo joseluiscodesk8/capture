@@ -41,23 +41,67 @@
   top: 84px;
 }
 
-@mixin sidebarTitle {
+@mixin countBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  padding: 1px 7px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--surface-alt);
+  border-radius: var(--radius-pill);
+}
+
+.sidebarSection + .sidebarSection {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
+.sectionHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 9px 12px;
+  cursor: pointer;
+  transition: background var(--transition);
+
+  &:hover {
+    background: var(--surface-alt);
+  }
+}
+
+.sectionTitle {
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
-  padding: 4px 8px 10px;
 }
 
-.sidebarTitle {
-  @include sidebarTitle;
+.sectionCount {
+  @include countBadge;
 }
 
-.sidebarTitleSpaced {
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
+.chevron {
+  margin-left: auto;
+  display: inline-flex;
+  color: var(--text-muted);
+  transition: transform var(--transition);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.sectionBody {
+  padding: 4px 0 2px;
 }
 
 .topicList {
@@ -125,6 +169,64 @@
   margin-top: 3px;
   font-size: 0.78rem;
   color: var(--text-muted);
+}
+
+.readingPicker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.readingOption {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.readingOptionOpen {
+  border-color: var(--border-strong);
+}
+
+.readingOptionHead {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: background var(--transition);
+
+  &:hover {
+    background: var(--surface-alt);
+  }
+}
+
+.readingOptionTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.readingOptionMeta {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.readingOptionSub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.readingBody {
+  padding: 2px 14px 16px;
+  border-top: 1px solid var(--border);
 }
 
 .card {
@@ -420,7 +522,7 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .card {
+.card {
     padding: 20px;
   }
 }

@@ -28,16 +28,32 @@ const MP3_BITRATE = "96k";
 const PRONUNCIATIONS = new Map(
   Object.entries({
     "Super Saiyan": "super sigh yan",
+    "Piccolo Daimao": "pee koh low dye mow",
+    "Tao Pai Pai": "tow pie pie",
     "Hitokiri Battosai": "hi toh kee ree bat to sigh",
     "Dragon Gate": "dragon gate",
     "Shinsengumi": "shin sen goo mee",
+    "Turtle Hermit": "tur tle her mit",
+    "Red Ribbon": "red ri bun",
+    "Chi-Chi": "chee chee",
     Battosai: "bat to sigh",
+    Tenshinhan: "ten sheen han",
     Saiyan: "sigh yan",
     Krillin: "kri lin",
     Frieza: "free za",
+    Yamcha: "yam cha",
     Vegeta: "veh geh ta",
     Gohan: "go han",
     Goku: "goh koo",
+    Roshi: "roh shee",
+    Bulma: "bool muh",
+    Karin: "kah reen",
+    Piccolo: "pee koh low",
+    Daimao: "dye mow",
+    Pilaf: "pye laf",
+    Oolong: "oh loong",
+    Puar: "poo ahr",
+    Upa: "oo pah",
     rurouni: "ru roo nee",
     Kenshin: "ken sheen",
     Himura: "hee moo ra",
@@ -151,7 +167,7 @@ for (const reading of targets) {
   const durations = [];
 
   for (const [index, block] of blocks.entries()) {
-    const spoken = applyPronunciations(block.fragments.join(" "));
+    const spoken = applyPronunciations(block.text);
     const aiff = join(workDir, `blk${index}.aiff`);
     const wav = join(workDir, `blk${index}.wav`);
 

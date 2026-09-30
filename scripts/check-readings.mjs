@@ -281,13 +281,114 @@ const BACKSTORY = /\b(many years ago|years ago|one night|one evening|one day|one
 
 const PAST_ADVERB = /\b(later|finally|eventually|afterwards|at last)\b/;
 
+function checkVerbs(id, reading, blocks) {
+  if (!reading.verbs) {
+    info(id, "sin verbos marcados (lectura sin resaltar)");
+    return;
+  }
+
+  const file = join(root, "public", reading.verbs.replace(/^\//, ""));
+
+  if (!existsSync(file)) {
+    fail(id, `falta el verbs: public${reading.verbs}`);
+    return;
+  }
+
+  const data = JSON.parse(readFileSync(file, "utf8"));
+  const expectedHash = textHash(reading.text);
+
+  if (data.textHash !== expectedHash) {
+    fail(
+      id,
+      `los verbos están desfasados: el texto cambió (hash ${data.textHash} != ${expectedHash}). Regenera con npm run verbs`
+    );
+    return;
+  }
+
+  if (data.tense !== reading.tense) {
+    fail(id, `el tense de los verbos (${data.tense}) no coincide con la lectura`);
+    return;
+  }
+
+  if (!Array.isArray(data.verbs) || data.verbs.length === 0) {
+    fail(id, "no hay verbos marcados");
+    return;
+  }
+
+  const text = reading.text;
+  let previousTo = -1;
+
+  for (const verb of data.verbs) {
+    if (verb.from < 0 || verb.to > text.length || verb.from >= verb.to) {
+      fail(id, `rango inválido en un verbo: ${verb.from}-${verb.to}`);
+      return;
+    }
+
+    if (text.slice(verb.from, verb.to) !== verb.surface) {
+      fail(
+        id,
+        `el verbo "${verb.surface}" no está en el texto (offsets desfasados)`
+      );
+      return;
+    }
+
+    if (verb.from < previousTo) {
+      fail(id, `los verbos se solapan en "${verb.surface}"`);
+      return;
+    }
+
+    if (verb.tense !== reading.tense) {
+      fail(
+        id,
+        `"${verb.surface}" está marcado como ${verb.tense} en una lectura en ${reading.tense}`
+      );
+      return;
+    }
+
+    previousTo = verb.to;
+  }
+
+  const outside = data.verbs.filter(
+    (verb) => !blocks.some((b) => verb.from >= b.start && verb.to <= b.end)
+  );
+
+  if (outside.length > 0) {
+    fail(
+      id,
+      `${outside.length} verbo(s) caen fuera de cualquier bloque: ${outside
+        .map((v) => `"${v.surface}"`)
+        .join(", ")}`
+    );
+    return;
+  }
+
+  const total = data.counts.present + data.counts.past;
+
+  if (total !== data.verbs.length) {
+    fail(id, `los counts (${total}) no cuadran con ${data.verbs.length} verbos`);
+    return;
+  }
+
+  if (data.verbs.length < 20) {
+    warn(
+      id,
+      `solo ${data.verbs.length} verbos marcados; revisa que no falte ninguno`
+    );
+  }
+
+  info(
+    id,
+    `verbos ok: ${data.verbs.length} (${data.counts.present} presente / ${data.counts.past} pasado)`
+  );
+}
+
 const seenIds = new Set();
 const seriesTenses = new Map();
 
 for (const reading of readings) {
   const id = reading.id;
 
-  for (const field of ["id", "title", "series", "tense", "level", "text"]) {
+  for (const field of ["id", "title", "series", "tense", "text"]) {
     if (!reading[field]) fail(id, `falta el campo "${field}"`);
   }
 
@@ -309,8 +410,8 @@ for (const reading of readings) {
   }
 
   const words = reading.text.split(/\s+/).filter(Boolean).length;
-  if (words < 150 || words > 450) {
-    warn(id, `${words} palabras (rango recomendado 150-450)`);
+  if (words < 150 || words > 1250) {
+    warn(id, `${words} palabras (rango válido 150-1250; los capítulos de saga apuntan a ~1000)`);
   }
 
   const blocks = groupSentences(reading.text);
@@ -323,7 +424,7 @@ for (const reading of readings) {
     fail(
       id,
       `${tooShort.length} bloque(s) de menos de ${MIN_BLOCK_CHARS} caracteres (saldrían a una línea): ${tooShort
-        .map((b) => `"${b.fragments.join(" ")}"`)
+        .map((b) => `"${b.text}"`)
         .join(", ")}`
     );
   }
@@ -334,6 +435,7 @@ for (const reading of readings) {
   }
 
   checkAudio(id, reading, blocks.length);
+  checkVerbs(id, reading, blocks);
 
   if (!seriesTenses.has(reading.series)) seriesTenses.set(reading.series, new Set());
   seriesTenses.get(reading.series).add(reading.tense);
@@ -375,7 +477,10 @@ for (const reading of readings) {
 
 for (const [series, tenses] of seriesTenses) {
   if (!tenses.has("present") || !tenses.has("past")) {
-    warn(series, `la serie "${series}" no tiene las dos versiones (presente + pasado)`);
+    info(
+      series,
+      `la serie "${series}" solo tiene ${[...tenses].join(", ")}; cada historia va en un solo tiempo y no hace falta la otra versión`
+    );
   }
 }
 

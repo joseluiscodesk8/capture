@@ -7,6 +7,8 @@ import styles from "@/app/styles/shell.module.scss";
 const LINKS = [
   { href: "/lyrics", label: "Letras" },
   { href: "/grammar", label: "Gramática" },
+  { href: "/verbs", label: "Verbos" },
+  { href: "/tenses", label: "Presente y pasado" },
 ];
 
 export default function SiteHeader() {

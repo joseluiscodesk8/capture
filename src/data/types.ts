@@ -41,15 +41,64 @@ export type ReadingTimings = {
   duration: number;
 };
 
+export type VerbMark = {
+  from: number;
+  to: number;
+  tense: Tense;
+  lemma: string;
+  surface: string;
+};
+
+export type ReadingVerbs = {
+  textHash: string;
+  tense: Tense;
+  counts: { present: number; past: number };
+  verbs: VerbMark[];
+};
+
+export type VerbExample = {
+  tense: Tense;
+  readingId: string;
+  readingTitle: string;
+  series: string;
+  sentence: string;
+  from: number;
+  to: number;
+};
+
+export type VerbTableEntry = {
+  lemma: string;
+  thirdPerson: string;
+  past: string;
+  irregular: boolean;
+  tenses: Tense[];
+  examples: VerbExample[];
+};
+
+export type VerbTableReading = {
+  id: string;
+  title: string;
+  series: string;
+  tense: Tense;
+};
+
+export type VerbTable = {
+  generatedFrom: string;
+  readings: VerbTableReading[];
+  total: number;
+  withExample: number;
+  verbs: VerbTableEntry[];
+};
+
 export type Reading = {
   id: string;
   title: string;
   series: string;
   tense: Tense;
-  level: string;
   text: string;
   audio?: string;
   timings?: string;
+  verbs?: string;
   vocabulary: { term: string; meaning: string }[];
 };
 

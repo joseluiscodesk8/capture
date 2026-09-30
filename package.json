@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "check:readings": "node scripts/check-readings.mjs",
-    "narrate": "node scripts/generate-narration.mjs"
+    "narrate": "node scripts/generate-narration.mjs",
+    "verbs": "node scripts/tag-verbs.mjs"
   },
   "browserslist": [
     ">0.2%",

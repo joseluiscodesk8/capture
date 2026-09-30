@@ -101,6 +101,50 @@
   border-color: var(--text-muted);
 }
 
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 2px;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.legendSwatch {
+  display: inline-block;
+  padding: 1px 8px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  background: var(--surface-alt);
+}
+
+.legendNote {
+  margin-left: auto;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.verbPresent {
+  background: transparent;
+  color: var(--verb-present);
+  font-weight: 700;
+}
+
+.verbPast {
+  background: transparent;
+  color: var(--verb-past);
+  font-weight: 700;
+}
+
 .panel {
   position: relative;
   height: clamp(400px, 62vh, 620px);
